@@ -296,7 +296,7 @@ void device_present(gs_device_t *device)
 
 	[device->cur_swap->wi->context makeCurrentContext];
 	gl_bind_framebuffer(GL_READ_FRAMEBUFFER, device->cur_swap->wi->fbo);
-	gl_bind_framebuffer(GL_DRAW_FRAMEBUFFER, 0);
+	gl_bind_framebuffer(GL_DRAW_FRAMEBUFFER, 0);//## 要保证所有的渲染操作在主窗口中有视觉效果，我们需要再次激活默认帧缓冲，将它绑定到0。
 	const uint32_t width = device->cur_swap->info.cx;
 	const uint32_t height = device->cur_swap->info.cy;
 	glBlitFramebuffer(0, 0, width, height, 0, height, width, 0,
@@ -352,6 +352,7 @@ gs_texture_t *device_texture_create_from_iosurface(gs_device_t *device,
 	if (!gl_bind_texture(tex->base.gl_target, tex->base.texture))
 		goto fail;
 
+    //## ref就可以看成是屏幕数据
 	CGLError err = CGLTexImageIOSurface2D(
 		[[NSOpenGLContext currentContext] CGLContextObj],
 		tex->base.gl_target, tex->base.gl_internal_format, tex->width,

@@ -216,7 +216,10 @@ void render_display(struct obs_display *display)
 		struct draw_callback *callback;
 		callback = display->draw_callbacks.array + i;
 
-		callback->draw(callback->param, cx, cy);
+        //## 绘制渲染界面
+        //frontend/obs/window-basic-main.cpp 界面层 代码
+        //以下调用void OBSBasic::RenderMain(void *data, uint32_t cx, uint32_t cy)
+		callback->draw(callback->param, cx, cy);//## 绘制渲染界面
 	}
 
 	pthread_mutex_unlock(&display->draw_callbacks_mutex);

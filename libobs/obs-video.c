@@ -61,12 +61,20 @@ static uint64_t tick_sources(uint64_t cur_time, uint64_t last_time)
 
 	pthread_mutex_lock(&data->sources_mutex);
 
+    //遍历每个source
 	source = data->first_source;
 	while (source) {
 		struct obs_source *cur_source = obs_source_get_ref(source);
 		source = (struct obs_source *)source->context.next;
 
 		if (cur_source) {
+//##
+//info:     obs-video::tick_sources, cur_source name=场景, source id=scene, delta seconds=0
+//info:     obs-video::tick_sources, cur_source name=显示器采集, source id=display_capture, delta seconds=0
+//info:     obs-video::tick_sources, cur_source name=麦克风/Aux, source id=coreaudio_input_capture, delta seconds=0
+//info:     obs-video::tick_sources, cur_source name=淡出, source id=fade_transition, delta seconds=0
+//info:     obs-video::tick_sources, cur_source name=直接切换, source id=cut_transition, delta seconds=0
+//            blog(LOG_INFO, "\tobs-video::tick_sources, cur_source name=%s, source id=%s, delta seconds=%.0f", cur_source->context.name, cur_source->info.id, seconds);
 			obs_source_video_tick(cur_source, seconds);
 			obs_source_release(cur_source);
 		}
@@ -1032,7 +1040,7 @@ void *obs_graphics_thread(void *param)
 	srand((unsigned int)time(NULL));
 
 	struct obs_graphics_context context;
-	context.interval = video_output_get_frame_time(obs->video.video);
+	context.interval = video_output_get_frame_time(obs->video.video); //以视频fps 60/1为例, 每帧间隔video->frame_time=16666666ns
 	context.frame_time_total_ns = 0;
 	context.fps_total_ns = 0;
 	context.fps_total_frames = 0;

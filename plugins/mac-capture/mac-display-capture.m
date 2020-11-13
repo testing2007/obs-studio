@@ -210,6 +210,7 @@ static bool init_display_stream(struct display_capture *dc)
 	os_event_init(&dc->disp_finished, OS_EVENT_TYPE_MANUAL);
 
 	const CGSize *size = &dc->frame.size;
+    //## 会弹出是否允许 “屏幕录制对话框”， 每次都弹出， 实在烦恼
 	dc->disp = CGDisplayStreamCreateWithDispatchQueue(
 		disp_id, size->width, size->height, 'BGRA',
 		(__bridge CFDictionaryRef)dict,
@@ -217,6 +218,7 @@ static bool init_display_stream(struct display_capture *dc)
 		^(CGDisplayStreamFrameStatus status, uint64_t displayTime,
 		  IOSurfaceRef frameSurface,
 		  CGDisplayStreamUpdateRef updateRef) {
+            //## display_capture 中 current 就是这里的 frameSurface
 			display_stream_update(dc, status, displayTime,
 					      frameSurface, updateRef);
 		});
@@ -378,6 +380,7 @@ static void display_capture_video_tick(void *data, float seconds)
 			  origin.y, end.x, end.y);
 
 	if (dc->tex)
+        //dc->tex 会获取到屏幕数据（利用 CGLTexImageIOSurface2D 函数）
 		gs_texture_rebind_iosurface(dc->tex, dc->prev);
 	else
 		dc->tex = gs_texture_create_from_iosurface(dc->prev);
@@ -640,7 +643,7 @@ static obs_properties_t *display_capture_properties(void *unused)
 }
 
 struct obs_source_info display_capture_info = {
-	.id = "display_capture",
+	.id = "display_capture", //## source id
 	.type = OBS_SOURCE_TYPE_INPUT,
 	.get_name = display_capture_getname,
 

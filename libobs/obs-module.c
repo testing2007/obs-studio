@@ -272,7 +272,6 @@ void obs_add_module_path(const char *bin, const char *data)
 static void load_all_callback(void *param, const struct obs_module_info *info)
 {
 	obs_module_t *module;
-
 	int code = obs_open_module(&module, info->bin_path, info->data_path);
 	if (code != MODULE_SUCCESS) {
 		blog(LOG_DEBUG, "Failed to load module file '%s': %d",

@@ -329,6 +329,7 @@ static void obs_source_init_audio_hotkeys(struct obs_source *source)
 		obs_source_hotkey_push_to_talk, source);
 }
 
+//## id 就是插件（plugins）里面的id
 static obs_source_t *
 obs_source_create_internal(const char *id, const char *name,
 			   obs_data_t *settings, obs_data_t *hotkey_data,
@@ -1158,6 +1159,8 @@ void obs_source_video_tick(obs_source_t *source, float seconds)
 		source->active = now_active;
 	}
 
+    //## 调用 plugins/mac-capture/mac-display-capture.m::display_capture_video_tick 函数
+    //## source->info 指向插件的 obs_source_info
 	if (source->context.data && source->info.video_tick)
 		source->info.video_tick(source->context.data, seconds);
 

@@ -279,13 +279,13 @@ struct obs_core_video {
 	bool gpu_encode_thread_initialized;
 	volatile bool gpu_encode_stop;
 
-	uint64_t video_time;
-	uint64_t video_frame_interval_ns;
-	uint64_t video_avg_frame_time_ns;
-	double video_fps;
+	uint64_t video_time; //## 按照视频fps间隔时间计算， 实际采集当前视频的时间， 以纳秒为单位
+	uint64_t video_frame_interval_ns; //## 按照视频fps间隔时间计算
+	uint64_t video_avg_frame_time_ns; //## 实际在1s内采集帧数据单位平均时长
+	double video_fps; //## 实际在1s内采集计算出的实际视频帧率
 	video_t *video;
 	pthread_t video_thread;
-	uint32_t total_frames;
+	uint32_t total_frames;//按照## fps 理论应该采集的总帧数，而不是实际采集的总帧数
 	uint32_t lagged_frames;
 	bool thread_initialized;
 
@@ -403,7 +403,7 @@ struct obs_core_hotkeys {
 };
 
 struct obs_core {
-	struct obs_module *first_module;
+	struct obs_module *first_module; //模块链表首元素
 	DARRAY(struct obs_module_path) module_paths;
 
 	DARRAY(struct obs_source_info) source_types;
@@ -426,9 +426,9 @@ struct obs_core {
 
 	/* segmented into multiple sub-structures to keep things a bit more
 	 * clean and organized */
-	struct obs_core_video video;
-	struct obs_core_audio audio;
-	struct obs_core_data data;
+	struct obs_core_video video; //视频
+	struct obs_core_audio audio; //音频
+	struct obs_core_data data;   //
 	struct obs_core_hotkeys hotkeys;
 
 	obs_task_handler_t ui_task_handler;
@@ -436,12 +436,15 @@ struct obs_core {
 
 extern struct obs_core *obs;
 
+//具体参见：obs-video.c::obs_graphics_thread_loop
 struct obs_graphics_context {
-	uint64_t last_time;
-	uint64_t interval;
-	uint64_t frame_time_total_ns;
-	uint64_t fps_total_ns;
-	uint32_t fps_total_frames;
+	uint64_t last_time;//上次采集时间，下一帧采集时间是前一次+ interval 的整数倍
+	uint64_t interval; //以视频fps 60/1为例, 每帧间隔video->frame_time=16666666ns， 以纳秒为单位
+
+    //当采集（即渲染结束后的处理） fps_total_ns 累计时长 >= 1s, 以下三个统计数据清零
+    uint64_t frame_time_total_ns; //实际采集帧数据时长， 以纳秒为单位
+	uint64_t fps_total_ns; //实际采集 fps_total_frams 帧， 所花费的时长，以纳秒为单位， 每次叠加的时长是 interval 的整数倍（除第一次以外）
+	uint32_t fps_total_frames; //实际采集帧数目，
 #ifdef _WIN32
 	bool gpu_was_active;
 #endif
@@ -589,6 +592,11 @@ struct audio_cb_info {
 
 struct obs_source {
 	struct obs_context_data context;
+    
+    /*
+     对于插件：对于mac平台指向位置 plugins/mac-capture/mac-display-capture.m
+     对于场景：对于mac平台指向位置 core/libobs/libobs/obs-scene.c
+    //*/
 	struct obs_source_info info;
 	struct obs_weak_source *control;
 

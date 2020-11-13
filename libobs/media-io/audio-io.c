@@ -221,9 +221,9 @@ static void *audio_thread(void *param)
 
 		cur_time = os_gettime_ns();
 		while (audio_time <= cur_time) {
-			samples += AUDIO_OUTPUT_FRAMES;
+			samples += AUDIO_OUTPUT_FRAMES; //## AUDIO_OUTPUT_FRAMES 定义为 1024
 			audio_time =
-				start_time + audio_frames_to_ns(rate, samples);
+				start_time + audio_frames_to_ns(rate, samples); //## 按照采样率，采集 samples 所需要的纳秒时长
 
 			input_and_output(audio, audio_time, prev_time);
 			prev_time = audio_time;

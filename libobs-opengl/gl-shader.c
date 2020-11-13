@@ -210,7 +210,7 @@ static bool gl_shader_init(struct gs_shader *shader,
 	if (!gl_success("glCompileShader"))
 		return false;
 
-#if 0
+#if 1 //## 打开日志，看对应文件最后转变的 shader
 	blog(LOG_DEBUG, "+++++++++++++++++++++++++++++++++++");
 	blog(LOG_DEBUG, "  GL shader string for: %s", file);
 	blog(LOG_DEBUG, "-----------------------------------");

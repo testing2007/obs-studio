@@ -59,7 +59,7 @@ enum gs_color_format {
 	GS_R8,
 	GS_RGBA,
 	GS_BGRX,
-	GS_BGRA,
+	GS_BGRA,//## 颜色
 	GS_R10G10B10A2,
 	GS_RGBA16,
 	GS_R16,
@@ -76,7 +76,7 @@ enum gs_color_format {
 };
 
 enum gs_zstencil_format {
-	GS_ZS_NONE,
+	GS_ZS_NONE, //## 没有指定
 	GS_Z16,
 	GS_Z24_S8,
 	GS_Z32F,

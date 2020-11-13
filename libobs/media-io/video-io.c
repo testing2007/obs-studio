@@ -65,7 +65,7 @@ struct video_output {
 	bool stop;
 
 	os_sem_t *update_semaphore;
-	uint64_t frame_time;
+	uint64_t frame_time; //以纳秒为单位， 以视频60fps, frame_time=16666666ns
 	volatile long skipped_frames;
 	volatile long total_frames;
 
