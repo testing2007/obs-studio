@@ -39,7 +39,10 @@
 .dirstamp
 
 #xcode
-*.xcodeproj/
+#*.xcodeproj/
+/build/**/xcshareddata/
+/build/**/xcuserdata/
+
 
 #clion
 .idea/
