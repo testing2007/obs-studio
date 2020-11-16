@@ -573,6 +573,7 @@ public slots:
 
 	void ReplayBufferStart();
 	void ReplayBufferSave();
+	void ReplayBufferSaved();
 	void ReplayBufferStopping();
 	void ReplayBufferStop(int code);
 
@@ -838,6 +839,8 @@ public:
 	QIcon GetSourceIcon(const char *id) const;
 	QIcon GetGroupIcon() const;
 	QIcon GetSceneIcon() const;
+
+	OBSWeakSource copyFilter = nullptr;
 
 protected:
 	virtual void closeEvent(QCloseEvent *event) override;
