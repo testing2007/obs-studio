@@ -6,7 +6,23 @@
 
 #cmake
 /cmbuild/
-/build/
+/build/build/
+/build/cmake/
+/build/CMakeFiles/
+/build/CMakeScripts/
+/build/config/
+/build/deps/
+/build/libobs/
+/build/libobs-opengl/
+/build/obs-studio.build/
+/build/plugins/
+/build/rundir/
+/build/Shared/
+/build/UI/
+/build/cmake_install.cmake
+/build/CMakeCache.txt
+/build/CPackConfig.cmake
+/build/CPackSourceConfig.cmake
 /build32/
 /build64/
 /release/
