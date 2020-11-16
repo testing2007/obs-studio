@@ -223,7 +223,15 @@ static bool init_display_stream(struct display_capture *dc)
 					      frameSurface, updateRef);
 		});
 
-	return !CGDisplayStreamStart(dc->disp);
+    CGError err = CGDisplayStreamStart(dc->disp);
+
+    if (kCGErrorSuccess != err) {
+      printf("Error: failed to start the display stream capturer. CGDisplayStreamStart failed: %d .\n", err);
+      return false;
+    }
+    
+    return true;
+//	return !CGDisplayStreamStart(dc->disp);
 }
 
 bool init_vertbuf(struct display_capture *dc)

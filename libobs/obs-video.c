@@ -768,7 +768,7 @@ static inline void output_frame(bool raw_active, const bool gpu_active)
 	profile_start(output_frame_render_video_name);
 	GS_DEBUG_MARKER_BEGIN(GS_DEBUG_COLOR_RENDER_VIDEO,
 			      output_frame_render_video_name);
-	render_video(video, raw_active, gpu_active, cur_texture);
+	render_video(video, raw_active, gpu_active, cur_texture);//## raw_active=false, gpu_active=false, cur_texture=0;
 	GS_DEBUG_MARKER_END();
 	profile_end(output_frame_render_video_name);
 

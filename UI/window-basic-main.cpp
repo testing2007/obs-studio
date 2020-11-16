@@ -3733,6 +3733,8 @@ void OBSBasic::DrawBackdrop(float cx, float cy)
 
 void OBSBasic::RenderMain(void *data, uint32_t cx, uint32_t cy)
 {
+//##    obs_render_main_texture_src_color_only();
+
 	GS_DEBUG_MARKER_BEGIN(GS_DEBUG_COLOR_DEFAULT, "RenderMain");
 
 	OBSBasic *window = static_cast<OBSBasic *>(data);

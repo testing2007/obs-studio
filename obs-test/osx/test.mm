@@ -47,15 +47,6 @@ static void CreateOBS()
 		throw "Couldn't create OBS";
 
 	struct obs_video_info ovi;
-//	ovi.adapter = 0;
-//	ovi.fps_num = 30000;
-//	ovi.fps_den = 1001;
-//	ovi.graphics_module = DL_OPENGL;
-//	ovi.output_format = VIDEO_FORMAT_RGBA;
-//	ovi.base_width = cx;
-//	ovi.base_height = cy;
-//	ovi.output_width = cx;
-//	ovi.output_height = cy;
     ovi.adapter = 0;
     ovi.fps_num = 60;
     ovi.fps_den = 1;
@@ -77,8 +68,8 @@ static void CreateOBS()
 static DisplayContext CreateDisplay(NSView *view)
 {
 	gs_init_data info = {};
-	info.cx = cx;
-	info.cy = cy;
+	info.cx = cx*2;//在mac里面以点为单位， 所以在这个地方乘以 2
+	info.cy = cy*2;
 	info.format = GS_BGRA;
 	info.zsformat = GS_ZS_NONE;
 	info.window.view = view;
@@ -162,7 +153,7 @@ static SceneContext SetupScene()
 		obs_display_add_draw_callback(
 			display.get(),
 			[](void *, uint32_t, uint32_t) {
-				obs_render_main_texture();
+            obs_render_main_texture_src_color_only();
 			},
 			nullptr);
 
