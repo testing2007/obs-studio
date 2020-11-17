@@ -315,9 +315,7 @@
 		91C07D71F00847D0B5BF0329 /* window-projector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1B5199082D5B4D9E97FF33D6 /* window-projector.cpp */; };
 		935F6510379C4F11A085B8C7 /* window-namedialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8535E91FAEB8421C94CFDCF1 /* window-namedialog.cpp */; };
 		94F0D13025628B5F0079980D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F0D11825628B5F0079980D /* Assets.xcassets */; };
-		94F0D13B25628B5F0079980D /* obs-test_postBuildPhase.makeDebug in Resources */ = {isa = PBXBuildFile; fileRef = 94F0D12B25628B5F0079980D /* obs-test_postBuildPhase.makeDebug */; };
 		94F0D13D25628B5F0079980D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94F0D12D25628B5F0079980D /* Info.plist */; };
-		94F0D13E25628B5F0079980D /* obs-test in Resources */ = {isa = PBXBuildFile; fileRef = 94F0D12F25628B5F0079980D /* obs-test */; };
 		94F0D13F25628BE60079980D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F0D12925628B5F0079980D /* main.m */; };
 		94F0D14025628BE60079980D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94F0D12C25628B5F0079980D /* AppDelegate.mm */; };
 		94F0D14125628C670079980D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94F0D12725628B5F0079980D /* MainMenu.xib */; };
@@ -1480,10 +1478,8 @@
 		94F0D11925628B5F0079980D /* obs_test.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = obs_test.entitlements; sourceTree = "<group>"; };
 		94F0D12825628B5F0079980D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		94F0D12925628B5F0079980D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		94F0D12B25628B5F0079980D /* obs-test_postBuildPhase.makeDebug */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "obs-test_postBuildPhase.makeDebug"; sourceTree = "<group>"; };
 		94F0D12C25628B5F0079980D /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		94F0D12D25628B5F0079980D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		94F0D12F25628B5F0079980D /* obs-test */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "obs-test"; sourceTree = "<group>"; };
 		94F0D145256290BE0079980D /* test.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = test.mm; sourceTree = "<group>"; };
 		94F0D148256295A10079980D /* test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test.h; sourceTree = "<group>"; };
 		95ECBB3787104756BCADFB00 /* SyphonImage.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SyphonImage.h; path = "plugins/mac-syphon/syphon-framework/SyphonImage.h"; sourceTree = SOURCE_ROOT; };
@@ -2998,28 +2994,10 @@
 				94F0D11925628B5F0079980D /* obs_test.entitlements */,
 				94F0D12725628B5F0079980D /* MainMenu.xib */,
 				94F0D12925628B5F0079980D /* main.m */,
-				94F0D12A25628B5F0079980D /* CMakeScripts */,
 				94F0D12C25628B5F0079980D /* AppDelegate.mm */,
 				94F0D12D25628B5F0079980D /* Info.plist */,
-				94F0D12E25628B5F0079980D /* Debug */,
 			);
 			path = "obs-test";
-			sourceTree = "<group>";
-		};
-		94F0D12A25628B5F0079980D /* CMakeScripts */ = {
-			isa = PBXGroup;
-			children = (
-				94F0D12B25628B5F0079980D /* obs-test_postBuildPhase.makeDebug */,
-			);
-			path = CMakeScripts;
-			sourceTree = "<group>";
-		};
-		94F0D12E25628B5F0079980D /* Debug */ = {
-			isa = PBXGroup;
-			children = (
-				94F0D12F25628B5F0079980D /* obs-test */,
-			);
-			path = Debug;
 			sourceTree = "<group>";
 		};
 		94F0D149256298400079980D /* Frameworks */ = {
@@ -4147,8 +4125,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				94F0D14125628C670079980D /* MainMenu.xib in Resources */,
-				94F0D13B25628B5F0079980D /* obs-test_postBuildPhase.makeDebug in Resources */,
-				94F0D13E25628B5F0079980D /* obs-test in Resources */,
 				94F0D13025628B5F0079980D /* Assets.xcassets in Resources */,
 				94F0D13D25628B5F0079980D /* Info.plist in Resources */,
 			);
@@ -10531,6 +10507,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-01.obs-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SYMROOT = "${PROJECT_DIR}/${TARGET_NAME}/";
 				SYSTEM_HEADER_SEARCH_PATHS = "/Users/zhiqiangwei/Work/openSource/obs-studio/libobs /Users/zhiqiangwei/Work/openSource/obs-studio/deps/libff /Users/zhiqiangwei/Work/openSource/obs-studio/deps/json11 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers";
 			};
 			name = Debug;
@@ -10605,6 +10582,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-01.obs-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SYMROOT = "${PROJECT_DIR}/${TARGET_NAME}/";
 				SYSTEM_HEADER_SEARCH_PATHS = "/Users/zhiqiangwei/Work/openSource/obs-studio/libobs /Users/zhiqiangwei/Work/openSource/obs-studio/deps/libff /Users/zhiqiangwei/Work/openSource/obs-studio/deps/json11 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers";
 			};
 			name = Release;
@@ -10679,6 +10657,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-01.obs-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SYMROOT = "${PROJECT_DIR}/${TARGET_NAME}/";
 				SYSTEM_HEADER_SEARCH_PATHS = "/Users/zhiqiangwei/Work/openSource/obs-studio/libobs /Users/zhiqiangwei/Work/openSource/obs-studio/deps/libff /Users/zhiqiangwei/Work/openSource/obs-studio/deps/json11 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers";
 			};
 			name = MinSizeRel;
@@ -10753,6 +10732,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-01.obs-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SYMROOT = "${PROJECT_DIR}/${TARGET_NAME}/";
 				SYSTEM_HEADER_SEARCH_PATHS = "/Users/zhiqiangwei/Work/openSource/obs-studio/libobs /Users/zhiqiangwei/Work/openSource/obs-studio/deps/libff /Users/zhiqiangwei/Work/openSource/obs-studio/deps/json11 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers";
 			};
 			name = RelWithDebInfo;

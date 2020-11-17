@@ -39,12 +39,15 @@ using SceneContext =
 using DisplayContext =
     OBSUniqueHandle<obs_display, DECLARE_DELETER(obs_display_destroy)>;
 
+using OutputContext = OBSUniqueHandle<obs_output,DECLARE_DELETER(obs_output_release)>;
+
 #undef DECLARE_DELETER
 @interface OBSTest : NSObject <NSApplicationDelegate, NSWindowDelegate> {
 //    NSWindow *win;
 //    NSView *view;
     DisplayContext display;
     SceneContext scene;
+    OutputContext fileOutput;
 }
 - (void)launch:(NSNotification *)notification window:(NSWindow*)win;
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)app;

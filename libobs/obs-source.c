@@ -2167,7 +2167,7 @@ static inline void obs_source_main_render(obs_source_t *source)
 
 	if (default_effect)
 		obs_source_default_render(source);
-	else if (source->context.data)
+	else if (source->context.data) //## 以下调用 plugins/mac-capture/mac-display-capture.m::video-render方法
 		source->info.video_render(source->context.data,
 					  custom_draw ? NULL : gs_get_effect());
 }

@@ -47,7 +47,7 @@ static void *a_malloc(size_t size)
 	if (ptr) {
 		diff = ((~(long)ptr) & (ALIGNMENT - 1)) + 1;
 		ptr = (char *)ptr + diff;
-		((char *)ptr)[-1] = (char)diff;
+		((char *)ptr)[-1] = (char)diff;//## 用下标-1来存储差值
 	}
 
 	return ptr;
@@ -81,7 +81,7 @@ static void a_free(void *ptr)
 	_aligned_free(ptr);
 #elif ALIGNMENT_HACK
 	if (ptr)
-		free((char *)ptr - ((char *)ptr)[-1]);
+		free((char *)ptr - ((char *)ptr)[-1]);//## 获取到当初分配的地址
 #else
 	free(ptr);
 #endif

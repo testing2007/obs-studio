@@ -1290,7 +1290,7 @@ static inline void send_interleaved(struct obs_output *output)
 #endif
 	}
 
-	output->info.encoded_packet(output->context.data, &out);
+	output->info.encoded_packet(output->context.data, &out);//## 调用 /plugin/obs-ffmpeg/obs-ffmpeg-mux.c::ffmpeg_mux_data
 	obs_encoder_packet_release(&out);
 }
 

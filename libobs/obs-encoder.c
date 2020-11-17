@@ -976,9 +976,9 @@ bool do_encode(struct obs_encoder *encoder, struct encoder_frame *frame)
 
 	profile_start(encoder->profile_encoder_encode_name);
 	success = encoder->info.encode(encoder->context.data, frame, &pkt,
-				       &received);
+				       &received);//## 最终会查询到对应的编码器， 最终编码的数据会存放在 pkt 变量中，比如找到类似 plugin/obs-x264/obs-x264.c::obs_x264_encode 函数
 	profile_end(encoder->profile_encoder_encode_name);
-	send_off_encoder_packet(encoder, success, received, &pkt);
+	send_off_encoder_packet(encoder, success, received, &pkt);//## 条件成立的话，最终会将 pkt 发送到  /plugin/obs-ffmpeg/obs-ffmpeg-mux.c::ffmpeg_mux_data
 
 	profile_end(do_encode_name);
 

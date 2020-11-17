@@ -208,7 +208,7 @@ struct obs_display {
 	gs_swapchain_t *swap;
 	pthread_mutex_t draw_callbacks_mutex;
 	pthread_mutex_t draw_info_mutex;
-	DARRAY(struct draw_callback) draw_callbacks;
+	DARRAY(struct draw_callback) draw_callbacks; //指向
 
 	struct obs_display *next;
 	struct obs_display **prev_next;
@@ -266,8 +266,8 @@ struct obs_core_video {
 	gs_effect_t *premultiplied_alpha_effect;
 	gs_samplerstate_t *point_sampler;
 	gs_stagesurf_t *mapped_surfaces[NUM_CHANNELS];
-	int cur_texture;
-	long raw_active;
+	int cur_texture;//## 纹理索引号，范围【0 ～ NUM_TEXTURES-1】
+	long raw_active;//## 是否开启原始数据输出， 比如当需要屏幕录像的时候， 这个值就是true;
 	long gpu_encoder_active;
 	pthread_mutex_t gpu_encoder_mutex;
 	struct circlebuf gpu_encoder_queue;
@@ -283,8 +283,8 @@ struct obs_core_video {
 	uint64_t video_frame_interval_ns; //## 按照视频fps间隔时间计算
 	uint64_t video_avg_frame_time_ns; //## 实际在1s内采集帧数据单位平均时长
 	double video_fps; //## 实际在1s内采集计算出的实际视频帧率
-	video_t *video;
-	pthread_t video_thread;
+	video_t *video; //## 输出视频，定义输出颜色格式，根据颜色格式，定义相关颜色分量内存布局变量，以及初始化MAX_CACHE_SIZE大小缓冲区
+	pthread_t video_thread;//## 将数据进行编码的线程
 	uint32_t total_frames;//按照## fps 理论应该采集的总帧数，而不是实际采集的总帧数
 	uint32_t lagged_frames;
 	bool thread_initialized;
@@ -426,15 +426,15 @@ struct obs_core {
 
 	/* segmented into multiple sub-structures to keep things a bit more
 	 * clean and organized */
-	struct obs_core_video video; //视频
-	struct obs_core_audio audio; //音频
+	struct obs_core_video video; //## 视频
+	struct obs_core_audio audio; //## 音频
 	struct obs_core_data data;   //
 	struct obs_core_hotkeys hotkeys;
 
 	obs_task_handler_t ui_task_handler;
 };
 
-extern struct obs_core *obs;
+extern struct obs_core *obs; //## 声明全局变量，真正定义实在 obs.c 文件中
 
 //具体参见：obs-video.c::obs_graphics_thread_loop
 struct obs_graphics_context {

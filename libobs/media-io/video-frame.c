@@ -54,14 +54,14 @@ void video_frame_init(struct video_frame *frame, enum video_format format,
 		frame->linesize[2] = width / 2;
 		break;
 
-	case VIDEO_FORMAT_NV12:
-		size = width * height;
+	case VIDEO_FORMAT_NV12://## 先存储所有Y分量， 然后U、V分量交替存储
+		size = width * height; //## Y 分量大小
 		ALIGN_SIZE(size, alignment);
 		offsets[0] = size;
-		size += (width / 2) * (height / 2) * 2;
+		size += (width / 2) * (height / 2) * 2; //## U、V分量各占 = 行×列/4
 		ALIGN_SIZE(size, alignment);
-		frame->data[0] = bmalloc(size);
-		frame->data[1] = (uint8_t *)frame->data[0] + offsets[0];
+		frame->data[0] = bmalloc(size);//## Y分量数据存储开始位置
+		frame->data[1] = (uint8_t *)frame->data[0] + offsets[0];//## U分量的数据开始位置
 		frame->linesize[0] = width;
 		frame->linesize[1] = width;
 		break;

@@ -25,7 +25,7 @@ static void CreateOBS()
     ovi.base_height = base_height;
     ovi.output_width = cx;
     ovi.output_height = cy;
-    ovi.output_format = VIDEO_FORMAT_NV12;
+    ovi.output_format = VIDEO_FORMAT_NV12; //视频输出格式
     ovi.gpu_conversion = true;
     ovi.colorspace = VIDEO_CS_709;
     ovi.range = VIDEO_RANGE_PARTIAL;
@@ -81,33 +81,44 @@ static SceneContext SetupScene()
 	UNUSED_PARAMETER(notification);
 
 	try {
-//		NSRect content_rect = NSMakeRect(0, 0, cx, cy);
-//		win = [[NSWindow alloc]
-//			initWithContentRect:content_rect
-//				  styleMask:NSTitledWindowMask |
-//					    NSClosableWindowMask
-//				    backing:NSBackingStoreBuffered
-//				      defer:NO];
 		if (!win)
 			throw "Could not create window";
-//        NSRect content_rect = win.contentView.frame;
-//		view = [[NSView alloc] initWithFrame:content_rect];
-//		if (!view)
-//			throw "Could not create view";
 
 		CreateOBS();
 
-		win.title = @"foo";
+		win.title = @"fbboo";
 		win.delegate = self;
 //		win.contentView = win.contentView;
-
-		[win orderFrontRegardless];
-		[win center];
-		[win makeMainWindow];
+//		[win orderFrontRegardless];
+//		[win center];
+//		[win makeMainWindow];
 
 		display = CreateDisplay(win.contentView);
+        
 
 		scene = SetupScene();
+        
+        //* 定义输出
+        fileOutput = OutputContext{obs_output_create(
+                                                     "ffmpeg_output", "adv_ffmpeg_output", nullptr, nullptr)};
+        if (!fileOutput)
+            throw "Failed to create recording FFmpeg output "
+                  "(advanced output)";
+        
+//        if (!obs_output_start(fileOutput.get())) {
+//            NSLog(@"fail to obs_output_start");
+//            QString error_reason;
+//            const char *error = obs_output_get_last_error(fileOutput.get());
+//            if (error)
+//                error_reason = QT_UTF8(error);
+//            else
+//                error_reason = QTStr("Output.StartFailedGeneric");
+//            QMessageBox::critical(main,
+//                          QTStr("Output.StartRecordingFailed"),
+//                          error_reason);
+//            return ;
+//        }
+        //*/
 
 		obs_display_add_draw_callback(
 			display.get(),

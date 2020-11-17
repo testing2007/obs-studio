@@ -7,5 +7,5 @@ all: \
 
 obs-test_buildpart_0: 
 	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
-	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/Debug/obs-test \
-	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/bin/obs-test
+	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/Debug/obs-test.app \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/bin/obs-test.app

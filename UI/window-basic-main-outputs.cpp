@@ -981,7 +981,7 @@ bool SimpleOutput::StartRecording()
 	UpdateRecording();
 	if (!ConfigureRecording(false))
 		return false;
-	if (!obs_output_start(fileOutput)) {
+	if (!obs_output_start(fileOutput)) {//## 录制输出
 		QString error_reason;
 		const char *error = obs_output_get_last_error(fileOutput);
 		if (error)

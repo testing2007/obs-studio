@@ -32,7 +32,7 @@
 extern profiler_name_store_t *obs_get_profiler_name_store(void);
 
 #define MAX_CONVERT_BUFFERS 3
-#define MAX_CACHE_SIZE 16
+#define MAX_CACHE_SIZE 1
 
 struct cached_frame_info {
 	struct video_data frame;
@@ -46,7 +46,7 @@ struct video_input {
 	struct video_frame frame[MAX_CONVERT_BUFFERS];
 	int cur_frame;
 
-	void (*callback)(void *param, struct video_data *frame);
+	void (*callback)(void *param /* ## obs_encoder*/, struct video_data *frame/* ## video_output::cache->frame*/); //## obs-encoder.c::receive_video
 	void *param;
 };
 
@@ -61,25 +61,25 @@ struct video_output {
 	struct video_output_info info;
 
 	pthread_t thread;
-	pthread_mutex_t data_mutex;
+	pthread_mutex_t data_mutex;//## 渲染线程 与 视频线程 数据互斥量
 	bool stop;
 
-	os_sem_t *update_semaphore;
-	uint64_t frame_time; //以纳秒为单位， 以视频60fps, frame_time=16666666ns
+	os_sem_t *update_semaphore;//## 渲染线程 与 视频线程 数据信号量
+	uint64_t frame_time; //## 以纳秒为单位， 以视频60fps, frame_time=16666666ns
 	volatile long skipped_frames;
 	volatile long total_frames;
 
 	bool initialized;
 
 	pthread_mutex_t input_mutex;
-	DARRAY(struct video_input) inputs;
+	DARRAY(struct video_input) inputs;//## 查询输入源，输出对应的输入可能有多个，所以用数组
 
 	size_t available_frames;
 	size_t first_added;
 	size_t last_added;
-	struct cached_frame_info cache[MAX_CACHE_SIZE];
+	struct cached_frame_info cache[MAX_CACHE_SIZE]; //## 根据输出文件的格式定义，定义访问对应内存布局的颜色分量， 方便后续的编码操作
 
-	volatile bool raw_active;
+	volatile bool raw_active;//## 可以理解为是否有文件输出之类的
 	volatile long gpu_refs;
 };
 
@@ -90,7 +90,7 @@ static inline bool scale_video_output(struct video_input *input,
 {
 	bool success = true;
 
-	if (input->scaler) {
+	if (input->scaler) {//## null,里面不执行
 		struct video_frame *frame;
 
 		if (++input->cur_frame == MAX_CONVERT_BUFFERS)
@@ -139,7 +139,7 @@ static inline bool video_output_cur_frame(struct video_output *video)
 		struct video_data frame = frame_info->frame;
 
 		if (scale_video_output(input, &frame))
-			input->callback(input->param, &frame);
+			input->callback(input->param, &frame);//## 调用 obs-encoder.c::receive_video 函数
 	}
 
 	pthread_mutex_unlock(&video->input_mutex);
@@ -210,11 +210,11 @@ static inline void init_cache(struct video_output *video)
 {
 	if (video->info.cache_size > MAX_CACHE_SIZE)
 		video->info.cache_size = MAX_CACHE_SIZE;
-
+    //## 一共有最大 MAX_CACHE_SIZE(16)个视频帧缓存, 会根据颜色分配数据存储
 	for (size_t i = 0; i < video->info.cache_size; i++) {
 		struct video_frame *frame;
 		frame = (struct video_frame *)&video->cache[i];
-
+        
 		video_frame_init(frame, video->info.format, video->info.width,
 				 video->info.height);
 	}
@@ -252,7 +252,7 @@ int video_output_open(video_t **video, struct video_output_info *info)
 	if (pthread_create(&out->thread, NULL, video_thread, out) != 0)
 		goto fail;
 
-	init_cache(out);
+	init_cache(out);//## 初始化视频帧缓存
 
 	out->initialized = true;
 	*video = out;
@@ -465,12 +465,12 @@ bool video_output_lock_frame(video_t *video, struct video_frame *frame,
 				video->last_added = 0;
 		}
 
-		cfi = &video->cache[video->last_added];
-		cfi->frame.timestamp = timestamp;
+		cfi = &video->cache[video->last_added];//##？？ video->cache 在什么时候存储的
+		cfi->frame.timestamp = timestamp;//##？？ 这个时间戳是干嘛用的
 		cfi->count = count;
 		cfi->skipped = 0;
 
-		memcpy(frame, &cfi->frame, sizeof(*frame));
+		memcpy(frame, &cfi->frame, sizeof(*frame));//## 注意：这里是将 video_data 数据拷贝到 video_frame 中， video_data 相比多一个 timestamp. 所以大小取frame
 
 		locked = true;
 	}

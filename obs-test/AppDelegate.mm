@@ -20,8 +20,9 @@
     // Insert code here to initialize your application
 //    NSWindow *t = self.window;
 //    NSLog(@"t=%@", t);
-    OBSTest *test = [[OBSTest alloc] init];
-    [test launch:aNotification window:self.window];
+//    dfdf
+    self.test = [[OBSTest alloc] init];
+    [self.test launch:aNotification window:self.window];
 }
 
 

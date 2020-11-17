@@ -36,11 +36,14 @@ static uint64_t tick_sources(uint64_t cur_time, uint64_t last_time)
 	uint64_t delta_time;
 	float seconds;
 
+    //## 以帧率为基础，计算每帧所需要的时间，以纳秒为单位
 	if (!last_time)
 		last_time = cur_time -
 			    video_output_get_frame_time(obs->video.video);
 
+    //## 两帧之间的间隔时长，以纳秒为单位
 	delta_time = cur_time - last_time;
+    //## 间隔时长转变为秒为单位
 	seconds = (float)((double)delta_time / 1000000000.0);
 
 	/* ------------------------------------- */
@@ -102,7 +105,7 @@ static inline void render_displays(void)
 
 	display = obs->data.first_display;
 	while (display) {
-		render_display(display);
+		render_display(display); //调用 obs_display.c 文件
 		display = display->next;
 	}
 
@@ -695,7 +698,7 @@ static inline void copy_rgbx_frame(struct video_frame *output,
 static inline void output_video_data(struct obs_core_video *video,
 				     struct video_data *input_frame, int count)
 {
-	const struct video_output_info *info;
+    const struct video_output_info *info;
 	struct video_frame output_frame;
 	bool locked;
 
@@ -705,6 +708,7 @@ static inline void output_video_data(struct obs_core_video *video,
 					 input_frame->timestamp);
 	if (locked) {
 		if (video->gpu_conversion) {
+            //## 输入的数据拷贝到输出缓冲区中去， 也就是视频初始化定义的输出 cache->data 及 cache->linesize 中
 			set_gpu_converted_data(video, &output_frame,
 					       input_frame, info);
 		} else {
@@ -785,7 +789,7 @@ static inline void output_frame(bool raw_active, const bool gpu_active)
 	gs_leave_context();
 	profile_end(output_frame_gs_context_name);
 
-	if (raw_active && frame_ready) {
+	if (raw_active && frame_ready) {//## 如果数据准备好，就将数据从 circlebuf 取出来， 然后将取出数据的时间戳构建 frame.
 		struct obs_vframe_info vframe_info;
 		circlebuf_pop_front(&video->vframe_info_buffer, &vframe_info,
 				    sizeof(vframe_info));

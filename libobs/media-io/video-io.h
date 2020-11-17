@@ -84,7 +84,7 @@ enum video_range_type {
 };
 
 struct video_data {
-	uint8_t *data[MAX_AV_PLANES];
+	uint8_t *data[MAX_AV_PLANES]; //## 根据指定的颜色格式存储的数据
 	uint32_t linesize[MAX_AV_PLANES];
 	uint64_t timestamp;
 };
