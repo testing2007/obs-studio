@@ -104,11 +104,6 @@ static SceneContext SetupScene()
 
 		win.title = @"fbboo";
 		win.delegate = self;
-//		win.contentView = win.contentView;
-//		[win orderFrontRegardless];
-//		[win center];
-//		[win makeMainWindow];
-
 		display = CreateDisplay(win.contentView);
         
 
@@ -127,6 +122,7 @@ static SceneContext SetupScene()
         obs_data_set_string(video_settings, "path", strPath.c_str());
         obs_output_update(fileOutput.get(), video_settings);
 
+        //视频渲染
 		obs_display_add_draw_callback(
 			display.get(),
 			[](void *, uint32_t, uint32_t) {
@@ -134,18 +130,20 @@ static SceneContext SetupScene()
 			},
 			nullptr);
         
+        //录制视频编码器
         h264Recording = OBSEncoderContext{obs_video_encoder_create("obs_x264", "simple_h264_recording", nullptr, nullptr)};
         if (!h264Recording){
             throw "Failed to create h264 recording encoder (simple output)";
             return ;
         }
-
+        //录制音频编码器
         aacRecording = OBSEncoderContext{obs_audio_encoder_create("CoreAudio_AAC", "simple_aac_recording", nullptr, 0, nullptr)};
         if(!aacRecording) {
             throw "Failed to create aacRecording output";
             return ;
         }
         
+        //将元素链路关联起来
         obs_output_set_video_encoder(fileOutput.get(), h264Recording.get());
         obs_output_set_audio_encoder(fileOutput.get(), aacRecording.get(), 0);
         obs_output_set_media(fileOutput.get(), obs_get_video(), obs_get_audio());
