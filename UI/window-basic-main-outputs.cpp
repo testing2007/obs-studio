@@ -412,7 +412,7 @@ SimpleOutput::SimpleOutput(OBSBasic *main_) : BasicOutputHandler(main_)
 
 	LoadRecordingPreset();
 
-	if (!ffmpegOutput) {
+	if (!ffmpegOutput) {//## ffmpegOutput = false
 		bool useReplayBuffer = config_get_bool(main->Config(),
 						       "SimpleOutput", "RecRB");
 		if (useReplayBuffer) {
@@ -423,7 +423,7 @@ SimpleOutput::SimpleOutput(OBSBasic *main_) : BasicOutputHandler(main_)
 				hotkey = obs_data_create_from_json(str);
 			else
 				hotkey = nullptr;
-
+            
 			replayBuffer = obs_output_create("replay_buffer",
 							 Str("ReplayBuffer"),
 							 nullptr, hotkey);
@@ -981,7 +981,7 @@ bool SimpleOutput::StartRecording()
 	UpdateRecording();
 	if (!ConfigureRecording(false))
 		return false;
-	if (!obs_output_start(fileOutput)) {//## 录制输出
+	if (!obs_output_start(fileOutput)) {//## 输出
 		QString error_reason;
 		const char *error = obs_output_get_last_error(fileOutput);
 		if (error)

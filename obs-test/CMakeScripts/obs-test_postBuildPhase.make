@@ -2,7 +2,8 @@
 # Custom rules for obs-test
 .SUFFIXES: 
 all: \
-	obs-test_buildpart_0
+	obs-test_copy_dep_lib_exec_dir \
+	obs-test_copy_plugin_so
 
 # obs-test_create_plugins_folder:	
 # exist = $(shell if [ -d "/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins" ]; then echo 1; else echo 0; fi;)
@@ -12,8 +13,24 @@ all: \
 #		mkdir ./obs-plugins
 #	endif
 	
+obs-test_copy_dep_lib_exec_dir:
+	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/bin/libobs-opengl.so \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/Debug/obs-test.app/Contents/MacOS/
 
-obs-test_buildpart_0: 
+	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/bin/libobsglad.0.dylib \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/Debug/obs-test.app/Contents/MacOS/
+
+	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/bin/libobs.0.dylib \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/Debug/obs-test.app/Contents/MacOS/
+
+	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/bin/obs-ffmpeg-mux \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/Debug/obs-test.app/Contents/MacOS/
+
+obs-test_copy_plugin_so: 
 	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/coreaudio-encoder.so \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/coreaudio-encoder.so

@@ -41,6 +41,8 @@ using DisplayContext =
 
 using OutputContext = OBSUniqueHandle<obs_output,DECLARE_DELETER(obs_output_release)>;
 
+using OBSEncoderContext = OBSUniqueHandle<obs_encoder_t,DECLARE_DELETER(obs_encoder_release)>;
+
 #undef DECLARE_DELETER
 @interface OBSTest : NSObject <NSApplicationDelegate, NSWindowDelegate> {
 //    NSWindow *win;
@@ -48,6 +50,8 @@ using OutputContext = OBSUniqueHandle<obs_output,DECLARE_DELETER(obs_output_rele
     DisplayContext display;
     SceneContext scene;
     OutputContext fileOutput;
+    OBSEncoderContext h264Recording;
+    OBSEncoderContext aacRecording;
 }
 - (void)launch:(NSNotification *)notification window:(NSWindow*)win;
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)app;

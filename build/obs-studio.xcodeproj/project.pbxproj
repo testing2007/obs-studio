@@ -315,8 +315,7 @@
 		91C07D71F00847D0B5BF0329 /* window-projector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1B5199082D5B4D9E97FF33D6 /* window-projector.cpp */; };
 		935F6510379C4F11A085B8C7 /* window-namedialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8535E91FAEB8421C94CFDCF1 /* window-namedialog.cpp */; };
 		94266FBF2564B5C5004B7FAE /* data in Resources */ = {isa = PBXBuildFile; fileRef = 94266FBE2564B5C5004B7FAE /* data */; };
-		94266FC72564B988004B7FAE /* libobsglad.0.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 94266FC62564B987004B7FAE /* libobsglad.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		94266FC92564BAE0004B7FAE /* libobs-opengl.so in Copy Files */ = {isa = PBXBuildFile; fileRef = 94266FC82564BAE0004B7FAE /* libobs-opengl.so */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		94266FCD25650754004B7FAE /* obs-file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94266FCB25650754004B7FAE /* obs-file.cpp */; };
 		94F0D13025628B5F0079980D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F0D11825628B5F0079980D /* Assets.xcassets */; };
 		94F0D13D25628B5F0079980D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94F0D12D25628B5F0079980D /* Info.plist */; };
 		94F0D13F25628BE60079980D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F0D12925628B5F0079980D /* main.m */; };
@@ -778,6 +777,20 @@
 			remoteGlobalIDString = F3EE6E12A625424E8CE394EC;
 			remoteInfo = obs_autogen;
 		};
+		94266FD225652B77004B7FAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B1E1E09839F447CB96DEEB0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ECD971C6A8CC4B9FBA17DAA6;
+			remoteInfo = "obs-ffmpeg-mux";
+		};
+		94266FD425652B8C004B7FAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B1E1E09839F447CB96DEEB0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F13E2DDCF784ABEA13CCB43;
+			remoteInfo = glad;
+		};
 		94F0D11225628A560079980D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5B1E1E09839F447CB96DEEB0 /* Project object */;
@@ -1032,8 +1045,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				94266FC92564BAE0004B7FAE /* libobs-opengl.so in Copy Files */,
-				94266FC72564B988004B7FAE /* libobsglad.0.dylib in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1407,7 +1418,7 @@
 		837DCD5ABC52437181948247 /* libobs-opengl.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = "libobs-opengl.so"; sourceTree = BUILT_PRODUCTS_DIR; };
 		839A53A379884CC2A7290EA6 /* CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = "deps/file-updater/CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
 		83BEBB4B19D54ED1BD261944 /* properties-view.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "properties-view.cpp"; path = "UI/properties-view.cpp"; sourceTree = SOURCE_ROOT; };
-		845162595BA349DCB9AF8DFD /* libobs.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = libobs.dylib; path = libobs.0.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		845162595BA349DCB9AF8DFD /* libobs.0.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libobs.0.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		8465F52478704E16BE3C94D8 /* common.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = common.h; path = "plugins/obs-filters/rnnoise/src/common.h"; sourceTree = SOURCE_ROOT; };
 		847A3F9F862F407CBF498C74 /* double-slider.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "double-slider.cpp"; path = "UI/double-slider.cpp"; sourceTree = SOURCE_ROOT; };
 		849FB68A69404A76A98EE3F7 /* decklink-devices.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "decklink-devices.cpp"; path = "plugins/decklink/decklink-devices.cpp"; sourceTree = SOURCE_ROOT; };
@@ -1469,8 +1480,8 @@
 		93F1D13C81D04B81B3B2345C /* decklink-ui-main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "decklink-ui-main.cpp"; path = "UI/frontend-plugins/decklink-output-ui/decklink-ui-main.cpp"; sourceTree = SOURCE_ROOT; };
 		9419F57B56B04A4194D5A32C /* SyphonClientConnectionManager.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = SyphonClientConnectionManager.m; path = "plugins/mac-syphon/syphon-framework/SyphonClientConnectionManager.m"; sourceTree = SOURCE_ROOT; };
 		94266FBE2564B5C5004B7FAE /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
-		94266FC62564B987004B7FAE /* libobsglad.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libobsglad.0.dylib; path = build/rundir/Debug/bin/libobsglad.0.dylib; sourceTree = "<group>"; };
-		94266FC82564BAE0004B7FAE /* libobs-opengl.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = "libobs-opengl.so"; path = "build/rundir/Debug/bin/libobs-opengl.so"; sourceTree = "<group>"; };
+		94266FCB25650754004B7FAE /* obs-file.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "obs-file.cpp"; sourceTree = "<group>"; };
+		94266FCC25650754004B7FAE /* obs-file.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "obs-file.hpp"; sourceTree = "<group>"; };
 		949B2D2D7E26454DB9EF774E /* file-updater.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = "file-updater.c"; path = "deps/file-updater/file-updater/file-updater.c"; sourceTree = SOURCE_ROOT; };
 		94AC471064CC452493A9490D /* noise-suppress-filter.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = "noise-suppress-filter.c"; path = "plugins/obs-filters/noise-suppress-filter.c"; sourceTree = SOURCE_ROOT; };
 		94F0D0FF25628A0D0079980D /* obs-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "obs-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2724,8 +2735,6 @@
 		78E4885DF93B49129449F33D = {
 			isa = PBXGroup;
 			children = (
-				94266FC82564BAE0004B7FAE /* libobs-opengl.so */,
-				94266FC62564B987004B7FAE /* libobsglad.0.dylib */,
 				94F0D11625628B5F0079980D /* obs-test */,
 				D249A4263CBA488F97342048 /* ALL_BUILD */,
 				8C75123D59ED44E3A374349D /* deps */,
@@ -3007,6 +3016,8 @@
 				94F0D12925628B5F0079980D /* main.m */,
 				94F0D12C25628B5F0079980D /* AppDelegate.mm */,
 				94F0D12D25628B5F0079980D /* Info.plist */,
+				94266FCB25650754004B7FAE /* obs-file.cpp */,
+				94266FCC25650754004B7FAE /* obs-file.hpp */,
 			);
 			path = "obs-test";
 			sourceTree = "<group>";
@@ -3273,7 +3284,7 @@
 				4E093849CDDF492A9A39B7FC /* libobsglad.0.dylib */,
 				4418C79F27224FE281136910 /* image-source.so */,
 				EFD41DCB23114BC1BB067789 /* libjansson.a */,
-				845162595BA349DCB9AF8DFD /* libobs.dylib */,
+				845162595BA349DCB9AF8DFD /* libobs.0.dylib */,
 				837DCD5ABC52437181948247 /* libobs-opengl.so */,
 				ECA0D15E318D48AA8156B55A /* linux-jack.so */,
 				9648202AF3224C799F46C734 /* mac-avcapture.so */,
@@ -3744,7 +3755,7 @@
 			);
 			name = libobs;
 			productName = libobs;
-			productReference = 845162595BA349DCB9AF8DFD /* libobs.dylib */;
+			productReference = 845162595BA349DCB9AF8DFD /* libobs.0.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		91E9C7A7D5574CCE8FD29F1B /* obs-transitions */ = {
@@ -3812,6 +3823,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				94266FD525652B8C004B7FAE /* PBXTargetDependency */,
+				94266FD325652B77004B7FAE /* PBXTargetDependency */,
 				94F0D11525628A600079980D /* PBXTargetDependency */,
 				94F0D11325628A560079980D /* PBXTargetDependency */,
 			);
@@ -4340,7 +4353,7 @@
 			name = "CMake PostBuild Rules";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "make -C /Users/zhiqiangwei/Work/openSource/obs-studio/build/plugins/text-freetype2 -f /Users/zhiqiangwei/Work/openSource/obs-studio/build/plugins/text-freetype2/CMakeScripts/text-freetype2_postBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
+			shellScript = "make -C /Users/zhiqiangwei/Work/openSource/obs-studio/build/plugins/text-freetype2 -f /Users/zhiqiangwei/Work/openSource/obs-studio/build/plugins/text-freetype2/CMakeScripts/text-freetype2_postBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all\n";
 			showEnvVarsInLog = 0;
 		};
 		7816938D176544CC826F695A /* CMake PostBuild Rules */ = {
@@ -4840,6 +4853,7 @@
 			files = (
 				94F0D146256290BE0079980D /* test.mm in Sources */,
 				94F0D13F25628BE60079980D /* main.m in Sources */,
+				94266FCD25650754004B7FAE /* obs-file.cpp in Sources */,
 				94F0D14025628BE60079980D /* AppDelegate.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5306,6 +5320,16 @@
 			isa = PBXTargetDependency;
 			target = 8238A5D4F89A4CB1BE0C86DE /* coreaudio-encoder */;
 			targetProxy = CFA3333800D14F69AE4BE1DB /* PBXContainerItemProxy */;
+		};
+		94266FD325652B77004B7FAE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ECD971C6A8CC4B9FBA17DAA6 /* obs-ffmpeg-mux */;
+			targetProxy = 94266FD225652B77004B7FAE /* PBXContainerItemProxy */;
+		};
+		94266FD525652B8C004B7FAE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F13E2DDCF784ABEA13CCB43 /* glad */;
+			targetProxy = 94266FD425652B8C004B7FAE /* PBXContainerItemProxy */;
 		};
 		94F0D11325628A560079980D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

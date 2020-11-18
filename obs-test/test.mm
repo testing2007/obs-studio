@@ -1,5 +1,10 @@
 #include "test.h"
 
+#include <string>
+#include <sstream>
+#include <iostream>
+using namespace std;
+
 static const int base_width = 1920; //800;
 static const int base_height = 1080;  //600;
 
@@ -38,6 +43,12 @@ static void CreateOBS()
     
 	if (obs_reset_video(&ovi) != 0)
 		throw "Couldn't initialize video";
+    
+    struct obs_audio_info ai;
+    ai.samples_per_sec = 48000;
+    ai.speakers = SPEAKERS_STEREO;
+    if (obs_reset_audio(&ai) == 0)
+        throw "Couldn't initialize audio";
 }
 
 static DisplayContext CreateDisplay(NSView *view)
@@ -104,14 +115,47 @@ static SceneContext SetupScene()
 		scene = SetupScene();
         
         //* 定义输出
-        fileOutput = OutputContext{obs_output_create(
-                                                     "ffmpeg_output", "adv_ffmpeg_output", nullptr, nullptr)};
-        if (!fileOutput)
+        fileOutput = OutputContext{obs_output_create("ffmpeg_muxer", "simple_file_output", nullptr, nullptr)};
+        if (!fileOutput) {
             throw "Failed to create recording FFmpeg output "
-                  "(advanced output)";
+                  "(simple file output)";
+            return ;
+        }
+        //配置
+        obs_data_t *video_settings = obs_data_create();
+        string strPath = "/Users/zhiqiangwei/Movies/test.mkv";
+        obs_data_set_string(video_settings, "path", strPath.c_str());
+        obs_output_update(fileOutput.get(), video_settings);
+
+		obs_display_add_draw_callback(
+			display.get(),
+			[](void *, uint32_t, uint32_t) {
+            obs_render_main_texture_src_color_only();
+			},
+			nullptr);
         
-//        if (!obs_output_start(fileOutput.get())) {
-//            NSLog(@"fail to obs_output_start");
+        h264Recording = OBSEncoderContext{obs_video_encoder_create("obs_x264", "simple_h264_recording", nullptr, nullptr)};
+        if (!h264Recording){
+            throw "Failed to create h264 recording encoder (simple output)";
+            return ;
+        }
+
+        aacRecording = OBSEncoderContext{obs_audio_encoder_create("CoreAudio_AAC", "simple_aac_recording", nullptr, 0, nullptr)};
+        if(!aacRecording) {
+            throw "Failed to create aacRecording output";
+            return ;
+        }
+        
+        obs_output_set_video_encoder(fileOutput.get(), h264Recording.get());
+        obs_output_set_audio_encoder(fileOutput.get(), aacRecording.get(), 0);
+        obs_output_set_media(fileOutput.get(), obs_get_video(), obs_get_audio());
+        
+        obs_encoder_set_video(h264Recording.get(), obs_get_video());
+        obs_encoder_set_audio(aacRecording.get(), obs_get_audio());
+        
+        //开始录制
+        if (!obs_output_start(fileOutput.get())) {
+            NSLog(@"fail to obs_output_start");
 //            QString error_reason;
 //            const char *error = obs_output_get_last_error(fileOutput.get());
 //            if (error)
@@ -121,16 +165,9 @@ static SceneContext SetupScene()
 //            QMessageBox::critical(main,
 //                          QTStr("Output.StartRecordingFailed"),
 //                          error_reason);
-//            return ;
-//        }
+            return ;
+        }
         //*/
-
-		obs_display_add_draw_callback(
-			display.get(),
-			[](void *, uint32_t, uint32_t) {
-            obs_render_main_texture_src_color_only();
-			},
-			nullptr);
 
 	} catch (char const *error) {
 		NSLog(@"%s\n", error);

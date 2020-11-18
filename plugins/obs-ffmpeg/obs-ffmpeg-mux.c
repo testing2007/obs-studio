@@ -331,7 +331,7 @@ static bool ffmpeg_mux_start(void *data)
 		 *
 		 * TODO: remove once ffmpeg-mux is refactored to pass
 		 * errors back */
-		FILE *test_file = os_fopen(path, "wb");
+		FILE *test_file = os_fopen(path, "wb");//## 根据输出文件生成本地文件
 		if (!test_file) {
 			set_file_not_readable_error(stream, settings, path);
 			return false;
