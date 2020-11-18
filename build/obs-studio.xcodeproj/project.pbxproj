@@ -314,6 +314,9 @@
 		9101DB3A28E5400EA2ED8827 /* adv-audio-control.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6091E4BBECBC4CAE98E6444F /* adv-audio-control.cpp */; };
 		91C07D71F00847D0B5BF0329 /* window-projector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1B5199082D5B4D9E97FF33D6 /* window-projector.cpp */; };
 		935F6510379C4F11A085B8C7 /* window-namedialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8535E91FAEB8421C94CFDCF1 /* window-namedialog.cpp */; };
+		94266FBF2564B5C5004B7FAE /* data in Resources */ = {isa = PBXBuildFile; fileRef = 94266FBE2564B5C5004B7FAE /* data */; };
+		94266FC72564B988004B7FAE /* libobsglad.0.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 94266FC62564B987004B7FAE /* libobsglad.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		94266FC92564BAE0004B7FAE /* libobs-opengl.so in Copy Files */ = {isa = PBXBuildFile; fileRef = 94266FC82564BAE0004B7FAE /* libobs-opengl.so */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		94F0D13025628B5F0079980D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F0D11825628B5F0079980D /* Assets.xcassets */; };
 		94F0D13D25628B5F0079980D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94F0D12D25628B5F0079980D /* Info.plist */; };
 		94F0D13F25628BE60079980D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F0D12925628B5F0079980D /* main.m */; };
@@ -1023,14 +1026,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		94F0D1502562987E0079980D /* Embed Libraries */ = {
+		94266FC12564B898004B7FAE /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolderSpec = 6;
 			files = (
+				94266FC92564BAE0004B7FAE /* libobs-opengl.so in Copy Files */,
+				94266FC72564B988004B7FAE /* libobsglad.0.dylib in Copy Files */,
 			);
-			name = "Embed Libraries";
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -1246,7 +1251,7 @@
 		4D4342E6287542DD97F78F88 /* hashtable.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = hashtable.c; path = deps/jansson/src/hashtable.c; sourceTree = SOURCE_ROOT; };
 		4D9C77DD608340EAB3748816 /* vertical-scroll-area.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = "vertical-scroll-area.hpp"; path = "UI/vertical-scroll-area.hpp"; sourceTree = SOURCE_ROOT; };
 		4DE68AC0BA8C4B4CBABD8A17 /* decklink-device.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "decklink-device.cpp"; path = "plugins/decklink/decklink-device.cpp"; sourceTree = SOURCE_ROOT; };
-		4E093849CDDF492A9A39B7FC /* libobsglad.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = libobsglad.dylib; path = libobsglad.0.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E093849CDDF492A9A39B7FC /* libobsglad.0.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libobsglad.0.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EE9745C2B8447A299FFEAE4 /* platform-cocoa.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = "platform-cocoa.m"; path = "libobs/util/platform-cocoa.m"; sourceTree = SOURCE_ROOT; };
 		4F1D45178D02416D9121C004 /* CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
 		4F4220B70C124F6FA13510B2 /* quat.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = quat.h; path = libobs/graphics/quat.h; sourceTree = SOURCE_ROOT; };
@@ -1463,6 +1468,9 @@
 		93CEF35E34574BA6BCBF284A /* cfstring-utils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "cfstring-utils.h"; path = "libobs/util/apple/cfstring-utils.h"; sourceTree = SOURCE_ROOT; };
 		93F1D13C81D04B81B3B2345C /* decklink-ui-main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "decklink-ui-main.cpp"; path = "UI/frontend-plugins/decklink-output-ui/decklink-ui-main.cpp"; sourceTree = SOURCE_ROOT; };
 		9419F57B56B04A4194D5A32C /* SyphonClientConnectionManager.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = SyphonClientConnectionManager.m; path = "plugins/mac-syphon/syphon-framework/SyphonClientConnectionManager.m"; sourceTree = SOURCE_ROOT; };
+		94266FBE2564B5C5004B7FAE /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
+		94266FC62564B987004B7FAE /* libobsglad.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libobsglad.0.dylib; path = build/rundir/Debug/bin/libobsglad.0.dylib; sourceTree = "<group>"; };
+		94266FC82564BAE0004B7FAE /* libobs-opengl.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = "libobs-opengl.so"; path = "build/rundir/Debug/bin/libobs-opengl.so"; sourceTree = "<group>"; };
 		949B2D2D7E26454DB9EF774E /* file-updater.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = "file-updater.c"; path = "deps/file-updater/file-updater/file-updater.c"; sourceTree = SOURCE_ROOT; };
 		94AC471064CC452493A9490D /* noise-suppress-filter.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = "noise-suppress-filter.c"; path = "plugins/obs-filters/noise-suppress-filter.c"; sourceTree = SOURCE_ROOT; };
 		94F0D0FF25628A0D0079980D /* obs-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "obs-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2716,6 +2724,8 @@
 		78E4885DF93B49129449F33D = {
 			isa = PBXGroup;
 			children = (
+				94266FC82564BAE0004B7FAE /* libobs-opengl.so */,
+				94266FC62564B987004B7FAE /* libobsglad.0.dylib */,
 				94F0D11625628B5F0079980D /* obs-test */,
 				D249A4263CBA488F97342048 /* ALL_BUILD */,
 				8C75123D59ED44E3A374349D /* deps */,
@@ -2987,6 +2997,7 @@
 		94F0D11625628B5F0079980D /* obs-test */ = {
 			isa = PBXGroup;
 			children = (
+				94266FBE2564B5C5004B7FAE /* data */,
 				94F0D145256290BE0079980D /* test.mm */,
 				94F0D148256295A10079980D /* test.h */,
 				94F0D11725628B5F0079980D /* AppDelegate.h */,
@@ -3259,7 +3270,7 @@
 				B45A1CEC2C03447090ECB6C0 /* decklink-ouput-ui.so */,
 				5D8C4F5E0D374BEEADE74B27 /* libfile-updater.a */,
 				6BD34F33D65840609F410718 /* frontend-tools.so */,
-				4E093849CDDF492A9A39B7FC /* libobsglad.dylib */,
+				4E093849CDDF492A9A39B7FC /* libobsglad.0.dylib */,
 				4418C79F27224FE281136910 /* image-source.so */,
 				EFD41DCB23114BC1BB067789 /* libjansson.a */,
 				845162595BA349DCB9AF8DFD /* libobs.dylib */,
@@ -3631,7 +3642,7 @@
 			);
 			name = glad;
 			productName = glad;
-			productReference = 4E093849CDDF492A9A39B7FC /* libobsglad.dylib */;
+			productReference = 4E093849CDDF492A9A39B7FC /* libobsglad.0.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		5F38916F773F45B491AF53C3 /* frontend-tools */ = {
@@ -3795,8 +3806,8 @@
 				94F0D0FB25628A0D0079980D /* Sources */,
 				94F0D0FC25628A0D0079980D /* Frameworks */,
 				94F0D0FD25628A0D0079980D /* Resources */,
-				94F0D14225628D610079980D /* ShellScript */,
-				94F0D1502562987E0079980D /* Embed Libraries */,
+				94266FC12564B898004B7FAE /* Copy Files */,
+				94266FCA2564BB2C004B7FAE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -4124,6 +4135,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94266FBF2564B5C5004B7FAE /* data in Resources */,
 				94F0D14125628C670079980D /* MainMenu.xib in Resources */,
 				94F0D13025628B5F0079980D /* Assets.xcassets in Resources */,
 				94F0D13D25628B5F0079980D /* Info.plist in Resources */,
@@ -4262,7 +4274,7 @@
 			name = "CMake PostBuild Rules";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "make -C /Users/zhiqiangwei/Work/openSource/obs-studio/build/deps/glad -f /Users/zhiqiangwei/Work/openSource/obs-studio/build/deps/glad/CMakeScripts/glad_postBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
+			shellScript = "make -C /Users/zhiqiangwei/Work/openSource/obs-studio/build/deps/glad -f /Users/zhiqiangwei/Work/openSource/obs-studio/build/deps/glad/CMakeScripts/glad_postBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all\n";
 			showEnvVarsInLog = 0;
 		};
 		61761856B9594A44B53B86E3 /* CMake PostBuild Rules */ = {
@@ -4364,18 +4376,7 @@
 			shellScript = "make -C /Users/zhiqiangwei/Work/openSource/obs-studio/build/plugins/coreaudio-encoder -f /Users/zhiqiangwei/Work/openSource/obs-studio/build/plugins/coreaudio-encoder/CMakeScripts/coreaudio-encoder_postBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
 			showEnvVarsInLog = 0;
 		};
-		94552FB89EE64475BC708556 /* CMake PostBuild Rules */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			name = "CMake PostBuild Rules";
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "make -C /Users/zhiqiangwei/Work/openSource/obs-studio/build/libobs-opengl -f /Users/zhiqiangwei/Work/openSource/obs-studio/build/libobs-opengl/CMakeScripts/libobs-opengl_postBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
-			showEnvVarsInLog = 0;
-		};
-		94F0D14225628D610079980D /* ShellScript */ = {
+		94266FCA2564BB2C004B7FAE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -4390,7 +4391,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mkdir  -p /Users/zhiqiangwei/Work/openSource/obs-studio/build/obs-test\nmake -C /Users/zhiqiangwei/Work/openSource/obs-studio/build/obs-test -f /Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/CMakeScripts/obs-test_postBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all\n";
+			shellScript = "\nmkdir -p ./obs-test/obs-plugins\n\nmake -C /Users/zhiqiangwei/Work/openSource/obs-studio/obs-test -f /Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/CMakeScripts/obs-test_postBuildPhase.make OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all\n";
+		};
+		94552FB89EE64475BC708556 /* CMake PostBuild Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake PostBuild Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/zhiqiangwei/Work/openSource/obs-studio/build/libobs-opengl -f /Users/zhiqiangwei/Work/openSource/obs-studio/build/libobs-opengl/CMakeScripts/libobs-opengl_postBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
+			showEnvVarsInLog = 0;
 		};
 		98D3F9097B7D4C9FB1D3EE64 /* CMake PostBuild Rules */ = {
 			isa = PBXShellScriptBuildPhase;

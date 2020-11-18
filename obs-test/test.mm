@@ -25,7 +25,12 @@ static void CreateOBS()
     ovi.base_height = base_height;
     ovi.output_width = cx;
     ovi.output_height = cy;
-    ovi.output_format = VIDEO_FORMAT_NV12; //视频输出格式
+    
+    //视频输出格式
+    //VIDEO_FORMAT_NV12:窗口部分显示，其余黑背景色；
+    //VIDEO_FORMAT_RGBA:可以将显示窗口铺满
+    ovi.output_format = VIDEO_FORMAT_RGBA;
+    
     ovi.gpu_conversion = true;
     ovi.colorspace = VIDEO_CS_709;
     ovi.range = VIDEO_RANGE_PARTIAL;
@@ -38,8 +43,8 @@ static void CreateOBS()
 static DisplayContext CreateDisplay(NSView *view)
 {
 	gs_init_data info = {};
-	info.cx = cx*2;//在mac里面以点为单位， 所以在这个地方乘以 2
-	info.cy = cy*2;
+    info.cx = cx;
+    info.cy = cy;
 	info.format = GS_BGRA;
 	info.zsformat = GS_ZS_NONE;
 	info.window.view = view;
