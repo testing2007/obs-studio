@@ -15,6 +15,8 @@
 + (instancetype)share;
 - (void)setContentView:(id)view;
 - (void)terminal;
+- (void)startRecord;
+- (void)stopRecord;
 @end
 
 #endif /* test_h */

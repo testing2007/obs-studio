@@ -106,7 +106,7 @@ static DisplayContext CreateDisplay(id view)
 @implementation REOBSManager
 + (instancetype)share {
     static REOBSManager *_instance = nullptr;
-    dispatch_once_t once;
+    static dispatch_once_t once;
     dispatch_once(&once, ^{
         _instance = [REOBSManager new];
     });
@@ -182,11 +182,6 @@ static DisplayContext CreateDisplay(id view)
         obs_output_set_audio_encoder(fileOutput, aacRecording, 0);
         obs_output_set_media(fileOutput, obs_get_video(), obs_get_audio());
 
-        //开始录制
-        if (!obs_output_start(fileOutput)) {
-            throw(@"fail to obs_output_start");
-        }
-
 	} catch (char const *error) {
 		NSLog(@"%s\n", error);
 
@@ -206,4 +201,17 @@ static DisplayContext CreateDisplay(id view)
 	obs_shutdown();
 	NSLog(@"Number of memory leaks: %lu", bnum_allocs());
 }
+
+- (void)startRecord {
+    //开始录制
+    if (!obs_output_start(fileOutput)) {
+        NSLog(@"fail to obs_output_start");
+    }
+}
+
+- (void)stopRecord {
+    obs_output_stop(fileOutput);
+
+}
+
 @end
