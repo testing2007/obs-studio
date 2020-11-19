@@ -25,7 +25,7 @@ template<typename T, typename D_T, D_T D>
 struct OBSUniqueHandle : std::unique_ptr<T, std::function<D_T>> {
     using base = std::unique_ptr<T, std::function<D_T>>;
     explicit OBSUniqueHandle(T *obj = nullptr) : base(obj, D) {}
-    operator T *() { return base::get(); }
+    operator T* () { return base::get(); }
 };
 
 #define DECLARE_DELETER(x) decltype(x), x
@@ -41,7 +41,7 @@ using DisplayContext =
 
 using OutputContext = OBSUniqueHandle<obs_output,DECLARE_DELETER(obs_output_release)>;
 
-using OBSEncoderContext = OBSUniqueHandle<obs_encoder_t,DECLARE_DELETER(obs_encoder_release)>;
+using EncoderContext = OBSUniqueHandle<obs_encoder_t,DECLARE_DELETER(obs_encoder_release)>;
 
 #undef DECLARE_DELETER
 @interface OBSTest : NSObject <NSApplicationDelegate, NSWindowDelegate> {
@@ -50,8 +50,8 @@ using OBSEncoderContext = OBSUniqueHandle<obs_encoder_t,DECLARE_DELETER(obs_enco
     DisplayContext display;
     SceneContext scene;
     OutputContext fileOutput;
-    OBSEncoderContext h264Recording;
-    OBSEncoderContext aacRecording;
+    EncoderContext h264Recording;
+    EncoderContext aacRecording;
 }
 - (void)launch:(NSNotification *)notification window:(NSWindow*)win;
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)app;

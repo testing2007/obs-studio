@@ -4084,7 +4084,7 @@
 				TargetAttributes = {
 					94F0D0FE25628A0D0079980D = {
 						CreatedOnToolsVersion = 12.2;
-						DevelopmentTeam = X8S3YSA9F9;
+						DevelopmentTeam = NVB39GCUUC;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -10478,11 +10478,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "obs-test/obs_test.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = X8S3YSA9F9;
+				DEVELOPMENT_TEAM = NVB39GCUUC;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -10542,6 +10543,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-01.obs-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SYMROOT = "${PROJECT_DIR}/${TARGET_NAME}/";
 				SYSTEM_HEADER_SEARCH_PATHS = "/Users/zhiqiangwei/Work/openSource/obs-studio/libobs /Users/zhiqiangwei/Work/openSource/obs-studio/deps/libff /Users/zhiqiangwei/Work/openSource/obs-studio/deps/json11 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers";
@@ -10584,11 +10586,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "obs-test/obs_test.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = X8S3YSA9F9;
+				DEVELOPMENT_TEAM = NVB39GCUUC;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -10617,6 +10620,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "-01.obs-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SYMROOT = "${PROJECT_DIR}/${TARGET_NAME}/";
 				SYSTEM_HEADER_SEARCH_PATHS = "/Users/zhiqiangwei/Work/openSource/obs-studio/libobs /Users/zhiqiangwei/Work/openSource/obs-studio/deps/libff /Users/zhiqiangwei/Work/openSource/obs-studio/deps/json11 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers";
@@ -10659,11 +10663,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "obs-test/obs_test.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = X8S3YSA9F9;
+				DEVELOPMENT_TEAM = NVB39GCUUC;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -10692,6 +10697,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "-01.obs-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SYMROOT = "${PROJECT_DIR}/${TARGET_NAME}/";
 				SYSTEM_HEADER_SEARCH_PATHS = "/Users/zhiqiangwei/Work/openSource/obs-studio/libobs /Users/zhiqiangwei/Work/openSource/obs-studio/deps/libff /Users/zhiqiangwei/Work/openSource/obs-studio/deps/json11 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers";
@@ -10734,11 +10740,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "obs-test/obs_test.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = X8S3YSA9F9;
+				DEVELOPMENT_TEAM = NVB39GCUUC;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -10767,6 +10774,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "-01.obs-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SYMROOT = "${PROJECT_DIR}/${TARGET_NAME}/";
 				SYSTEM_HEADER_SEARCH_PATHS = "/Users/zhiqiangwei/Work/openSource/obs-studio/libobs /Users/zhiqiangwei/Work/openSource/obs-studio/deps/libff /Users/zhiqiangwei/Work/openSource/obs-studio/deps/json11 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers";

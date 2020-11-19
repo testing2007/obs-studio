@@ -11,14 +11,9 @@ static const int base_height = 1080;  //600;
 static const int cx = 1280; //800;
 static const int cy = 720;  //600;
 
-/* --------------------------------------------------- */
-
-
-/* --------------------------------------------------- */
-
-static void CreateOBS()
+static void initOBS()
 {
-	if (!obs_startup("en", nullptr, nullptr))
+	if (!obs_startup("zh-CN", nullptr, nullptr))
 		throw "Couldn't create OBS";
 
 	struct obs_video_info ovi;
@@ -63,34 +58,6 @@ static DisplayContext CreateDisplay(NSView *view)
 	return DisplayContext{obs_display_create(&info, 0)};
 }
 
-static SceneContext SetupScene()
-{
-	/* ------------------------------------------------------ */
-	/* load modules */
-	obs_load_all_modules();
-
-	/* ------------------------------------------------------ */
-	/* create source */
-	SourceContext source{
-		obs_source_create("display_capture", "a test source", nullptr, nullptr)};
-	if (!source)
-		throw "Couldn't create random test source";
-
-	/* ------------------------------------------------------ */
-	/* create scene and add source to scene */
-	SceneContext scene{obs_scene_create("test scene")};
-	if (!scene)
-		throw "Couldn't create scene";
-
-	obs_scene_add(scene, source);
-
-	/* ------------------------------------------------------ */
-	/* set the scene as the primary draw source and go */
-	obs_set_output_source(0, obs_scene_get_source(scene));
-
-	return scene;
-}
-
 @implementation OBSTest
 - (void)launch:(NSNotification *)notification window:(NSWindow*)win
 {
@@ -100,72 +67,77 @@ static SceneContext SetupScene()
 		if (!win)
 			throw "Could not create window";
 
-		CreateOBS();
+        // 初始化OBS, 会检查是否存在 libopengl 依赖，没有会抛出异常
+        initOBS();
 
-		win.title = @"fbboo";
+        // 显示窗口创建
+		win.title = @"obs-dev";
 		win.delegate = self;
 		display = CreateDisplay(win.contentView);
         
+        // 载入所有的 plugin 模块
+        obs_load_all_modules();
 
-		scene = SetupScene();
+        // 创建显示源，理解为渲染显示，不同平台不一样，mac端是 plugins/mac-display-capture.m 文件
+        SourceContext source{
+            obs_source_create("display_capture", "test source", nullptr, nullptr)};
+        if (!source) //会调用 operator T* () 方法
+            throw "Couldn't create random test source";
+
+        // 创建场景并将 源 添加到 场景 中
+        scene = SceneContext{obs_scene_create("test scene")};
+        if (!scene) {
+            throw "Couldn't create scene";
+        }
         
-        //* 定义输出
+        // 定义输出
         fileOutput = OutputContext{obs_output_create("ffmpeg_muxer", "simple_file_output", nullptr, nullptr)};
         if (!fileOutput) {
             throw "Failed to create recording FFmpeg output "
                   "(simple file output)";
-            return ;
         }
+        
         //配置
         obs_data_t *video_settings = obs_data_create();
         string strPath = "/Users/zhiqiangwei/Movies/test.mkv";
         obs_data_set_string(video_settings, "path", strPath.c_str());
-        obs_output_update(fileOutput.get(), video_settings);
+        obs_output_update(fileOutput, video_settings);
+        obs_data_release(video_settings);
 
-        //视频渲染
+        //视频渲染回调
 		obs_display_add_draw_callback(
-			display.get(),
+			display,
 			[](void *, uint32_t, uint32_t) {
             obs_render_main_texture_src_color_only();
 			},
 			nullptr);
         
         //录制视频编码器
-        h264Recording = OBSEncoderContext{obs_video_encoder_create("obs_x264", "simple_h264_recording", nullptr, nullptr)};
+        h264Recording = EncoderContext{obs_video_encoder_create("obs_x264", "simple_h264_recording", nullptr, nullptr)};
         if (!h264Recording){
             throw "Failed to create h264 recording encoder (simple output)";
-            return ;
         }
         //录制音频编码器
-        aacRecording = OBSEncoderContext{obs_audio_encoder_create("CoreAudio_AAC", "simple_aac_recording", nullptr, 0, nullptr)};
+        aacRecording = EncoderContext{obs_audio_encoder_create("CoreAudio_AAC", "simple_aac_recording", nullptr, 0, nullptr)};
         if(!aacRecording) {
             throw "Failed to create aacRecording output";
-            return ;
         }
-        
+
         //将元素链路关联起来
-        obs_output_set_video_encoder(fileOutput.get(), h264Recording.get());
-        obs_output_set_audio_encoder(fileOutput.get(), aacRecording.get(), 0);
-        obs_output_set_media(fileOutput.get(), obs_get_video(), obs_get_audio());
+        obs_scene_add(scene, source);
+        obs_set_output_source(0, obs_scene_get_source(scene)); //set the scene as the primary draw source and go
         
-        obs_encoder_set_video(h264Recording.get(), obs_get_video());
-        obs_encoder_set_audio(aacRecording.get(), obs_get_audio());
-        
+        obs_encoder_set_video(h264Recording, obs_get_video());
+        obs_encoder_set_audio(aacRecording, obs_get_audio());
+
+        obs_output_set_video_encoder(fileOutput, h264Recording);
+        obs_output_set_audio_encoder(fileOutput, aacRecording, 0);
+        obs_output_set_media(fileOutput, obs_get_video(), obs_get_audio());
+
         //开始录制
-        if (!obs_output_start(fileOutput.get())) {
-            NSLog(@"fail to obs_output_start");
-//            QString error_reason;
-//            const char *error = obs_output_get_last_error(fileOutput.get());
-//            if (error)
-//                error_reason = QT_UTF8(error);
-//            else
-//                error_reason = QTStr("Output.StartFailedGeneric");
-//            QMessageBox::critical(main,
-//                          QTStr("Output.StartRecordingFailed"),
-//                          error_reason);
-            return ;
+        if (!obs_output_start(fileOutput)) {
+            throw(@"fail to obs_output_start");
         }
-        //*/
 
 	} catch (char const *error) {
 		NSLog(@"%s\n", error);
@@ -188,6 +160,9 @@ static SceneContext SetupScene()
 	obs_set_output_source(0, nullptr);
 	scene.reset();
 	display.reset();
+    fileOutput.reset();
+    h264Recording.reset();
+    aacRecording.reset();
 
 	obs_shutdown();
 	NSLog(@"Number of memory leaks: %lu", bnum_allocs());
