@@ -1,13 +1,48 @@
-#include "test.h"
+#include "REOBSManager.h"
 
 #include <string>
 #include <sstream>
 #include <iostream>
+#include <stdio.h>
+#include <time.h>
+
+#include <functional>
+#include <memory>
+
+#import <Cocoa/Cocoa.h>
+#import <OpenGL/OpenGL.h>
+
+#include <util/base.h>
+#include <obs.h>
+
 using namespace std;
 
+template<typename T, typename D_T, D_T D>
+struct OBSUniqueHandle : std::unique_ptr<T, std::function<D_T>> {
+    using base = std::unique_ptr<T, std::function<D_T>>;
+    explicit OBSUniqueHandle(T *obj = nullptr) : base(obj, D) {}
+    operator T* () { return base::get(); }
+};
+
+#define DECLARE_DELETER(x) decltype(x), x
+
+using SourceContext =
+    OBSUniqueHandle<obs_source, DECLARE_DELETER(obs_source_release)>;
+
+using SceneContext =
+    OBSUniqueHandle<obs_scene, DECLARE_DELETER(obs_scene_release)>;
+
+using DisplayContext =
+    OBSUniqueHandle<obs_display, DECLARE_DELETER(obs_display_destroy)>;
+
+using OutputContext = OBSUniqueHandle<obs_output,DECLARE_DELETER(obs_output_release)>;
+
+using EncoderContext = OBSUniqueHandle<obs_encoder_t,DECLARE_DELETER(obs_encoder_release)>;
+
+
+//
 static const int base_width = 1920; //800;
 static const int base_height = 1080;  //600;
-
 static const int cx = 1280; //800;
 static const int cy = 720;  //600;
 
@@ -58,10 +93,27 @@ static DisplayContext CreateDisplay(id view)
 	return DisplayContext{obs_display_create(&info, 0)};
 }
 
-@implementation OBSTest
-- (void)launch:(NSNotification *)notification contentView:(id)view {
-	UNUSED_PARAMETER(notification);
+////------REOBSManager
+@interface REOBSManager () {
+    DisplayContext display;
+    SceneContext scene;
+    OutputContext fileOutput;
+    EncoderContext h264Recording;
+    EncoderContext aacRecording;
+}
+@end
 
+@implementation REOBSManager
++ (instancetype)share {
+    static REOBSManager *_instance = nullptr;
+    dispatch_once_t once;
+    dispatch_once(&once, ^{
+        _instance = [REOBSManager new];
+    });
+    return _instance;
+}
+
+- (void)setContentView:(id)view {
 	try {
 		if (!view)
 			throw "Could not render content for this view";

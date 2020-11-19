@@ -6,13 +6,12 @@
 //
 
 #import "AppDelegate.h"
-#include "test.h"
+#include "REOBSMainVC.h"
+#import "REOBSManager.h"
 
 @interface AppDelegate ()
 
 @property (strong) IBOutlet NSWindow *window;
-@property (nonatomic, strong) OBSTest *test;
-@property (weak) IBOutlet NSView *contentView;
 @end
 
 @implementation AppDelegate
@@ -21,8 +20,9 @@
     // Insert code here to initialize your application
     [self.window setTitle:@"obs-dev"];
     
-    self.test = [[OBSTest alloc] init];
-    [self.test launch:aNotification  contentView:self.contentView];
+    REOBSMainVC *vc = [REOBSMainVC new];
+    [self.window setContentViewController:vc];
+    [self.window makeMainWindow];
 }
 
 
@@ -32,7 +32,8 @@
 }
 
 -(void)windowWillClose:(NSNotification *)notification {
-    [self.test terminal];
+//    [self.test terminal];
+    [[REOBSManager share] terminal];
 }
 
 @end
