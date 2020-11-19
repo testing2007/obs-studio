@@ -46,7 +46,7 @@ static void initOBS()
         throw "Couldn't initialize audio";
 }
 
-static DisplayContext CreateDisplay(NSView *view)
+static DisplayContext CreateDisplay(id view)
 {
 	gs_init_data info = {};
     info.cx = cx;
@@ -59,21 +59,17 @@ static DisplayContext CreateDisplay(NSView *view)
 }
 
 @implementation OBSTest
-- (void)launch:(NSNotification *)notification window:(NSWindow*)win
-{
+- (void)launch:(NSNotification *)notification contentView:(id)view {
 	UNUSED_PARAMETER(notification);
 
 	try {
-		if (!win)
-			throw "Could not create window";
+		if (!view)
+			throw "Could not render content for this view";
 
         // 初始化OBS, 会检查是否存在 libopengl 依赖，没有会抛出异常
         initOBS();
 
-        // 显示窗口创建
-		win.title = @"obs-dev";
-		win.delegate = self;
-		display = CreateDisplay(win.contentView);
+		display = CreateDisplay(view);
         
         // 载入所有的 plugin 模块
         obs_load_all_modules();
@@ -146,17 +142,8 @@ static DisplayContext CreateDisplay(NSView *view)
 	}
 }
 
-- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)app
-{
-	UNUSED_PARAMETER(app);
-
-	return YES;
-}
-
-- (void)windowWillClose:(NSNotification *)notification
-{
-	UNUSED_PARAMETER(notification);
-
+- (void)terminal {
+	
 	obs_set_output_source(0, nullptr);
 	scene.reset();
 	display.reset();
@@ -168,18 +155,3 @@ static DisplayContext CreateDisplay(NSView *view)
 	NSLog(@"Number of memory leaks: %lu", bnum_allocs());
 }
 @end
-
-/* --------------------------------------------------- */
-
-//int main()
-//{
-//	@autoreleasepool {
-//		NSApplication *app = [NSApplication sharedApplication];
-//		OBSTest *test = [[OBSTest alloc] init];
-//		app.delegate = test;
-//
-//		[app run];
-//	}
-//
-//	return 0;
-//}

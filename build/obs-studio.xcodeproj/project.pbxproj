@@ -4084,7 +4084,7 @@
 				TargetAttributes = {
 					94F0D0FE25628A0D0079980D = {
 						CreatedOnToolsVersion = 12.2;
-						DevelopmentTeam = NVB39GCUUC;
+						LastSwiftMigration = 1220;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -4243,7 +4243,7 @@
 			name = "CMake PostBuild Rules";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "make -C /Users/zhiqiangwei/Work/openSource/obs-studio/build/libobs -f /Users/zhiqiangwei/Work/openSource/obs-studio/build/libobs/CMakeScripts/libobs_postBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
+			shellScript = "make -C /Users/zhiqiangwei/Work/openSource/obs-studio/build/libobs -f /Users/zhiqiangwei/Work/openSource/obs-studio/build/libobs/CMakeScripts/libobs_postBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all\n";
 			showEnvVarsInLog = 0;
 		};
 		3C690CEFF56A4DAEA89EA66A /* CMake Rules */ = {
@@ -10478,12 +10478,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "obs-test/obs_test.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = NVB39GCUUC;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -10545,6 +10545,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "../obs-test/obs-test-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				SYMROOT = "${PROJECT_DIR}/${TARGET_NAME}/";
 				SYSTEM_HEADER_SEARCH_PATHS = "/Users/zhiqiangwei/Work/openSource/obs-studio/libobs /Users/zhiqiangwei/Work/openSource/obs-studio/deps/libff /Users/zhiqiangwei/Work/openSource/obs-studio/deps/json11 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers";
 			};
@@ -10586,12 +10589,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "obs-test/obs_test.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = NVB39GCUUC;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -10622,6 +10625,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "../obs-test/obs-test-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				SYMROOT = "${PROJECT_DIR}/${TARGET_NAME}/";
 				SYSTEM_HEADER_SEARCH_PATHS = "/Users/zhiqiangwei/Work/openSource/obs-studio/libobs /Users/zhiqiangwei/Work/openSource/obs-studio/deps/libff /Users/zhiqiangwei/Work/openSource/obs-studio/deps/json11 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers";
 			};
@@ -10663,12 +10668,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "obs-test/obs_test.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = NVB39GCUUC;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -10699,6 +10704,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "../obs-test/obs-test-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				SYMROOT = "${PROJECT_DIR}/${TARGET_NAME}/";
 				SYSTEM_HEADER_SEARCH_PATHS = "/Users/zhiqiangwei/Work/openSource/obs-studio/libobs /Users/zhiqiangwei/Work/openSource/obs-studio/deps/libff /Users/zhiqiangwei/Work/openSource/obs-studio/deps/json11 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers";
 			};
@@ -10740,12 +10747,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "obs-test/obs_test.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = NVB39GCUUC;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -10776,6 +10783,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "../obs-test/obs-test-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				SYMROOT = "${PROJECT_DIR}/${TARGET_NAME}/";
 				SYSTEM_HEADER_SEARCH_PATHS = "/Users/zhiqiangwei/Work/openSource/obs-studio/libobs /Users/zhiqiangwei/Work/openSource/obs-studio/deps/libff /Users/zhiqiangwei/Work/openSource/obs-studio/deps/json11 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers";
 			};
