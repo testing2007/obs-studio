@@ -1,46 +1,19 @@
-#include "REOBSManager.h"
-
-#include <string>
-#include <sstream>
-#include <iostream>
-#include <stdio.h>
-#include <time.h>
-
-#include <functional>
-#include <memory>
-
-#import <Cocoa/Cocoa.h>
-#import <OpenGL/OpenGL.h>
-
-#include <util/base.h>
-#include <obs.h>
-
-using namespace std;
-
-template<typename T, typename D_T, D_T D>
-struct OBSUniqueHandle : std::unique_ptr<T, std::function<D_T>> {
-    using base = std::unique_ptr<T, std::function<D_T>>;
-    explicit OBSUniqueHandle(T *obj = nullptr) : base(obj, D) {}
-    operator T* () { return base::get(); }
-};
-
-#define DECLARE_DELETER(x) decltype(x), x
-
-using SourceContext =
-    OBSUniqueHandle<obs_source, DECLARE_DELETER(obs_source_release)>;
-
-using SceneContext =
-    OBSUniqueHandle<obs_scene, DECLARE_DELETER(obs_scene_release)>;
-
-using DisplayContext =
-    OBSUniqueHandle<obs_display, DECLARE_DELETER(obs_display_destroy)>;
-
-using OutputContext = OBSUniqueHandle<obs_output,DECLARE_DELETER(obs_output_release)>;
-
-using EncoderContext = OBSUniqueHandle<obs_encoder_t,DECLARE_DELETER(obs_encoder_release)>;
-
-
 //
+//  REOBSManager.cpp
+//  obs-test
+//
+//  Created by ZhiQiang wei on 2020/12/3.
+//
+
+#include "REOBSManager.h"
+//#include <sstream>
+//#include <iostream>
+//#include <stdio.h>
+//#include <time.h>
+//
+//#include <functional>
+//#include <memory>
+
 static const int base_width = 1920; //800;
 static const int base_height = 1080;  //600;
 static const int cx = 1280; //800;
@@ -48,10 +21,10 @@ static const int cy = 720;  //600;
 
 static void initOBS()
 {
-	if (!obs_startup("zh-CN", nullptr, nullptr))
-		throw "Couldn't create OBS";
+    if (!obs_startup("zh-CN", nullptr, nullptr))
+        throw "Couldn't create OBS";
 
-	struct obs_video_info ovi;
+    struct obs_video_info ovi;
     ovi.adapter = 0;
     ovi.fps_num = 60;
     ovi.fps_den = 1;
@@ -71,8 +44,8 @@ static void initOBS()
     ovi.range = VIDEO_RANGE_PARTIAL;
     ovi.scale_type = OBS_SCALE_BICUBIC;
     
-	if (obs_reset_video(&ovi) != 0)
-		throw "Couldn't initialize video";
+    if (obs_reset_video(&ovi) != 0)
+        throw "Couldn't initialize video";
     
     struct obs_audio_info ai;
     ai.samples_per_sec = 48000;
@@ -81,65 +54,40 @@ static void initOBS()
         throw "Couldn't initialize audio";
 }
 
-static DisplayContext CreateDisplay(id view)
-{
-	gs_init_data info = {};
-    info.cx = cx;
-    info.cy = cy;
-	info.format = GS_BGRA;
-	info.zsformat = GS_ZS_NONE;
-	info.window.view = view;
-
-	return DisplayContext{obs_display_create(&info, 0)};
-}
-
-////------REOBSManager
-@interface REOBSManager () {
-    DisplayContext display;
-    SceneContext scene;
-    OutputContext fileOutput;
-    EncoderContext h264Recording;
-    EncoderContext aacRecording;
-}
-@end
-
-@implementation REOBSManager
-+ (instancetype)share {
+/*static*/ REOBSManager* REOBSManager::share() {
     static REOBSManager *_instance = nullptr;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        _instance = [REOBSManager new];
-    });
+    if(!_instance) {
+        _instance = new REOBSManager();
+    }
     return _instance;
 }
 
-- (void)setContentView:(id)view {
-	try {
-		if (!view)
-			throw "Could not render content for this view";
+void REOBSManager::setContentView(id view) {
+    try {
+        if (!view)
+            throw "Could not render content for this view";
 
         // 初始化OBS, 会检查是否存在 libopengl 依赖，没有会抛出异常
         initOBS();
 
-		display = CreateDisplay(view);
+        createDisplay(view);
         
         // 载入所有的 plugin 模块
         obs_load_all_modules();
 
         // 创建显示源，理解为渲染显示，不同平台不一样，mac端是 plugins/mac-display-capture.m 文件
-        SourceContext source{
-            obs_source_create("display_capture", "test source", nullptr, nullptr)};
+        OBSSource source = obs_source_create("display_capture", "test source", nullptr, nullptr);
         if (!source) //会调用 operator T* () 方法
             throw "Couldn't create random test source";
 
         // 创建场景并将 源 添加到 场景 中
-        scene = SceneContext{obs_scene_create("test scene")};
+        scene = obs_scene_create("test scene");
         if (!scene) {
             throw "Couldn't create scene";
         }
         
         // 定义输出
-        fileOutput = OutputContext{obs_output_create("ffmpeg_muxer", "simple_file_output", nullptr, nullptr)};
+        fileOutput = obs_output_create("ffmpeg_muxer", "simple_file_output", nullptr, nullptr);
         if (!fileOutput) {
             throw "Failed to create recording FFmpeg output "
                   "(simple file output)";
@@ -153,20 +101,21 @@ static DisplayContext CreateDisplay(id view)
         obs_data_release(video_settings);
 
         //视频渲染回调
-		obs_display_add_draw_callback(
-			display,
-			[](void *, uint32_t, uint32_t) {
+        obs_display_add_draw_callback(
+            display,
+            [](void *, uint32_t, uint32_t) {
             obs_render_main_texture_src_color_only();
-			},
-			nullptr);
+            },
+            nullptr);
         
         //录制视频编码器
-        h264Recording = EncoderContext{obs_video_encoder_create("obs_x264", "simple_h264_recording", nullptr, nullptr)};
+        h264Recording = obs_video_encoder_create("obs_x264", "simple_h264_recording", nullptr, nullptr);
         if (!h264Recording){
             throw "Failed to create h264 recording encoder (simple output)";
         }
         //录制音频编码器
-        aacRecording = EncoderContext{obs_audio_encoder_create("CoreAudio_AAC", "simple_aac_recording", nullptr, 0, nullptr)};
+        aacRecording = obs_audio_encoder_create("CoreAudio_AAC", "simple_aac_recording", nullptr, 0, nullptr);
+//        aacRecording = obs_audio_encoder_create("av_capture_input", "ac_capture_input_audio_recording", nullptr, 0, nullptr);
         if(!aacRecording) {
             throw "Failed to create aacRecording output";
         }
@@ -182,36 +131,41 @@ static DisplayContext CreateDisplay(id view)
         obs_output_set_audio_encoder(fileOutput, aacRecording, 0);
         obs_output_set_media(fileOutput, obs_get_video(), obs_get_audio());
 
-	} catch (char const *error) {
-		NSLog(@"%s\n", error);
-
-		[NSApp terminate:nil];
-	}
-}
-
-- (void)terminal {
-	
-	obs_set_output_source(0, nullptr);
-	scene.reset();
-	display.reset();
-    fileOutput.reset();
-    h264Recording.reset();
-    aacRecording.reset();
-
-	obs_shutdown();
-	NSLog(@"Number of memory leaks: %lu", bnum_allocs());
-}
-
-- (void)startRecord {
-    //开始录制
-    if (!obs_output_start(fileOutput)) {
-        NSLog(@"fail to obs_output_start");
+    } catch (char const *error) {
+        printf("%s\n", error);
+        this->terminal();
     }
 }
 
-- (void)stopRecord {
-    obs_output_stop(fileOutput);
-
+void REOBSManager::terminal() {
+    obs_set_output_source(0, nullptr);
+    obs_shutdown();
+    printf("Number of memory leaks: %lu", bnum_allocs());
 }
 
-@end
+void REOBSManager::startRecord() {
+    //开始录制
+    if (!obs_output_start(fileOutput)) {
+        printf("fail to obs_output_start");
+    }
+}
+
+void REOBSManager::stopRecord() {
+    obs_output_stop(fileOutput);
+}
+
+void REOBSManager::createDisplay(id view)
+{
+    if(display) {
+        return ;
+    }
+    
+    gs_init_data info = {};
+    info.cx = cx;
+    info.cy = cy;
+    info.format = GS_BGRA;
+    info.zsformat = GS_ZS_NONE;
+    info.window.view = view;
+
+    display = obs_display_create(&info, 0);
+}

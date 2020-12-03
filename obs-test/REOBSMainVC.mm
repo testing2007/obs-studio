@@ -8,7 +8,7 @@
 #import "REOBSMainVC.h"
 #import "REOBSManager.h"
 
-@interface REOBSMainVC ()
+@interface REOBSMainVC ()<NSWindowDelegate>
 @property (weak) IBOutlet NSView *contentView;
 @property (nonatomic, assign) bool bRecording;
 @property (weak) IBOutlet NSButton *btnRecord;
@@ -20,15 +20,15 @@
     [super viewDidLoad];
     // Do view setup here.
     [self.btnRecord setTitle:@"开始录制"];
-    [[REOBSManager share] setContentView:self.contentView];
+    OBSInstance->setContentView(self.contentView);
 
 }
 
 - (IBAction)onRecord:(id)sender {
     if(_bRecording) {
-        [[REOBSManager share] stopRecord];
+        OBSInstance->stopRecord();
     } else {
-        [[REOBSManager share] startRecord];
+        OBSInstance->startRecord();
     }
     self.bRecording = !_bRecording;
 }
@@ -42,4 +42,7 @@
     _bRecording = bRecording;
 }
 
+-(void)windowWillClose:(NSNotification *)notification {
+    OBSInstance->terminal();
+}
 @end

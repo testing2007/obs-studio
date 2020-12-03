@@ -7,7 +7,6 @@
 
 #import "AppDelegate.h"
 #include "REOBSMainVC.h"
-#import "REOBSManager.h"
 
 @interface AppDelegate ()
 
@@ -23,6 +22,7 @@
     [self.window setTitle:@"obs-dev"];
     
     REOBSMainVC *vc = [REOBSMainVC new];
+    self.window.delegate = vc;
     [self.window setContentViewController:vc];
     [self.window makeMainWindow];
 }
@@ -31,11 +31,6 @@
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
     
-}
-
--(void)windowWillClose:(NSNotification *)notification {
-//    [self.test terminal];
-    [[REOBSManager share] terminal];
 }
 
 @end

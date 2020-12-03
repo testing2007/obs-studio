@@ -316,13 +316,13 @@
 		935F6510379C4F11A085B8C7 /* window-namedialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8535E91FAEB8421C94CFDCF1 /* window-namedialog.cpp */; };
 		94266FBF2564B5C5004B7FAE /* data in Resources */ = {isa = PBXBuildFile; fileRef = 94266FBE2564B5C5004B7FAE /* data */; };
 		94266FCD25650754004B7FAE /* obs-file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94266FCB25650754004B7FAE /* obs-file.cpp */; };
+		9437A13325789690000CBB4C /* REOBSManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9437A13125789690000CBB4C /* REOBSManager.cpp */; };
 		949AF05B25667E2D005AF1D8 /* REOBSMainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949AF05925667E2D005AF1D8 /* REOBSMainVC.xib */; };
-		949AF20225668301005AF1D8 /* REOBSMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 949AF20125668301005AF1D8 /* REOBSMainVC.m */; };
-		949AF275256684CD005AF1D8 /* REOBSManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94F0D145256290BE0079980D /* REOBSManager.mm */; };
+		949AF20225668301005AF1D8 /* REOBSMainVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 949AF20125668301005AF1D8 /* REOBSMainVC.mm */; };
 		94F0D13025628B5F0079980D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F0D11825628B5F0079980D /* Assets.xcassets */; };
 		94F0D13D25628B5F0079980D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94F0D12D25628B5F0079980D /* Info.plist */; };
 		94F0D13F25628BE60079980D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F0D12925628B5F0079980D /* main.m */; };
-		94F0D14025628BE60079980D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94F0D12C25628B5F0079980D /* AppDelegate.mm */; };
+		94F0D14025628BE60079980D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F0D12C25628B5F0079980D /* AppDelegate.m */; };
 		94F0D14125628C670079980D /* appLaunch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94F0D12725628B5F0079980D /* appLaunch.xib */; };
 		96D19B760B72429498BDE549 /* obs-output-delay.c in Sources */ = {isa = PBXBuildFile; fileRef = A886426402F54120AAD90303 /* obs-output-delay.c */; };
 		971288DD30E240EF88598F08 /* gl-texture2d.c in Sources */ = {isa = PBXBuildFile; fileRef = 82CB887C1CAB42419013F24F /* gl-texture2d.c */; };
@@ -1484,9 +1484,11 @@
 		94266FBE2564B5C5004B7FAE /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		94266FCB25650754004B7FAE /* obs-file.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "obs-file.cpp"; sourceTree = "<group>"; };
 		94266FCC25650754004B7FAE /* obs-file.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "obs-file.hpp"; sourceTree = "<group>"; };
+		9437A13125789690000CBB4C /* REOBSManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = REOBSManager.cpp; sourceTree = "<group>"; };
+		9437A13225789690000CBB4C /* REOBSManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = REOBSManager.h; sourceTree = "<group>"; };
 		949AF05925667E2D005AF1D8 /* REOBSMainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = REOBSMainVC.xib; sourceTree = "<group>"; };
 		949AF20025668301005AF1D8 /* REOBSMainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = REOBSMainVC.h; sourceTree = "<group>"; };
-		949AF20125668301005AF1D8 /* REOBSMainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = REOBSMainVC.m; sourceTree = "<group>"; };
+		949AF20125668301005AF1D8 /* REOBSMainVC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = REOBSMainVC.mm; sourceTree = "<group>"; };
 		949B2D2D7E26454DB9EF774E /* file-updater.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = "file-updater.c"; path = "deps/file-updater/file-updater/file-updater.c"; sourceTree = SOURCE_ROOT; };
 		94AC471064CC452493A9490D /* noise-suppress-filter.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = "noise-suppress-filter.c"; path = "plugins/obs-filters/noise-suppress-filter.c"; sourceTree = SOURCE_ROOT; };
 		94F0D0FF25628A0D0079980D /* obs-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "obs-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1495,10 +1497,8 @@
 		94F0D11925628B5F0079980D /* obs_test.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = obs_test.entitlements; sourceTree = "<group>"; };
 		94F0D12825628B5F0079980D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/appLaunch.xib; sourceTree = "<group>"; };
 		94F0D12925628B5F0079980D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		94F0D12C25628B5F0079980D /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		94F0D12C25628B5F0079980D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		94F0D12D25628B5F0079980D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		94F0D145256290BE0079980D /* REOBSManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = REOBSManager.mm; sourceTree = "<group>"; };
-		94F0D148256295A10079980D /* REOBSManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = REOBSManager.h; sourceTree = "<group>"; };
 		95ECBB3787104756BCADFB00 /* SyphonImage.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SyphonImage.h; path = "plugins/mac-syphon/syphon-framework/SyphonImage.h"; sourceTree = SOURCE_ROOT; };
 		95FBE05AF63B49E4A6807351 /* bytes.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = bytes.h; path = "plugins/obs-outputs/librtmp/bytes.h"; sourceTree = SOURCE_ROOT; };
 		9648202AF3224C799F46C734 /* mac-avcapture.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = "mac-avcapture.so"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2990,7 +2990,7 @@
 			children = (
 				94266FBE2564B5C5004B7FAE /* data */,
 				94F0D11725628B5F0079980D /* AppDelegate.h */,
-				94F0D12C25628B5F0079980D /* AppDelegate.mm */,
+				94F0D12C25628B5F0079980D /* AppDelegate.m */,
 				94F0D11825628B5F0079980D /* Assets.xcassets */,
 				94F0D11925628B5F0079980D /* obs_test.entitlements */,
 				94F0D12725628B5F0079980D /* appLaunch.xib */,
@@ -2999,10 +2999,10 @@
 				94266FCB25650754004B7FAE /* obs-file.cpp */,
 				94266FCC25650754004B7FAE /* obs-file.hpp */,
 				949AF20025668301005AF1D8 /* REOBSMainVC.h */,
-				949AF20125668301005AF1D8 /* REOBSMainVC.m */,
+				949AF20125668301005AF1D8 /* REOBSMainVC.mm */,
 				949AF05925667E2D005AF1D8 /* REOBSMainVC.xib */,
-				94F0D145256290BE0079980D /* REOBSManager.mm */,
-				94F0D148256295A10079980D /* REOBSManager.h */,
+				9437A13225789690000CBB4C /* REOBSManager.h */,
+				9437A13125789690000CBB4C /* REOBSManager.cpp */,
 			);
 			path = "obs-test";
 			sourceTree = "<group>";
@@ -4837,11 +4837,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				949AF275256684CD005AF1D8 /* REOBSManager.mm in Sources */,
+				9437A13325789690000CBB4C /* REOBSManager.cpp in Sources */,
 				94F0D13F25628BE60079980D /* main.m in Sources */,
 				94266FCD25650754004B7FAE /* obs-file.cpp in Sources */,
-				94F0D14025628BE60079980D /* AppDelegate.mm in Sources */,
-				949AF20225668301005AF1D8 /* REOBSMainVC.m in Sources */,
+				94F0D14025628BE60079980D /* AppDelegate.m in Sources */,
+				949AF20225668301005AF1D8 /* REOBSMainVC.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

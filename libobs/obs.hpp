@@ -175,11 +175,17 @@ template<typename T, void destroy(T)> class OBSObj {
 
 public:
 	inline OBSObj() : obj(nullptr) {}
-	inline OBSObj(T obj_) : obj(obj_) {}
+	inline OBSObj(T obj_) : obj(obj_) {
+//        printf("OBSObj(T obj_)\n");
+    }
 	inline OBSObj(const OBSObj &) = delete;
 	inline OBSObj(OBSObj &&other) : obj(other.obj) { other.obj = nullptr; }
 
-	inline ~OBSObj() { destroy(obj); }
+	inline ~OBSObj() {
+//        printf("~OBSObj\n");
+        destroy(obj);
+        
+    }
 
 	inline OBSObj &operator=(T obj_)
 	{
@@ -191,6 +197,7 @@ public:
 	inline OBSObj &operator=(const OBSObj &) = delete;
 	inline OBSObj &operator=(OBSObj &&other)
 	{
+//        printf("inline OBSObj &operator=(OBSObj &&other)\n");
 		if (obj)
 			destroy(obj);
 		obj = other.obj;
@@ -198,7 +205,10 @@ public:
 		return *this;
 	}
 
-	inline operator T() const { return obj; }
+	inline operator T() const {
+//        printf("inline operator T() const\n");
+        return obj;
+    }
 
 	inline bool operator==(T p) const { return obj == p; }
 	inline bool operator!=(T p) const { return obj != p; }
