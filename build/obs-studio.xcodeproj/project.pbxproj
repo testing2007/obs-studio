@@ -1490,13 +1490,6 @@
 		949B2D2D7E26454DB9EF774E /* file-updater.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = "file-updater.c"; path = "deps/file-updater/file-updater/file-updater.c"; sourceTree = SOURCE_ROOT; };
 		94AC471064CC452493A9490D /* noise-suppress-filter.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = "noise-suppress-filter.c"; path = "plugins/obs-filters/noise-suppress-filter.c"; sourceTree = SOURCE_ROOT; };
 		94F0D0FF25628A0D0079980D /* obs-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "obs-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		94F0D10125628A0D0079980D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		94F0D10225628A0D0079980D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		94F0D10425628A0E0079980D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		94F0D10725628A0F0079980D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		94F0D10925628A0F0079980D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		94F0D10A25628A0F0079980D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		94F0D10C25628A0F0079980D /* obs_test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = obs_test.entitlements; sourceTree = "<group>"; };
 		94F0D11725628B5F0079980D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		94F0D11825628B5F0079980D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94F0D11925628B5F0079980D /* obs_test.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = obs_test.entitlements; sourceTree = "<group>"; };
@@ -2747,7 +2740,6 @@
 				4DAB616F6A6C43BA8EFD5C67 /* plugins */,
 				75AA61EA2847480B99659D15 /* syphon-framework */,
 				4006E16BB4A84F7E8135875A /* frontend */,
-				94F0D10025628A0D0079980D /* obs-test */,
 				D2DF0ED6EFDE43248326DF00 /* Products */,
 				94F0D149256298400079980D /* Frameworks */,
 			);
@@ -2991,21 +2983,6 @@
 				0179623AD0B44F509F74A3D3 /* mocs_compilation.cpp */,
 			);
 			name = "Source Files";
-			sourceTree = "<group>";
-		};
-		94F0D10025628A0D0079980D /* obs-test */ = {
-			isa = PBXGroup;
-			children = (
-				94F0D10125628A0D0079980D /* AppDelegate.h */,
-				94F0D10225628A0D0079980D /* AppDelegate.m */,
-				94F0D10425628A0E0079980D /* Assets.xcassets */,
-				94F0D10625628A0F0079980D /* MainMenu.xib */,
-				94F0D10925628A0F0079980D /* Info.plist */,
-				94F0D10A25628A0F0079980D /* main.m */,
-				94F0D10C25628A0F0079980D /* obs_test.entitlements */,
-			);
-			name = "obs-test";
-			path = "build/obs-test";
 			sourceTree = "<group>";
 		};
 		94F0D11625628B5F0079980D /* obs-test */ = {
@@ -5524,14 +5501,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		94F0D10625628A0F0079980D /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				94F0D10725628A0F0079980D /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
 		94F0D12725628B5F0079980D /* appLaunch.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

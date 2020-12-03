@@ -14,67 +14,67 @@ all: \
 #	endif
 	
 obs-test_copy_dep_lib_exec_dir:
-	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/bin/libobs-opengl.so \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/Debug/obs-test.app/Contents/MacOS/
 
-	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/bin/libobsglad.0.dylib \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/Debug/obs-test.app/Contents/MacOS/
 
-	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/bin/libobs.0.dylib \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/Debug/obs-test.app/Contents/MacOS/
 
-	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/bin/obs-ffmpeg-mux \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/Debug/obs-test.app/Contents/MacOS/
 
 obs-test_copy_plugin_so: 
-	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/coreaudio-encoder.so \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/coreaudio-encoder.so
 
-#	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
-#	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/image-source.so \
-#	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/image-source.so
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/image-source.so \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/image-source.so
 
-#	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
-#	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/mac-avcapture.so \
-#	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/mac-avcapture.so
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/mac-avcapture.so \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/mac-avcapture.so
 
-	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/mac-capture.so \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/mac-capture.so
 
-	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/obs-ffmpeg.so \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/obs-ffmpeg.so
 
-#	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
-#	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/obs-filters.so \
-#	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/obs-filters.so
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/obs-filters.so \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/obs-filters.so
 
-#	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
-#	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/obs-libfdk.so \
-#	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/obs-libfdk.so
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/obs-libfdk.so \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/obs-libfdk.so
 
-#	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
-#	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/obs-outputs.so \
-#	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/obs-outputs.so
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/obs-outputs.so \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/obs-outputs.so
 
-#	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
-#	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/obs-transitions.so \
-#	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/obs-transitions.so
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/obs-transitions.so \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/obs-transitions.so
 
-	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/obs-x264.so \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/obs-transitions.so
 
-	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/rtmp-services.so \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/rtmp-services.so
 
-#	/usr/local/Cellar/cmake/3.18.4/bin/cmake -E copy \
-#	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/text-freetype2.so \
-#	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/text-freetype2.so
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/text-freetype2.so \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/text-freetype2.so

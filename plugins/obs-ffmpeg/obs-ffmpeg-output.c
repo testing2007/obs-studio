@@ -419,9 +419,9 @@ static inline bool open_output_file(struct ffmpeg_data *data)
 	}
 
 	if ((format->flags & AVFMT_NOFILE) == 0) {
-		ret = avio_open2(&data->output->pb, data->config.url,
+		ret = avio_open2(&data->output->pb, data->config.url, //## data->config.url, 可以是 rtmp://地址
 				 AVIO_FLAG_WRITE, NULL, &dict);
-		if (ret < 0) {
+		if (ret < 0) {//##rtmp 不能打开 unknown  error occurred. 原因是服务器防火墙1935端口没有开放
 			ffmpeg_log_error(LOG_WARNING, data,
 					 "Couldn't open '%s', %s",
 					 data->config.url, av_err2str(ret));
@@ -1004,7 +1004,7 @@ static void *write_thread(void *data)
 {
 	struct ffmpeg_output *output = data;
 
-	while (os_sem_wait(output->write_sem) == 0) {
+	while (os_sem_wait(output->write_sem) == 0) { //## 音频 或 视频 需要
 		/* check to see if shutting down */
 		if (os_event_try(output->stop_event) == 0)
 			break;

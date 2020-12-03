@@ -32,7 +32,7 @@
 extern profiler_name_store_t *obs_get_profiler_name_store(void);
 
 #define MAX_CONVERT_BUFFERS 3
-#define MAX_CACHE_SIZE 1
+#define MAX_CACHE_SIZE 16
 
 struct cached_frame_info {
 	struct video_data frame;
@@ -139,7 +139,7 @@ static inline bool video_output_cur_frame(struct video_output *video)
 		struct video_data frame = frame_info->frame;
 
 		if (scale_video_output(input, &frame))
-			input->callback(input->param, &frame);//## 调用 obs-encoder.c::receive_video 函数
+			input->callback(input->param, &frame);//## 最终会调用 obs-encoder.c::receive_video 函数 或 obs-ffmpeg-output::receive_video 函数
 	}
 
 	pthread_mutex_unlock(&video->input_mutex);
