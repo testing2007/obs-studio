@@ -1055,7 +1055,7 @@ static bool init_connect(struct rtmp_stream *stream)
 	stream->got_first_video = false;
 
 	settings = obs_output_get_settings(stream->output);
-	dstr_copy(&stream->path, obs_service_get_url(service));
+	dstr_copy(&stream->path, obs_service_get_url(service));//## rtmp 推流地址
 	dstr_copy(&stream->key, obs_service_get_key(service));
 	dstr_copy(&stream->username, obs_service_get_username(service));
 	dstr_copy(&stream->password, obs_service_get_password(service));
@@ -1530,7 +1530,7 @@ static int rtmp_stream_connect_time(void *data)
 }
 
 struct obs_output_info rtmp_output_info = {
-	.id = "rtmp_output",
+	.id = "rtmp_output", //## obs 推流执行的操作
 	.flags = OBS_OUTPUT_AV | OBS_OUTPUT_ENCODED | OBS_OUTPUT_SERVICE |
 		 OBS_OUTPUT_MULTI_TRACK,
 	.encoded_video_codecs = "h264",

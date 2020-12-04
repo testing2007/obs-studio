@@ -1536,7 +1536,7 @@ bool AdvancedOutput::SetupStreaming(obs_service_t *service)
 
 	/* --------------------- */
 
-	const char *type = obs_service_get_output_type(service);
+	const char *type = obs_service_get_output_type(service);//## 通过 service 返回 type = "rtmp_output"
 	if (!type) {
 		type = "rtmp_output";
 		const char *url = obs_service_get_url(service);
@@ -1554,7 +1554,7 @@ bool AdvancedOutput::SetupStreaming(obs_service_t *service)
 		stopStreaming.Disconnect();
 
 		streamOutput =
-			obs_output_create(type, "adv_stream", nullptr, nullptr);
+			obs_output_create(type, "adv_stream", nullptr, nullptr);//## rtmp_output
 		if (!streamOutput) {
 			blog(LOG_WARNING,
 			     "Creation of stream output type '%s' "

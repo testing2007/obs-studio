@@ -26,7 +26,7 @@ OBSQTDisplay::OBSQTDisplay(QWidget *parent, Qt::WindowFlags flags)
 	: QWidget(parent, flags)
 {
     if(!display) {
-        printf("display is null");
+//        printf("display is null\n");
     }
 	setAttribute(Qt::WA_PaintOnScreen);
 	setAttribute(Qt::WA_StaticContents);

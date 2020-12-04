@@ -71,9 +71,9 @@ obs-test_copy_plugin_so:
 	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/obs-x264.so \
 	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/obs-transitions.so
 
-# 	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
-# 	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/rtmp-services.so \
-# 	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/rtmp-services.so
+	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/rtmp-services.so \
+	/Users/zhiqiangwei/Work/openSource/obs-studio/obs-test/obs-plugins/rtmp-services.so
 
 # 	/usr/local/Cellar/cmake/3.19.1/bin/cmake -E copy \
 # 	/Users/zhiqiangwei/Work/openSource/obs-studio/build/rundir/Debug/obs-plugins/text-freetype2.so \

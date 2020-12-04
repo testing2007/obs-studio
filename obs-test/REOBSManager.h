@@ -18,6 +18,7 @@ using namespace std;
 class REOBSManager {
 public:
     static REOBSManager* share();
+    
     //设置推流窗口
     void setContentView(id view);
 
@@ -43,9 +44,13 @@ private:
 private:
     OBSDisplay display;
     OBSScene scene;
-    OBSOutput fileOutput;
     OBSEncoder h264Recording;
     OBSEncoder aacRecording;
+
+    OBSOutput fileOutput;
+
+    OBSService streamService;
+    OBSOutput streamOutput;
 };
 
 #define OBSInstance  (REOBSManager::share())

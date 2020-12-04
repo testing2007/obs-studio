@@ -24,7 +24,7 @@
 /* RAII wrappers */
 
 template<typename T, void addref(T), void release(T)> class OBSRef;
-
+//## 调试：lldb> p ((struct obs_output_t*)(this->streamOutput))->context
 using OBSSource = OBSRef<obs_source_t *, obs_source_addref, obs_source_release>;
 using OBSScene = OBSRef<obs_scene_t *, obs_scene_addref, obs_scene_release>;
 using OBSSceneItem =
@@ -61,38 +61,38 @@ template<typename T, void addref(T), void release(T)> class OBSRef {
 	struct TakeOwnership {
 	};
 	inline OBSRef(T val, TakeOwnership) : val(val) {
-        blog(LOG_INFO, "OBSRef(T val, TakeOwnership)");
+//        blog(LOG_INFO, "OBSRef(T val, TakeOwnership)");
     }
 
 public:
 	inline OBSRef() : val(nullptr) {}
 	inline OBSRef(T val_) : val(val_) {
         addref(val);
-        blog(LOG_INFO, "OBSRef(T val_)");
+//        blog(LOG_INFO, "OBSRef(T val_)");
     }
 	inline OBSRef(const OBSRef &ref) : val(ref.val) {
         addref(val);
-        blog(LOG_INFO, "OBSRef(const OBSRef &ref)");
+//        blog(LOG_INFO, "OBSRef(const OBSRef &ref)");
     }
 	inline OBSRef(OBSRef &&ref) : val(ref.val) {
         ref.val = nullptr;
-        blog(LOG_INFO, "OBSRef(OBSRef &&ref)");
+//        blog(LOG_INFO, "OBSRef(OBSRef &&ref)");
     }
 
 	inline ~OBSRef() { release(val); }
 
 	inline OBSRef &operator=(T valIn) {
-        blog(LOG_INFO, "OBSRef &operator=(T valIn)");
+//        blog(LOG_INFO, "OBSRef &operator=(T valIn)");
         return Replace(valIn);
     }
 	inline OBSRef &operator=(const OBSRef &ref) {
-        blog(LOG_INFO, "OBSRef &operator=(const OBSRef &ref)");
+//        blog(LOG_INFO, "OBSRef &operator=(const OBSRef &ref)");
         return Replace(ref.val);
     }
 
 	inline OBSRef &operator=(OBSRef &&ref)
 	{
-        blog(LOG_INFO, "OBSRef &operator=(OBSRef &&ref)");
+//        blog(LOG_INFO, "OBSRef &operator=(OBSRef &&ref)");
 		if (this != &ref) {
 			release(val);
 			val = ref.val;
@@ -123,13 +123,13 @@ public:
 
 inline OBSSource OBSGetStrongRef(obs_weak_source_t *weak)
 {
-    blog(LOG_INFO, "OBSSource OBSGetStrongRef(obs_weak_source_t *weak)");
+//    blog(LOG_INFO, "OBSSource OBSGetStrongRef(obs_weak_source_t *weak)");
 	return {obs_weak_source_get_source(weak), OBSSource::TakeOwnership()};
 }
 
 inline OBSWeakSource OBSGetWeakRef(obs_source_t *source)
 {
-    blog(LOG_INFO, "OBSWeakSource OBSGetWeakRef(obs_source_t *source)");
+//    blog(LOG_INFO, "OBSWeakSource OBSGetWeakRef(obs_source_t *source)");
 	return {obs_source_get_weak_source(source),
 		OBSWeakSource::TakeOwnership()};
 }

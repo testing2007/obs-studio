@@ -79,27 +79,33 @@ void REOBSManager::setContentView(id view) {
         OBSSource source = obs_source_create("display_capture", "test source", nullptr, nullptr);
         if (!source) //会调用 operator T* () 方法
             throw "Couldn't create random test source";
-
+        obs_source_release(source);
+        
         // 创建场景并将 源 添加到 场景 中
         scene = obs_scene_create("test scene");
         if (!scene) {
             throw "Couldn't create scene";
         }
+        obs_scene_release(scene);
         
-        // 定义输出
-        fileOutput = obs_output_create("ffmpeg_muxer", "simple_file_output", nullptr, nullptr);
-        if (!fileOutput) {
-            throw "Failed to create recording FFmpeg output "
-                  "(simple file output)";
-        }
-        
-        //配置
-        obs_data_t *video_settings = obs_data_create();
-        string strPath = "/Users/zhiqiangwei/Movies/test.mkv";
-        obs_data_set_string(video_settings, "path", strPath.c_str());
-        obs_output_update(fileOutput, video_settings);
-        obs_data_release(video_settings);
+//        // 本地文件输出
+//        fileOutput = obs_output_create("ffmpeg_muxer", "simple_file_output", nullptr, nullptr);
+//        if (!fileOutput) {
+//            throw "Failed to create recording FFmpeg output "
+//                  "(simple file output)";
+//        }
+//        obs_output_release(fileOutput);
+//        // 配置
+//        obs_data_t *video_settings = obs_data_create();
+//        string strPath = "/Users/zhiqiangwei/Movies/test.mkv";
+//        obs_data_set_string(video_settings, "path", strPath.c_str());
+//        obs_output_update(fileOutput, video_settings);
+//        obs_data_release(video_settings);
 
+        //rtmp 输出
+        streamOutput = obs_output_create("rtmp_output", "rtmp_stream", nullptr, nullptr);
+        obs_output_release(streamOutput);
+        
         //视频渲染回调
         obs_display_add_draw_callback(
             display,
@@ -113,12 +119,13 @@ void REOBSManager::setContentView(id view) {
         if (!h264Recording){
             throw "Failed to create h264 recording encoder (simple output)";
         }
+        obs_encoder_release(h264Recording);
         //录制音频编码器
         aacRecording = obs_audio_encoder_create("CoreAudio_AAC", "simple_aac_recording", nullptr, 0, nullptr);
-//        aacRecording = obs_audio_encoder_create("av_capture_input", "ac_capture_input_audio_recording", nullptr, 0, nullptr);
         if(!aacRecording) {
             throw "Failed to create aacRecording output";
         }
+        obs_encoder_release(aacRecording);
 
         //将元素链路关联起来
         obs_scene_add(scene, source);
@@ -126,10 +133,23 @@ void REOBSManager::setContentView(id view) {
         
         obs_encoder_set_video(h264Recording, obs_get_video());
         obs_encoder_set_audio(aacRecording, obs_get_audio());
+        
+//        // 本地文件输出
+//        obs_output_set_video_encoder(fileOutput, h264Recording);
+//        obs_output_set_audio_encoder(fileOutput, aacRecording, 0);
+//        obs_output_set_media(fileOutput, obs_get_video(), obs_get_audio());
 
-        obs_output_set_video_encoder(fileOutput, h264Recording);
-        obs_output_set_audio_encoder(fileOutput, aacRecording, 0);
-        obs_output_set_media(fileOutput, obs_get_video(), obs_get_audio());
+        // stream(rtmp/hls)输出
+        OBSData settings = obs_data_create();
+        obs_data_release(settings);
+        obs_data_set_string(settings, "server", "rtmp://47.93.202.254/hls"); //服务器地址
+        obs_data_set_string(settings, "key", "test"); //串流密钥
+        streamService = obs_service_create("rtmp_custom", "default_service", settings, nullptr);
+        obs_service_release(streamService);
+
+        obs_output_set_video_encoder(streamOutput, h264Recording);
+        obs_output_set_audio_encoder(streamOutput, aacRecording, 0);
+        obs_output_set_service(streamOutput, streamService);
 
     } catch (char const *error) {
         printf("%s\n", error);
@@ -144,14 +164,21 @@ void REOBSManager::terminal() {
 }
 
 void REOBSManager::startRecord() {
-    //开始录制
-    if (!obs_output_start(fileOutput)) {
+//    //本地文件开始录制
+//    if (!obs_output_start(fileOutput)) {
+//        printf("fail to obs_output_start");
+//    }
+    // rtmp 流输出
+    if (!obs_output_start(streamOutput)) {
         printf("fail to obs_output_start");
     }
 }
 
 void REOBSManager::stopRecord() {
-    obs_output_stop(fileOutput);
+//    本地文件结束录制
+//    obs_output_stop(fileOutput);
+//    rtmp 流结束
+    obs_output_stop(streamOutput);
 }
 
 void REOBSManager::createDisplay(id view)

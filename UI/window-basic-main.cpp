@@ -1160,7 +1160,7 @@ bool OBSBasic::LoadService()
 	if (ret <= 0)
 		return false;
 
-	obs_data_t *data =
+    obs_data_t *data =
 		obs_data_create_from_json_file_safe(serviceJsonPath, "bak");
 
 	if (!data)
