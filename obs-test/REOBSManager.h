@@ -30,7 +30,13 @@ public:
 
     //停止录制+推流
     void stopRecord();
+    
+    //开始推流
+    void startPushStream();
 
+    //停止推流
+    void stopPushStream();
+    
 private:
     void initOBS();
     void createDisplay(id view);

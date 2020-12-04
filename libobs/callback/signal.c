@@ -208,7 +208,7 @@ bool signal_handler_add(signal_handler_t *handler, const char *signal_decl)
 }
 
 static void signal_handler_connect_internal(signal_handler_t *handler,
-					    const char *signal,
+					    const char *signal, //## 信号名
 					    signal_callback_t callback,
 					    void *data, bool keep_ref)
 {
@@ -220,7 +220,7 @@ static void signal_handler_connect_internal(signal_handler_t *handler,
 		return;
 
 	pthread_mutex_lock(&handler->mutex);
-	sig = getsignal(handler, signal, &last);
+	sig = getsignal(handler, signal, &last);//## 查询 signal 是否在信号链表里面，如果存在就会返回一个非空值，由于信号链表支持多线程， 所以使用了锁
 	pthread_mutex_unlock(&handler->mutex);
 
 	if (!sig) {
@@ -240,7 +240,7 @@ static void signal_handler_connect_internal(signal_handler_t *handler,
 
 	idx = signal_get_callback_idx(sig, callback, data);
 	if (keep_ref || idx == DARRAY_INVALID)
-		da_push_back(sig->callbacks, &cb_data);
+		da_push_back(sig->callbacks, &cb_data);//## 如果这个信号对应的  回调不存在或保持, 就追加；所以一个信号可以对应多个回调
 
 	pthread_mutex_unlock(&sig->mutex);
 }

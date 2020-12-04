@@ -481,9 +481,15 @@ extern void stop_raw_video(video_t *video,
 
 struct obs_context_data {
 	char *name;
+    /*
+    //##比如:
+     type=source 路径 plugin/mac-capture/mac-display-capture 内 display_capture* 类型
+     type=output 路径 plugin/outputs/rtmp-stream 内 rtmp_stream* 类型
+     而 display_capture* 和 rtmp_stream* 都对应相应插件的 create 方法返回的对象
+    */
 	void *data;
 	obs_data_t *settings;
-	signal_handler_t *signals;
+	signal_handler_t *signals;//## 信号链表首指针
 	proc_handler_t *procs;
 	enum obs_obj_type type;
 
