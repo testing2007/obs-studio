@@ -32,11 +32,12 @@ public:
     void stopRecord();
 
 private:
+    void initOBS();
     void createDisplay(id view);
     
 private:
-    REOBSManager() {
-    };
+    
+    REOBSManager();
     ~REOBSManager() {};
     REOBSManager(const REOBSManager&);
     REOBSManager& operator=(const REOBSManager&);

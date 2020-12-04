@@ -14,13 +14,26 @@
 //#include <functional>
 //#include <memory>
 
-static const int base_width = 1920; //800;
-static const int base_height = 1080;  //600;
-static const int cx = 1280; //800;
-static const int cy = 720;  //600;
+const int base_width = 1920; //800;
+const int base_height = 1080;  //600;
+const int cx = 1280; //800;
+const int cy = 720;  //600;
 
-static void initOBS()
+/*static*/ REOBSManager* REOBSManager::share() {
+    static REOBSManager *_instance = nullptr;
+    if(!_instance) {
+        _instance = new REOBSManager();
+    }
+    return _instance;
+}
+
+REOBSManager::REOBSManager() {
+    initOBS();
+}
+
+void REOBSManager::initOBS()
 {
+    // 初始化OBS, 会检查是否存在 libopengl 依赖，没有会抛出异常
     if (!obs_startup("zh-CN", nullptr, nullptr))
         throw "Couldn't create OBS";
 
@@ -54,21 +67,12 @@ static void initOBS()
         throw "Couldn't initialize audio";
 }
 
-/*static*/ REOBSManager* REOBSManager::share() {
-    static REOBSManager *_instance = nullptr;
-    if(!_instance) {
-        _instance = new REOBSManager();
-    }
-    return _instance;
-}
-
 void REOBSManager::setContentView(id view) {
     try {
         if (!view)
             throw "Could not render content for this view";
 
-        // 初始化OBS, 会检查是否存在 libopengl 依赖，没有会抛出异常
-        initOBS();
+        //        initOBS();
 
         createDisplay(view);
         
