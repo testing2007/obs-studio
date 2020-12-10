@@ -6,6 +6,7 @@
 //
 
 #import "AppDelegate.h"
+//#include "REOBS.h"
 #include "REOBSMainVC.h"
 
 @interface AppDelegate ()
@@ -20,6 +21,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     [self.window setTitle:@"obs-dev"];
+//    gInitOBS();
     
     REOBSMainVC *vc = [REOBSMainVC new];
     self.window.delegate = vc;

@@ -480,15 +480,15 @@ extern void stop_raw_video(video_t *video,
 /* obs shared context data */
 
 struct obs_context_data {
-	char *name;
+	char *name;//## 插件名称
     /*
     //##比如:
      type=source 路径 plugin/mac-capture/mac-display-capture 内 display_capture* 类型
      type=output 路径 plugin/outputs/rtmp-stream 内 rtmp_stream* 类型
      而 display_capture* 和 rtmp_stream* 都对应相应插件的 create 方法返回的对象
     */
-	void *data;
-	obs_data_t *settings;
+	void *data; //## 指向创建出来的插件对象
+	obs_data_t *settings;//## 传递给插件所使用的参数设置
 	signal_handler_t *signals;//## 信号链表首指针
 	proc_handler_t *procs;
 	enum obs_obj_type type;
@@ -599,11 +599,11 @@ struct audio_cb_info {
 struct obs_source {
 	struct obs_context_data context;
     
-    /*
+    /*##
      对于插件：对于mac平台指向位置 plugins/mac-capture/mac-display-capture.m
      对于场景：对于mac平台指向位置 core/libobs/libobs/obs-scene.c
     //*/
-	struct obs_source_info info;
+	struct obs_source_info info;//##
 	struct obs_weak_source *control;
 
 	/* general exposed flags that can be set for the source */

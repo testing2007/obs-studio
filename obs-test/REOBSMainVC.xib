@@ -28,11 +28,11 @@
                     <rect key="frame" x="17" y="44" width="177" height="114"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="gnx-lg-Mib">
-                        <rect key="frame" x="3" y="3" width="171" height="99"/>
+                        <rect key="frame" x="3" y="3" width="171" height="96"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="750" id="Mkk-If-8eQ" userLabel="recordBtn">
-                                <rect key="frame" x="14" y="5" width="94" height="32"/>
+                                <rect key="frame" x="14" y="2" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="开始录制" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g8H-Wx-arY">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -44,21 +44,20 @@
                             </button>
                         </subviews>
                     </view>
-                    <font key="titleFont" size="11" name=".PingFangSC-Regular"/>
                 </box>
                 <box fixedFrame="YES" title="推流" translatesAutoresizingMaskIntoConstraints="NO" id="u8N-Rn-BRc">
                     <rect key="frame" x="267" y="44" width="177" height="114"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="Y0d-T0-ZZ6">
-                        <rect key="frame" x="3" y="3" width="171" height="99"/>
+                        <rect key="frame" x="3" y="3" width="171" height="96"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="750" id="QX0-dX-4SM" userLabel="recordBtn">
-                                <rect key="frame" x="14" y="5" width="94" height="32"/>
+                                <rect key="frame" x="14" y="2" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="开始推流" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="twK-1v-fb2">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="onStreamRecord:" target="-2" id="n6Y-cb-jBS"/>
@@ -66,7 +65,6 @@
                             </button>
                         </subviews>
                     </view>
-                    <font key="titleFont" size="11" name=".PingFangSC-Regular"/>
                 </box>
             </subviews>
             <point key="canvasLocation" x="-253.5" y="233.5"/>

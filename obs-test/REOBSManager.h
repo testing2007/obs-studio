@@ -9,7 +9,7 @@
 #define REOBSManagerImpl_hpp
 
 #include <stdio.h>
-#include <string>
+//
 #include <util/base.h>
 #include "obs.hpp" //包含了 obs.h
 
@@ -18,6 +18,9 @@ using namespace std;
 class REOBSManager {
 public:
     static REOBSManager* share();
+    
+    //初始化 OBS
+    bool _initOBS();
     
     //设置推流窗口
     void setContentView(id view);
@@ -38,15 +41,15 @@ public:
     void stopPushStream();
     
 private:
-    void initOBS();
-    void createDisplay(id view);
+    void _initAV();
+    void _createDisplay(id view);
     
 private:
     
     REOBSManager();
     ~REOBSManager() {};
-    REOBSManager(const REOBSManager&);
-    REOBSManager& operator=(const REOBSManager&);
+    REOBSManager(const REOBSManager&) = delete;
+    REOBSManager& operator=(const REOBSManager&) = delete;
     
 private:
     OBSDisplay display;
@@ -60,6 +63,6 @@ private:
     OBSOutput streamOutput;
 };
 
-#define OBSInstance  (REOBSManager::share())
+#define REOBSInstance  (REOBSManager::share())
 
 #endif /* REOBSManagerImpl_hpp */

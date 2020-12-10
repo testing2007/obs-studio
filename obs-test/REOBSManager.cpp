@@ -6,13 +6,8 @@
 //
 
 #include "REOBSManager.h"
-//#include <sstream>
-//#include <iostream>
-//#include <stdio.h>
-//#include <time.h>
-//
-//#include <functional>
-//#include <memory>
+#include "REOBSConfigManager.h"
+#include <string>
 
 const int base_width = 1920; //800;
 const int base_height = 1080;  //600;
@@ -28,15 +23,40 @@ const int cy = 720;  //600;
 }
 
 REOBSManager::REOBSManager() {
-    initOBS();
+    _initOBS();//TODO:还没想好放哪
+    _initAV();
 }
 
-void REOBSManager::initOBS()
-{
-    // 初始化OBS, 会检查是否存在 libopengl 依赖，没有会抛出异常
-    if (!obs_startup("zh-CN", nullptr, nullptr))
-        throw "Couldn't create OBS";
+bool REOBSManager::_initOBS() {
+    // 初始化 obs 全局变量
+    if (!obs_startup("zh-CN", nullptr, nullptr)) {
+        blog(LOG_ERROR, "fail to exec obs_startup");
+        return false;
+    }
+    // 载入所有的 plugin 模块
+    obs_load_all_modules();
+    return true;
+}
 
+void REOBSManager::_createDisplay(id view)
+{
+    if(display) {
+        return ;
+    }
+    
+    gs_init_data info = {};
+    info.cx = cx;
+    info.cy = cy;
+    info.format = GS_BGRA;
+    info.zsformat = GS_ZS_NONE;
+    info.window.view = view;
+
+    display = obs_display_create(&info, 0);
+//    obs_display_destroy(display);
+}
+
+void REOBSManager::_initAV()
+{
     struct obs_video_info ovi;
     ovi.adapter = 0;
     ovi.fps_num = 60;
@@ -50,13 +70,14 @@ void REOBSManager::initOBS()
     //视频输出格式
     //VIDEO_FORMAT_NV12:窗口部分显示，其余黑背景色；
     //VIDEO_FORMAT_RGBA:可以将显示窗口铺满
-    ovi.output_format = VIDEO_FORMAT_RGBA;
+    ovi.output_format = VIDEO_FORMAT_NV12;
     
     ovi.gpu_conversion = true;
     ovi.colorspace = VIDEO_CS_709;
     ovi.range = VIDEO_RANGE_PARTIAL;
     ovi.scale_type = OBS_SCALE_BICUBIC;
     
+    //会检查是否存在 libopengl 依赖，没有会抛出异常
     if (obs_reset_video(&ovi) != 0)
         throw "Couldn't initialize video";
     
@@ -72,15 +93,10 @@ void REOBSManager::setContentView(id view) {
         if (!view)
             throw "Could not render content for this view";
 
-        //        initOBS();
-
-        createDisplay(view);
+        _createDisplay(view);
         
-        // 载入所有的 plugin 模块
-        obs_load_all_modules();
-
         // 创建显示源，理解为渲染显示，不同平台不一样，mac端是 plugins/mac-display-capture.m 文件
-        OBSSource source = obs_source_create("display_capture", "test source", nullptr, nullptr);
+        OBSSource source = obs_source_create("display_capture", "capture source", nullptr, nullptr);
         if (!source) //会调用 operator T* () 方法
             throw "Couldn't create random test source";
         obs_source_release(source);
@@ -99,15 +115,15 @@ void REOBSManager::setContentView(id view) {
             obs_render_main_texture_src_color_only();
             },
             nullptr);
-        
+
         //录制视频编码器
-        h264Recording = obs_video_encoder_create("obs_x264", "simple_h264_recording", nullptr, nullptr);
+        h264Recording = obs_video_encoder_create("obs_x264", "video_h264_recording", nullptr, nullptr);
         if (!h264Recording){
             throw "Failed to create h264 recording encoder (simple output)";
         }
         obs_encoder_release(h264Recording);
         //录制音频编码器
-        aacRecording = obs_audio_encoder_create("CoreAudio_AAC", "simple_aac_recording", nullptr, 0, nullptr);
+        aacRecording = obs_audio_encoder_create("CoreAudio_AAC", "audio_aac_recording", nullptr, 0, nullptr);
         if(!aacRecording) {
             throw "Failed to create aacRecording output";
         }
@@ -147,8 +163,8 @@ void REOBSManager::startRecord() {
         obs_output_release(fileOutput);
         // 配置
         obs_data_t *video_settings = obs_data_create();
-        string strPath = "/Users/zhiqiangwei/Movies/test.mkv";
-        obs_data_set_string(video_settings, "path", strPath.c_str());
+        const char *strPath = "/Users/zhiqiangwei/Movies/test.mkv";
+        obs_data_set_string(video_settings, "path", strPath);
         obs_output_update(fileOutput, video_settings);
         obs_data_release(video_settings);
         
@@ -178,14 +194,14 @@ void REOBSManager::startPushStream() {
         obs_output_release(streamOutput);
     }
     if(streamService == nullptr) {
-        // stream(rtmp/hls)输出
-        OBSData settings = obs_data_create();
-        obs_data_release(settings);
-        obs_data_set_string(settings, "server", "rtmp://47.93.202.254/hls"); //服务器地址
-        obs_data_set_string(settings, "key", "test"); //串流密钥
-        streamService = obs_service_create("rtmp_custom", "default_service", settings, nullptr);
-        obs_service_release(streamService);
+        if(!REOBSConfigInstance->initService()) {
+            blog(LOG_INFO, "it's not start pushing stream until config push service finished;");
+            return ;
+        }
+        
+        streamService = REOBSConfigInstance->getService();
 
+        //连接
         obs_output_set_video_encoder(streamOutput, h264Recording);
         obs_output_set_audio_encoder(streamOutput, aacRecording, 0);
         obs_output_set_service(streamOutput, streamService);
@@ -199,18 +215,4 @@ void REOBSManager::stopPushStream() {
     obs_output_stop(streamOutput);
 }
 
-void REOBSManager::createDisplay(id view)
-{
-    if(display) {
-        return ;
-    }
-    
-    gs_init_data info = {};
-    info.cx = cx;
-    info.cy = cy;
-    info.format = GS_BGRA;
-    info.zsformat = GS_ZS_NONE;
-    info.window.view = view;
 
-    display = obs_display_create(&info, 0);
-}

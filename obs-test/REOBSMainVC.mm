@@ -6,7 +6,7 @@
 //
 
 #import "REOBSMainVC.h"
-#import "REOBSManager.h"
+#import "REOBS.h"
 
 @interface REOBSMainVC ()<NSWindowDelegate>
 @property (weak) IBOutlet NSView *contentView;
@@ -24,7 +24,7 @@
     [super viewDidLoad];
     // Do view setup here.
     [self.btnRecord setTitle:@"开始录制"];
-    OBSInstance->setContentView(self.contentView);
+    REOBSInstance->setContentView(self.contentView);
 }
 
 - (BOOL)isActive {
@@ -33,11 +33,11 @@
 
 - (IBAction)onRecord:(id)sender {
     if(_bRecording) {
-        OBSInstance->stopRecord();
+        REOBSInstance->stopRecord();
         self.bRecording = !_bRecording;
     } else {
         if(![self isActive]) {
-            OBSInstance->startRecord();
+            REOBSInstance->startRecord();
             self.bRecording = !_bRecording;
         } else {
             blog(LOG_INFO, "开启新的链路之前请先关闭现有的链路");
@@ -56,11 +56,11 @@
 
 - (IBAction)onStreamRecord:(id)sender {
     if(_bPushStream) {
-        OBSInstance->stopPushStream();
+        REOBSInstance->stopPushStream();
         self.bPushStream = !_bPushStream;
     } else {
         if(![self isActive]) {
-            OBSInstance->startPushStream();
+            REOBSInstance->startPushStream();
             self.bPushStream = !_bPushStream;
         } else {
             blog(LOG_INFO, "开启新的链路之前请先关闭现有的链路");
@@ -78,6 +78,6 @@
 }
 
 -(void)windowWillClose:(NSNotification *)notification {
-    OBSInstance->terminal();
+    REOBSInstance->terminal();
 }
 @end

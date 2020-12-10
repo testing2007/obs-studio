@@ -315,10 +315,10 @@
 		91C07D71F00847D0B5BF0329 /* window-projector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1B5199082D5B4D9E97FF33D6 /* window-projector.cpp */; };
 		935F6510379C4F11A085B8C7 /* window-namedialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8535E91FAEB8421C94CFDCF1 /* window-namedialog.cpp */; };
 		94266FBF2564B5C5004B7FAE /* data in Resources */ = {isa = PBXBuildFile; fileRef = 94266FBE2564B5C5004B7FAE /* data */; };
-		94266FCD25650754004B7FAE /* obs-file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94266FCB25650754004B7FAE /* obs-file.cpp */; };
 		9437A13325789690000CBB4C /* REOBSManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9437A13125789690000CBB4C /* REOBSManager.cpp */; };
 		949AF05B25667E2D005AF1D8 /* REOBSMainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949AF05925667E2D005AF1D8 /* REOBSMainVC.xib */; };
 		949AF20225668301005AF1D8 /* REOBSMainVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 949AF20125668301005AF1D8 /* REOBSMainVC.mm */; };
+		94AB9CB32580A4FB00AF877E /* REOBSConfigManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94AB9CB12580A4FB00AF877E /* REOBSConfigManager.cpp */; };
 		94F0D13025628B5F0079980D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F0D11825628B5F0079980D /* Assets.xcassets */; };
 		94F0D13D25628B5F0079980D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94F0D12D25628B5F0079980D /* Info.plist */; };
 		94F0D13F25628BE60079980D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F0D12925628B5F0079980D /* main.m */; };
@@ -1482,14 +1482,15 @@
 		93F1D13C81D04B81B3B2345C /* decklink-ui-main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "decklink-ui-main.cpp"; path = "UI/frontend-plugins/decklink-output-ui/decklink-ui-main.cpp"; sourceTree = SOURCE_ROOT; };
 		9419F57B56B04A4194D5A32C /* SyphonClientConnectionManager.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = SyphonClientConnectionManager.m; path = "plugins/mac-syphon/syphon-framework/SyphonClientConnectionManager.m"; sourceTree = SOURCE_ROOT; };
 		94266FBE2564B5C5004B7FAE /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
-		94266FCB25650754004B7FAE /* obs-file.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "obs-file.cpp"; sourceTree = "<group>"; };
-		94266FCC25650754004B7FAE /* obs-file.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "obs-file.hpp"; sourceTree = "<group>"; };
 		9437A13125789690000CBB4C /* REOBSManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = REOBSManager.cpp; sourceTree = "<group>"; };
 		9437A13225789690000CBB4C /* REOBSManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = REOBSManager.h; sourceTree = "<group>"; };
 		949AF05925667E2D005AF1D8 /* REOBSMainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = REOBSMainVC.xib; sourceTree = "<group>"; };
 		949AF20025668301005AF1D8 /* REOBSMainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = REOBSMainVC.h; sourceTree = "<group>"; };
 		949AF20125668301005AF1D8 /* REOBSMainVC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = REOBSMainVC.mm; sourceTree = "<group>"; };
 		949B2D2D7E26454DB9EF774E /* file-updater.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = "file-updater.c"; path = "deps/file-updater/file-updater/file-updater.c"; sourceTree = SOURCE_ROOT; };
+		94AB9CB12580A4FB00AF877E /* REOBSConfigManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = REOBSConfigManager.cpp; sourceTree = "<group>"; };
+		94AB9CB22580A4FB00AF877E /* REOBSConfigManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = REOBSConfigManager.h; sourceTree = "<group>"; };
+		94AB9CDA2580ABD700AF877E /* REOBS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = REOBS.h; sourceTree = "<group>"; };
 		94AC471064CC452493A9490D /* noise-suppress-filter.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = "noise-suppress-filter.c"; path = "plugins/obs-filters/noise-suppress-filter.c"; sourceTree = SOURCE_ROOT; };
 		94F0D0FF25628A0D0079980D /* obs-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "obs-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F0D11725628B5F0079980D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -2996,13 +2997,14 @@
 				94F0D12725628B5F0079980D /* appLaunch.xib */,
 				94F0D12925628B5F0079980D /* main.m */,
 				94F0D12D25628B5F0079980D /* Info.plist */,
-				94266FCB25650754004B7FAE /* obs-file.cpp */,
-				94266FCC25650754004B7FAE /* obs-file.hpp */,
 				949AF20025668301005AF1D8 /* REOBSMainVC.h */,
 				949AF20125668301005AF1D8 /* REOBSMainVC.mm */,
 				949AF05925667E2D005AF1D8 /* REOBSMainVC.xib */,
 				9437A13225789690000CBB4C /* REOBSManager.h */,
 				9437A13125789690000CBB4C /* REOBSManager.cpp */,
+				94AB9CB22580A4FB00AF877E /* REOBSConfigManager.h */,
+				94AB9CB12580A4FB00AF877E /* REOBSConfigManager.cpp */,
+				94AB9CDA2580ABD700AF877E /* REOBS.h */,
 			);
 			path = "obs-test";
 			sourceTree = "<group>";
@@ -4839,7 +4841,7 @@
 			files = (
 				9437A13325789690000CBB4C /* REOBSManager.cpp in Sources */,
 				94F0D13F25628BE60079980D /* main.m in Sources */,
-				94266FCD25650754004B7FAE /* obs-file.cpp in Sources */,
+				94AB9CB32580A4FB00AF877E /* REOBSConfigManager.cpp in Sources */,
 				94F0D14025628BE60079980D /* AppDelegate.m in Sources */,
 				949AF20225668301005AF1D8 /* REOBSMainVC.mm in Sources */,
 			);
