@@ -3806,7 +3806,7 @@ void OBSBasicSettings::on_advOutFFFormat_currentIndexChanged(int idx)
 		SetAdvOutputFFmpegEnablement(
 			FF_CODEC_VIDEO, ff_format_desc_has_video(desc.desc),
 			false);
-		ReloadCodecs(desc.desc);
+		ReloadCodecs(desc.desc);//##
 		ui->advOutFFFormatDesc->setText(
 			ff_format_desc_long_name(desc.desc));
 

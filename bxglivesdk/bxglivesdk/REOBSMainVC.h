@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface REOBSMainVC : NSViewController
+@interface REOBSMainVC : NSViewController<NSWindowDelegate>
 
 @end
 

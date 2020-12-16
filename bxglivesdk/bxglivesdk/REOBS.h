@@ -9,8 +9,13 @@
 #define REOBS_h
 
 #import "obs.hpp"
+#import "libobs/util/util.hpp"
+#import "REOBSCommonMacro.h"
+#import "REOBSCommon.h"
 #import "REOBSManager.h"
 #import "REOBSConfigManager.h"
+#import "REOBSAVConfigManager.h"
+
 
 #endif /* REOBS_h */
 

@@ -1,0 +1,547 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9422700F2589C2990095274F /* libfdk-aac.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9422700E2589C2990095274F /* libfdk-aac.2.dylib */; };
+		942270102589C2990095274F /* libfdk-aac.2.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9422700E2589C2990095274F /* libfdk-aac.2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		942270122589C3200095274F /* libmbedtls.2.24.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 942270112589C3200095274F /* libmbedtls.2.24.0.dylib */; };
+		942270132589C3200095274F /* libmbedtls.2.24.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 942270112589C3200095274F /* libmbedtls.2.24.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9422701B2589D8F90095274F /* libx264.161.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9422701A2589D8F90095274F /* libx264.161.dylib */; };
+		9422701C2589D8F90095274F /* libx264.161.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9422701A2589D8F90095274F /* libx264.161.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9427E4E32588A00D0057E67D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427E4E22588A00D0057E67D /* AppDelegate.m */; };
+		9427E4E52588A0100057E67D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9427E4E42588A0100057E67D /* Assets.xcassets */; };
+		9427E4EB2588A0100057E67D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427E4EA2588A0100057E67D /* main.m */; };
+		9427E5252588A4E40057E67D /* data in Resources */ = {isa = PBXBuildFile; fileRef = 9427E5242588A4E40057E67D /* data */; };
+		9427E5292588A50B0057E67D /* ff-util.c in Sources */ = {isa = PBXBuildFile; fileRef = 9427E5282588A50B0057E67D /* ff-util.c */; };
+		9427E5602588A5850057E67D /* REOBSManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9427E5562588A5850057E67D /* REOBSManager.cpp */; };
+		9427E5612588A5850057E67D /* REOBSAVConfigManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9427E55A2588A5850057E67D /* REOBSAVConfigManager.cpp */; };
+		9427E5622588A5850057E67D /* REOBSConfigManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9427E55C2588A5850057E67D /* REOBSConfigManager.cpp */; };
+		9427E5632588A5850057E67D /* REOBSCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9427E55E2588A5850057E67D /* REOBSCommon.mm */; };
+		9427E5672588A5B10057E67D /* libobs.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9427E5662588A5B10057E67D /* libobs.0.dylib */; };
+		9427E5682588A5B10057E67D /* libobs.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9427E5662588A5B10057E67D /* libobs.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9427E5722588A6320057E67D /* libavfilter.7.85.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9427E56A2588A6320057E67D /* libavfilter.7.85.100.dylib */; };
+		9427E5732588A6320057E67D /* libavfilter.7.85.100.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9427E56A2588A6320057E67D /* libavfilter.7.85.100.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9427E5742588A6320057E67D /* libswresample.3.7.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9427E56B2588A6320057E67D /* libswresample.3.7.100.dylib */; };
+		9427E5752588A6320057E67D /* libswresample.3.7.100.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9427E56B2588A6320057E67D /* libswresample.3.7.100.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9427E5762588A6320057E67D /* libavformat.58.45.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9427E56C2588A6320057E67D /* libavformat.58.45.100.dylib */; };
+		9427E5772588A6320057E67D /* libavformat.58.45.100.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9427E56C2588A6320057E67D /* libavformat.58.45.100.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9427E5782588A6320057E67D /* libavcodec.58.91.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9427E56D2588A6320057E67D /* libavcodec.58.91.100.dylib */; };
+		9427E5792588A6320057E67D /* libavcodec.58.91.100.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9427E56D2588A6320057E67D /* libavcodec.58.91.100.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9427E57A2588A6320057E67D /* libavutil.56.51.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9427E56E2588A6320057E67D /* libavutil.56.51.100.dylib */; };
+		9427E57B2588A6320057E67D /* libavutil.56.51.100.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9427E56E2588A6320057E67D /* libavutil.56.51.100.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9427E57C2588A6320057E67D /* libavdevice.58.10.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9427E56F2588A6320057E67D /* libavdevice.58.10.100.dylib */; };
+		9427E57D2588A6320057E67D /* libavdevice.58.10.100.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9427E56F2588A6320057E67D /* libavdevice.58.10.100.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9427E57E2588A6320057E67D /* libswscale.5.7.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9427E5702588A6320057E67D /* libswscale.5.7.100.dylib */; };
+		9427E57F2588A6320057E67D /* libswscale.5.7.100.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9427E5702588A6320057E67D /* libswscale.5.7.100.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9427E5B52588B14C0057E67D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9427E5B32588B14C0057E67D /* MainMenu.xib */; };
+		9427E5B92588B1910057E67D /* REOBSMainVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9427E5B72588B1910057E67D /* REOBSMainVC.mm */; };
+		9427E5BA2588B1910057E67D /* REOBSMainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9427E5B82588B1910057E67D /* REOBSMainVC.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9427E5692588A5B10057E67D /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9422701C2589D8F90095274F /* libx264.161.dylib in Embed Libraries */,
+				9427E5792588A6320057E67D /* libavcodec.58.91.100.dylib in Embed Libraries */,
+				942270102589C2990095274F /* libfdk-aac.2.dylib in Embed Libraries */,
+				9427E5752588A6320057E67D /* libswresample.3.7.100.dylib in Embed Libraries */,
+				9427E57F2588A6320057E67D /* libswscale.5.7.100.dylib in Embed Libraries */,
+				9427E57D2588A6320057E67D /* libavdevice.58.10.100.dylib in Embed Libraries */,
+				9427E5772588A6320057E67D /* libavformat.58.45.100.dylib in Embed Libraries */,
+				9427E57B2588A6320057E67D /* libavutil.56.51.100.dylib in Embed Libraries */,
+				9427E5682588A5B10057E67D /* libobs.0.dylib in Embed Libraries */,
+				9427E5732588A6320057E67D /* libavfilter.7.85.100.dylib in Embed Libraries */,
+				942270132589C3200095274F /* libmbedtls.2.24.0.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9422700E2589C2990095274F /* libfdk-aac.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libfdk-aac.2.dylib"; path = "../../../../../../usr/local/Cellar/fdk-aac/2.0.1/lib/libfdk-aac.2.dylib"; sourceTree = "<group>"; };
+		942270112589C3200095274F /* libmbedtls.2.24.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmbedtls.2.24.0.dylib; path = ../../../../../../usr/local/Cellar/mbedtls/2.24.0/lib/libmbedtls.2.24.0.dylib; sourceTree = "<group>"; };
+		942270142589C33D0095274F /* libx264.161.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libx264.161.dylib; path = ../../../../../../usr/local/lib/libx264.161.dylib; sourceTree = "<group>"; };
+		942270172589D6720095274F /* libx264.160.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libx264.160.dylib; path = ../../../../../../usr/local/Cellar/x264/r3011/lib/libx264.160.dylib; sourceTree = "<group>"; };
+		9422701A2589D8F90095274F /* libx264.161.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libx264.161.dylib; path = ../../../../../../usr/local/Cellar/x264/r3027_1/lib/libx264.161.dylib; sourceTree = "<group>"; };
+		9427E4DE2588A00D0057E67D /* bxglivesdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bxglivesdk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9427E4E12588A00D0057E67D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9427E4E22588A00D0057E67D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9427E4E42588A0100057E67D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9427E4E92588A0100057E67D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9427E4EA2588A0100057E67D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9427E4EC2588A0100057E67D /* bxglivesdk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bxglivesdk.entitlements; sourceTree = "<group>"; };
+		9427E5242588A4E40057E67D /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = ../../build/rundir/Debug/data; sourceTree = "<group>"; };
+		9427E5272588A50B0057E67D /* ff-util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ff-util.h"; path = "../../deps/libff/libff/ff-util.h"; sourceTree = "<group>"; };
+		9427E5282588A50B0057E67D /* ff-util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "ff-util.c"; path = "../../deps/libff/libff/ff-util.c"; sourceTree = "<group>"; };
+		9427E5532588A5850057E67D /* REOBSConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSConfigManager.h; sourceTree = "<group>"; };
+		9427E5562588A5850057E67D /* REOBSManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = REOBSManager.cpp; sourceTree = "<group>"; };
+		9427E5572588A5850057E67D /* REOBSCommonMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSCommonMacro.h; sourceTree = "<group>"; };
+		9427E5582588A5850057E67D /* REOBSManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSManager.h; sourceTree = "<group>"; };
+		9427E5592588A5850057E67D /* REOBSAVConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSAVConfigManager.h; sourceTree = "<group>"; };
+		9427E55A2588A5850057E67D /* REOBSAVConfigManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = REOBSAVConfigManager.cpp; sourceTree = "<group>"; };
+		9427E55B2588A5850057E67D /* REOBS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBS.h; sourceTree = "<group>"; };
+		9427E55C2588A5850057E67D /* REOBSConfigManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = REOBSConfigManager.cpp; sourceTree = "<group>"; };
+		9427E55D2588A5850057E67D /* REOBSCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSCommon.h; sourceTree = "<group>"; };
+		9427E55E2588A5850057E67D /* REOBSCommon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = REOBSCommon.mm; sourceTree = "<group>"; };
+		9427E5662588A5B10057E67D /* libobs.0.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libobs.0.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9427E56A2588A6320057E67D /* libavfilter.7.85.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavfilter.7.85.100.dylib; path = ../../../../../../usr/local/Cellar/ffmpeg/4.3.1_4/lib/libavfilter.7.85.100.dylib; sourceTree = "<group>"; };
+		9427E56B2588A6320057E67D /* libswresample.3.7.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libswresample.3.7.100.dylib; path = ../../../../../../usr/local/Cellar/ffmpeg/4.3.1_4/lib/libswresample.3.7.100.dylib; sourceTree = "<group>"; };
+		9427E56C2588A6320057E67D /* libavformat.58.45.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavformat.58.45.100.dylib; path = ../../../../../../usr/local/Cellar/ffmpeg/4.3.1_4/lib/libavformat.58.45.100.dylib; sourceTree = "<group>"; };
+		9427E56D2588A6320057E67D /* libavcodec.58.91.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavcodec.58.91.100.dylib; path = ../../../../../../usr/local/Cellar/ffmpeg/4.3.1_4/lib/libavcodec.58.91.100.dylib; sourceTree = "<group>"; };
+		9427E56E2588A6320057E67D /* libavutil.56.51.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavutil.56.51.100.dylib; path = ../../../../../../usr/local/Cellar/ffmpeg/4.3.1_4/lib/libavutil.56.51.100.dylib; sourceTree = "<group>"; };
+		9427E56F2588A6320057E67D /* libavdevice.58.10.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavdevice.58.10.100.dylib; path = ../../../../../../usr/local/Cellar/ffmpeg/4.3.1_4/lib/libavdevice.58.10.100.dylib; sourceTree = "<group>"; };
+		9427E5702588A6320057E67D /* libswscale.5.7.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libswscale.5.7.100.dylib; path = ../../../../../../usr/local/Cellar/ffmpeg/4.3.1_4/lib/libswscale.5.7.100.dylib; sourceTree = "<group>"; };
+		9427E5712588A6320057E67D /* libavresample.4.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavresample.4.0.0.dylib; path = ../../../../../../usr/local/Cellar/ffmpeg/4.3.1_4/lib/libavresample.4.0.0.dylib; sourceTree = "<group>"; };
+		9427E5B42588B14C0057E67D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		9427E5B62588B1910057E67D /* REOBSMainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = REOBSMainVC.h; sourceTree = "<group>"; };
+		9427E5B72588B1910057E67D /* REOBSMainVC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = REOBSMainVC.mm; sourceTree = "<group>"; };
+		9427E5B82588B1910057E67D /* REOBSMainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = REOBSMainVC.xib; sourceTree = "<group>"; };
+		946D20E9258A18A200F3DF91 /* QtCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtCore.framework; path = ../../../../../../usr/local/Cellar/qt/5.15.1/lib/QtCore.framework; sourceTree = "<group>"; };
+		946D20EA258A18A200F3DF91 /* QtGui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtGui.framework; path = ../../../../../../usr/local/Cellar/qt/5.15.1/lib/QtGui.framework; sourceTree = "<group>"; };
+		946D20EB258A18A200F3DF91 /* QtWidgets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtWidgets.framework; path = ../../../../../../usr/local/Cellar/qt/5.15.1/lib/QtWidgets.framework; sourceTree = "<group>"; };
+		946D20EC258A18A200F3DF91 /* QtXml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtXml.framework; path = ../../../../../../usr/local/Cellar/qt/5.15.1/lib/QtXml.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9427E4DB2588A00D0057E67D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9422701B2589D8F90095274F /* libx264.161.dylib in Frameworks */,
+				9427E5782588A6320057E67D /* libavcodec.58.91.100.dylib in Frameworks */,
+				9422700F2589C2990095274F /* libfdk-aac.2.dylib in Frameworks */,
+				9427E5742588A6320057E67D /* libswresample.3.7.100.dylib in Frameworks */,
+				9427E57E2588A6320057E67D /* libswscale.5.7.100.dylib in Frameworks */,
+				9427E57C2588A6320057E67D /* libavdevice.58.10.100.dylib in Frameworks */,
+				9427E5762588A6320057E67D /* libavformat.58.45.100.dylib in Frameworks */,
+				9427E57A2588A6320057E67D /* libavutil.56.51.100.dylib in Frameworks */,
+				9427E5672588A5B10057E67D /* libobs.0.dylib in Frameworks */,
+				9427E5722588A6320057E67D /* libavfilter.7.85.100.dylib in Frameworks */,
+				942270122589C3200095274F /* libmbedtls.2.24.0.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9427E4D52588A00D0057E67D = {
+			isa = PBXGroup;
+			children = (
+				9427E4E02588A00D0057E67D /* bxglivesdk */,
+				9427E4DF2588A00D0057E67D /* Products */,
+				9427E5652588A5B10057E67D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9427E4DF2588A00D0057E67D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9427E4DE2588A00D0057E67D /* bxglivesdk.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9427E4E02588A00D0057E67D /* bxglivesdk */ = {
+			isa = PBXGroup;
+			children = (
+				9427E5282588A50B0057E67D /* ff-util.c */,
+				9427E5272588A50B0057E67D /* ff-util.h */,
+				9427E5242588A4E40057E67D /* data */,
+				9427E4E12588A00D0057E67D /* AppDelegate.h */,
+				9427E4E22588A00D0057E67D /* AppDelegate.m */,
+				9427E4E42588A0100057E67D /* Assets.xcassets */,
+				9427E5B62588B1910057E67D /* REOBSMainVC.h */,
+				9427E5B72588B1910057E67D /* REOBSMainVC.mm */,
+				9427E5B82588B1910057E67D /* REOBSMainVC.xib */,
+				9427E5B32588B14C0057E67D /* MainMenu.xib */,
+				9427E55B2588A5850057E67D /* REOBS.h */,
+				9427E55A2588A5850057E67D /* REOBSAVConfigManager.cpp */,
+				9427E5592588A5850057E67D /* REOBSAVConfigManager.h */,
+				9427E55D2588A5850057E67D /* REOBSCommon.h */,
+				9427E55E2588A5850057E67D /* REOBSCommon.mm */,
+				9427E5572588A5850057E67D /* REOBSCommonMacro.h */,
+				9427E5532588A5850057E67D /* REOBSConfigManager.h */,
+				9427E55C2588A5850057E67D /* REOBSConfigManager.cpp */,
+				9427E5582588A5850057E67D /* REOBSManager.h */,
+				9427E5562588A5850057E67D /* REOBSManager.cpp */,
+				9427E4E92588A0100057E67D /* Info.plist */,
+				9427E4EA2588A0100057E67D /* main.m */,
+				9427E4EC2588A0100057E67D /* bxglivesdk.entitlements */,
+			);
+			path = bxglivesdk;
+			sourceTree = "<group>";
+		};
+		9427E5652588A5B10057E67D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				946D20E9258A18A200F3DF91 /* QtCore.framework */,
+				946D20EA258A18A200F3DF91 /* QtGui.framework */,
+				946D20EB258A18A200F3DF91 /* QtWidgets.framework */,
+				946D20EC258A18A200F3DF91 /* QtXml.framework */,
+				9422701A2589D8F90095274F /* libx264.161.dylib */,
+				942270172589D6720095274F /* libx264.160.dylib */,
+				942270142589C33D0095274F /* libx264.161.dylib */,
+				942270112589C3200095274F /* libmbedtls.2.24.0.dylib */,
+				9422700E2589C2990095274F /* libfdk-aac.2.dylib */,
+				9427E56D2588A6320057E67D /* libavcodec.58.91.100.dylib */,
+				9427E56F2588A6320057E67D /* libavdevice.58.10.100.dylib */,
+				9427E56A2588A6320057E67D /* libavfilter.7.85.100.dylib */,
+				9427E56C2588A6320057E67D /* libavformat.58.45.100.dylib */,
+				9427E5712588A6320057E67D /* libavresample.4.0.0.dylib */,
+				9427E56E2588A6320057E67D /* libavutil.56.51.100.dylib */,
+				9427E56B2588A6320057E67D /* libswresample.3.7.100.dylib */,
+				9427E5702588A6320057E67D /* libswscale.5.7.100.dylib */,
+				9427E5662588A5B10057E67D /* libobs.0.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9427E4DD2588A00D0057E67D /* bxglivesdk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9427E4EF2588A0100057E67D /* Build configuration list for PBXNativeTarget "bxglivesdk" */;
+			buildPhases = (
+				9427E4DA2588A00D0057E67D /* Sources */,
+				9427E4DB2588A00D0057E67D /* Frameworks */,
+				9427E4DC2588A00D0057E67D /* Resources */,
+				9427E4F52588A2190057E67D /* ShellScript */,
+				9427E5692588A5B10057E67D /* Embed Libraries */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = bxglivesdk;
+			productName = bxglivesdk;
+			productReference = 9427E4DE2588A00D0057E67D /* bxglivesdk.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9427E4D62588A00D0057E67D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					9427E4DD2588A00D0057E67D = {
+						CreatedOnToolsVersion = 12.2;
+					};
+				};
+			};
+			buildConfigurationList = 9427E4D92588A00D0057E67D /* Build configuration list for PBXProject "bxglivesdk" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9427E4D52588A00D0057E67D;
+			productRefGroup = 9427E4DF2588A00D0057E67D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9427E4DD2588A00D0057E67D /* bxglivesdk */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9427E4DC2588A00D0057E67D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9427E4E52588A0100057E67D /* Assets.xcassets in Resources */,
+				9427E5252588A4E40057E67D /* data in Resources */,
+				9427E5BA2588B1910057E67D /* REOBSMainVC.xib in Resources */,
+				9427E5B52588B14C0057E67D /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9427E4F52588A2190057E67D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nmkdir -p ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins\n\n# obs-test_copy_dep_lib_exec_dir:\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/bin/libobs-opengl.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/MacOS/\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/bin/libobsglad.0.dylib \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/MacOS/\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/bin/libobs.0.dylib \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/MacOS/\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/bin/obs-ffmpeg-mux \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/MacOS/\n\n# obs-test_copy_plugin_so: \n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/coreaudio-encoder.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}//Plugins/coreaudio-encoder.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/image-source.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/image-source.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/mac-avcapture.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/mac-avcapture.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/mac-capture.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/mac-capture.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-ffmpeg.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-ffmpeg.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-filters.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/obs-plugins/obs-filters.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-libfdk.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-libfdk.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-outputs.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-outputs.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-transitions.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-transitions.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-x264.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-transitions.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/rtmp-services.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/rtmp-services.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/text-freetype2.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/text-freetype2.so\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9427E4DA2588A00D0057E67D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9427E5602588A5850057E67D /* REOBSManager.cpp in Sources */,
+				9427E5292588A50B0057E67D /* ff-util.c in Sources */,
+				9427E5632588A5850057E67D /* REOBSCommon.mm in Sources */,
+				9427E4EB2588A0100057E67D /* main.m in Sources */,
+				9427E4E32588A00D0057E67D /* AppDelegate.m in Sources */,
+				9427E5B92588B1910057E67D /* REOBSMainVC.mm in Sources */,
+				9427E5612588A5850057E67D /* REOBSAVConfigManager.cpp in Sources */,
+				9427E5622588A5850057E67D /* REOBSConfigManager.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9427E5B32588B14C0057E67D /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9427E5B42588B14C0057E67D /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9427E4ED2588A0100057E67D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9427E4EE2588A0100057E67D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		9427E4F02588A0100057E67D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = bxglivesdk/bxglivesdk.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = X8S3YSA9F9;
+				ENABLE_HARDENED_RUNTIME = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"'DL_OPENGL=\"libobs-opengl.so\"'",
+				);
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/../build/UI",
+					"${PROJECT_DIR}/../deps/libff",
+					"${PROJECT_DIR}/../libobs",
+					"${PROJECT_DIR}/../UI/obs-frontend-api",
+					"${PROJECT_DIR}/../",
+					/usr/local/include,
+					"${PROJECT_DIR}/../UI",
+				);
+				INFOPLIST_FILE = bxglivesdk/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/ffmpeg/4.3.1_4/lib,
+					"/usr/local/Cellar/fdk-aac/2.0.1/lib",
+					/usr/local/Cellar/mbedtls/2.24.0/lib,
+					/usr/local/Cellar/x264/r3027_1/lib,
+				);
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.itcast.bxglivesdk;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+			};
+			name = Debug;
+		};
+		9427E4F12588A0100057E67D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = bxglivesdk/bxglivesdk.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = X8S3YSA9F9;
+				ENABLE_HARDENED_RUNTIME = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/../build/UI",
+					"${PROJECT_DIR}/../deps/libff",
+					"${PROJECT_DIR}/../libobs",
+					"${PROJECT_DIR}/../UI/obs-frontend-api",
+					"${PROJECT_DIR}/../",
+					/usr/local/include,
+					"${PROJECT_DIR}/../UI",
+				);
+				INFOPLIST_FILE = bxglivesdk/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/ffmpeg/4.3.1_4/lib,
+					"/usr/local/Cellar/fdk-aac/2.0.1/lib",
+					/usr/local/Cellar/mbedtls/2.24.0/lib,
+					/usr/local/Cellar/x264/r3027_1/lib,
+				);
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.itcast.bxglivesdk;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9427E4D92588A00D0057E67D /* Build configuration list for PBXProject "bxglivesdk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9427E4ED2588A0100057E67D /* Debug */,
+				9427E4EE2588A0100057E67D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9427E4EF2588A0100057E67D /* Build configuration list for PBXNativeTarget "bxglivesdk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9427E4F02588A0100057E67D /* Debug */,
+				9427E4F12588A0100057E67D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9427E4D62588A00D0057E67D /* Project object */;
+}

@@ -144,6 +144,7 @@ void REOBSManager::setContentView(id view) {
         printf("%s\n", error);
         this->terminal();
     }
+//    OBSBasicSettings setting;
 }
 
 void REOBSManager::terminal() {

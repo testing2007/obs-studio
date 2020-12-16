@@ -7,14 +7,18 @@
 
 #import "REOBSMainVC.h"
 #import "REOBS.h"
+//#import "UI/platform.hpp"
+//OBSBasicSettings"
+//#import "UI/window-basic-settings.hpp"
 
-@interface REOBSMainVC ()<NSWindowDelegate>
+@interface REOBSMainVC ()
 @property (weak) IBOutlet NSView *contentView;
 @property (nonatomic, assign) bool bRecording;
 @property (weak) IBOutlet NSButton *btnRecord;
 
 @property (nonatomic, assign) bool bPushStream;
 @property (weak) IBOutlet NSButton *btnPushStream;
+@property (weak) IBOutlet NSTextField *liveAddrTxt;
 
 @end
 
@@ -25,6 +29,7 @@
     // Do view setup here.
     [self.btnRecord setTitle:@"开始录制"];
     REOBSInstance->setContentView(self.contentView);
+//    EnableOSXVSync(true);
 }
 
 - (BOOL)isActive {

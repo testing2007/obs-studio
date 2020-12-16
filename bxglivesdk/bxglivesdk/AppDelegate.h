@@ -1,8 +1,8 @@
 //
 //  AppDelegate.h
-//  obs-test
+//  bxglivesdk
 //
-//  Created by ZhiQiang wei on 2020/11/16.
+//  Created by ZhiQiang wei on 2020/12/15.
 //
 
 #import <Cocoa/Cocoa.h>

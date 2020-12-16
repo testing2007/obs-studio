@@ -371,6 +371,8 @@ int config_save(config_t *config)
 	pthread_mutex_lock(&config->mutex);
 
 	f = os_fopen(config->file, "wb");
+    blog(LOG_DEBUG, "###config file=%s", config->file);
+    
 	if (!f) {
 		pthread_mutex_unlock(&config->mutex);
 		return CONFIG_FILENOTFOUND;
@@ -387,15 +389,20 @@ int config_save(config_t *config)
 		dstr_cat(&str, section->name);
 		dstr_cat(&str, "]\n");
 
+        blog(LOG_DEBUG, "###config section name=%s", section->name);
+        
 		for (j = 0; j < section->items.num; j++) {
 			struct config_item *item = darray_item(
 				sizeof(struct config_item), &section->items, j);
 
+            
 			dstr_copy(&tmp, item->value ? item->value : "");
 			dstr_replace(&tmp, "\\", "\\\\");
 			dstr_replace(&tmp, "\r", "\\r");
 			dstr_replace(&tmp, "\n", "\\n");
 
+            blog(LOG_DEBUG, "###config item %s=%s", item->name, tmp.array);
+            
 			dstr_cat(&str, item->name);
 			dstr_cat(&str, "=");
 			dstr_cat(&str, tmp.array);

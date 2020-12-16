@@ -22,7 +22,6 @@
 #include "obs.h"
 
 /* RAII wrappers */
-
 template<typename T, void addref(T), void release(T)> class OBSRef;
 //## 调试：lldb> p ((struct obs_output_t*)(this->streamOutput))->context
 using OBSSource = OBSRef<obs_source_t *, obs_source_addref, obs_source_release>;
@@ -61,38 +60,31 @@ template<typename T, void addref(T), void release(T)> class OBSRef {
 	struct TakeOwnership {
 	};
 	inline OBSRef(T val, TakeOwnership) : val(val) {
-//        blog(LOG_INFO, "OBSRef(T val, TakeOwnership)");
     }
 
 public:
 	inline OBSRef() : val(nullptr) {}
 	inline OBSRef(T val_) : val(val_) {
         addref(val);
-//        blog(LOG_INFO, "OBSRef(T val_)");
     }
 	inline OBSRef(const OBSRef &ref) : val(ref.val) {
         addref(val);
-//        blog(LOG_INFO, "OBSRef(const OBSRef &ref)");
     }
 	inline OBSRef(OBSRef &&ref) : val(ref.val) {
         ref.val = nullptr;
-//        blog(LOG_INFO, "OBSRef(OBSRef &&ref)");
     }
 
 	inline ~OBSRef() { release(val); }
 
 	inline OBSRef &operator=(T valIn) {
-//        blog(LOG_INFO, "OBSRef &operator=(T valIn)");
         return Replace(valIn);
     }
 	inline OBSRef &operator=(const OBSRef &ref) {
-//        blog(LOG_INFO, "OBSRef &operator=(const OBSRef &ref)");
         return Replace(ref.val);
     }
 
 	inline OBSRef &operator=(OBSRef &&ref)
 	{
-//        blog(LOG_INFO, "OBSRef &operator=(OBSRef &&ref)");
 		if (this != &ref) {
 			release(val);
 			val = ref.val;
@@ -123,13 +115,11 @@ public:
 
 inline OBSSource OBSGetStrongRef(obs_weak_source_t *weak)
 {
-//    blog(LOG_INFO, "OBSSource OBSGetStrongRef(obs_weak_source_t *weak)");
 	return {obs_weak_source_get_source(weak), OBSSource::TakeOwnership()};
 }
 
 inline OBSWeakSource OBSGetWeakRef(obs_source_t *source)
 {
-//    blog(LOG_INFO, "OBSWeakSource OBSGetWeakRef(obs_source_t *source)");
 	return {obs_source_get_weak_source(source),
 		OBSWeakSource::TakeOwnership()};
 }
@@ -176,13 +166,11 @@ template<typename T, void destroy(T)> class OBSObj {
 public:
 	inline OBSObj() : obj(nullptr) {}
 	inline OBSObj(T obj_) : obj(obj_) {
-//        printf("OBSObj(T obj_)\n");
     }
 	inline OBSObj(const OBSObj &) = delete;
 	inline OBSObj(OBSObj &&other) : obj(other.obj) { other.obj = nullptr; }
 
 	inline ~OBSObj() {
-//        printf("~OBSObj\n");
         destroy(obj);
         
     }
@@ -197,7 +185,6 @@ public:
 	inline OBSObj &operator=(const OBSObj &) = delete;
 	inline OBSObj &operator=(OBSObj &&other)
 	{
-//        printf("inline OBSObj &operator=(OBSObj &&other)\n");
 		if (obj)
 			destroy(obj);
 		obj = other.obj;
@@ -206,7 +193,6 @@ public:
 	}
 
 	inline operator T() const {
-//        printf("inline operator T() const\n");
         return obj;
     }
 
@@ -293,7 +279,7 @@ public:
 		other.signal = nullptr;
 		other.callback = nullptr;
 		other.param = nullptr;
-
+        
 		return *this;
 	}
 };

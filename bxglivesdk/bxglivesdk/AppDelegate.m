@@ -1,28 +1,22 @@
 //
 //  AppDelegate.m
-//  obs-test
+//  bxglivesdk
 //
-//  Created by ZhiQiang wei on 2020/11/16.
+//  Created by ZhiQiang wei on 2020/12/15.
 //
 
 #import "AppDelegate.h"
-//#include "REOBS.h"
 #include "REOBSMainVC.h"
 
 @interface AppDelegate ()
 
 @property (strong) IBOutlet NSWindow *window;
-
-
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-    [self.window setTitle:@"obs-dev"];
-//    gInitOBS();
-    
     REOBSMainVC *vc = [REOBSMainVC new];
     self.window.delegate = vc;
     [self.window setContentViewController:vc];
@@ -32,7 +26,7 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
-    
 }
+
 
 @end

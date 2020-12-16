@@ -6,12 +6,12 @@
 //
 
 #include "REOBSConfigManager.h"
+#include "REOBSCommonMacro.h"
+#include "REOBSCommon.h"
 #include "util/platform.h"
-//#include <stdio.h>
 #include <string.h>
-#include "config-file.h"
+#include "libobs/util/config-file.h"
 
-#define SERVICE_PATH "service.json"
 
 /*static*/
 REOBSConfigManager* REOBSConfigManager::share() {
@@ -119,13 +119,13 @@ void REOBSConfigManager::_saveService() {
     if(!service) {
         return ;
     }
-    char dirPath[500];
-    int ret = getProfilePath(dirPath, sizeof(dirPath));
+    char dirPath[512];
+    int ret = REOBSCommon::getProfilePath(dirPath, sizeof(dirPath));
     if (ret <= 0)
         return ;
     
     char serviceJsonPath[512];
-    sprintf(serviceJsonPath, "%s/%s", dirPath, SERVICE_PATH);
+    sprintf(serviceJsonPath, "%s/%s", dirPath, SERVICE_CONFIG_NAME);
 
     obs_data_t *data = obs_data_create();
     obs_data_t *settings = obs_service_get_settings(service);
@@ -144,12 +144,12 @@ bool REOBSConfigManager::_loadService() {
     const char *type;
 
     char dirPath[500];
-    int ret = getProfilePath(dirPath, sizeof(dirPath));
+    int ret = REOBSCommon::getProfilePath(dirPath, sizeof(dirPath));
     if (ret <= 0)
         return false;
     
     char serviceJsonPath[512];
-    sprintf(serviceJsonPath, "%s/%s", dirPath, SERVICE_PATH);
+    sprintf(serviceJsonPath, "%s/%s", dirPath, SERVICE_CONFIG_NAME);
     
     if(!os_file_exists(serviceJsonPath)) {
         if(!config_create(serviceJsonPath)) {
@@ -179,21 +179,22 @@ bool REOBSConfigManager::_loadService() {
     return !!service;
 }
     
-int REOBSConfigManager::getProfilePath(char *path, int size)
-{
-    //TODO: obs-test 最好能获取 appName 的系统API来代替
-    char server_cfg_path[512];
-    int result = os_get_config_path(server_cfg_path, sizeof(server_cfg_path), "obs-test/config");
-    
-    if(result < 0) {
-        blog(LOG_DEBUG, "fail to get config path");
-        return -1;
-    }
-
-    if (os_mkdirs(server_cfg_path) == MKDIR_ERROR) {
-        return -1;
-    }
-
-    return sprintf(path, "%s", server_cfg_path);
-}
+//int REOBSConfigManager::getProfilePath(char *path, int size)
+//{
+//    //TODO: obs-test 最好能获取 appName 的系统API来代替
+//    char server_cfg_path[512];
+//    int result = os_get_config_path(server_cfg_path, sizeof(server_cfg_path), APP_CONFIG_PATH);
+//    
+//    if(result < 0) {
+//        blog(LOG_DEBUG, "fail to get config path");
+//        return -1;
+//    }
+//
+//    if (os_mkdirs(server_cfg_path) == MKDIR_ERROR) {
+//        return -1;
+//    }
+//
+//    return snprintf(path, 512, "%s", server_cfg_path);
+////    return sprintf(path, "%s", server_cfg_path);
+//}
 
