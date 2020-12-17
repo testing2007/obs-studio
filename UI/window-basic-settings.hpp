@@ -204,9 +204,9 @@ private:
 
 	bool QueryChanges();
 
-	void LoadEncoderTypes();
+	void LoadEncoderTypes();//## 载入视频编码，并区分流(h264)编码， 对应 obs 的串流配置， 主要载入 obs_encoder_info 中的 id;
 	void LoadColorRanges();
-	void LoadFormats();
+	void LoadFormats();//## 使用libff来加载设备所有支持音视频容器格式， 最重要的是 ff_format_desc* 
 	void ReloadCodecs(const ff_format_desc *formatDesc);
 
 	void LoadGeneralSettings();

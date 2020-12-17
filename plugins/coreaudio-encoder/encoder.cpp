@@ -1406,7 +1406,7 @@ bool obs_module_load(void)
 	};
 	aac_info.id = "CoreAudio_AAC";
 	aac_info.type = OBS_ENCODER_AUDIO;
-	aac_info.codec = "AAC";
+	aac_info.codec = "AAC";//## obs_get_encoder_codec(aac_info.id) 通过id来获取codec
 	aac_info.get_name = aac_get_name;
 	aac_info.destroy = aac_destroy;
 	aac_info.create = aac_create;

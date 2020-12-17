@@ -922,8 +922,8 @@ void OBSBasicSettings::LoadEncoderTypes()
 	ui->advOutRecEncoder->addItem(TEXT_USE_STREAM_ENC, "none");
 
 	while (obs_enum_encoder_types(idx++, &type)) {
-		const char *name = obs_encoder_get_display_name(type);
-		const char *codec = obs_get_encoder_codec(type);
+		const char *name = obs_encoder_get_display_name(type); //## build/rundir/Debug/data/obs-plugins/coreaudio-encoder/locale/zh-CN.ini
+		const char *codec = obs_get_encoder_codec(type);//AAC
 		uint32_t caps = obs_get_encoder_caps(type);
 
 		if (obs_get_encoder_type(type) != OBS_ENCODER_VIDEO)
@@ -948,7 +948,7 @@ void OBSBasicSettings::LoadEncoderTypes()
 
 		if (is_streaming_codec)
 			ui->advOutEncoder->addItem(qName, qType);
-		ui->advOutRecEncoder->addItem(qName, qType);
+		ui->advOutRecEncoder->addItem(qName, qType);//## 控件里面添加了 显示的名称(本地化配置) 以及 obs_*_info.id 值
 	}
 }
 
@@ -3390,7 +3390,7 @@ void OBSBasicSettings::SaveOutputSettings()
 
 	WriteJsonData(streamEncoderProps, "streamEncoder.json");
 	WriteJsonData(recordEncoderProps, "recordEncoder.json");
-	main->ResetOutputs();
+	main->ResetOutputs();//obs_video_encoder_create 创建编码器
 }
 
 void OBSBasicSettings::SaveAudioSettings()
@@ -3558,9 +3558,9 @@ void OBSBasicSettings::SaveSettings()
 	if (generalChanged)
 		SaveGeneralSettings();
 	if (stream1Changed)
-		SaveStream1Settings();
+		SaveStream1Settings();//## 保存推流服务设置到配置文件中，save开头的函数都是对配置文件的操作
 	if (outputsChanged)
-		SaveOutputSettings();
+		SaveOutputSettings();//## 保存输出设置到配置文件中
 	if (audioChanged)
 		SaveAudioSettings();
 	if (videoChanged)
@@ -3802,14 +3802,14 @@ void OBSBasicSettings::on_advOutFFFormat_currentIndexChanged(int idx)
 		FormatDesc desc = itemDataVariant.value<FormatDesc>();
 		SetAdvOutputFFmpegEnablement(
 			FF_CODEC_AUDIO, ff_format_desc_has_audio(desc.desc),
-			false);
+			false);//## 对音视频相关选项是否UI上启用或禁用
 		SetAdvOutputFFmpegEnablement(
 			FF_CODEC_VIDEO, ff_format_desc_has_video(desc.desc),
 			false);
-		ReloadCodecs(desc.desc);//##
+		ReloadCodecs(desc.desc);//##根据容器选项，重新装填 音视频所支持的编解码
 		ui->advOutFFFormatDesc->setText(
 			ff_format_desc_long_name(desc.desc));
-
+        //##显示容器默认的音视频编码信息
 		CodecDesc defaultAudioCodecDesc =
 			GetDefaultCodecDesc(desc.desc, FF_CODEC_AUDIO);
 		CodecDesc defaultVideoCodecDesc =

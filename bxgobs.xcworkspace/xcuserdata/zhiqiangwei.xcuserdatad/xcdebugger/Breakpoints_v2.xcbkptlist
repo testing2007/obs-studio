@@ -7,151 +7,151 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "009ECBF8-6826-4B25-B08A-B0F6745EAE90"
+            uuid = "A8FAC1D5-7250-4DF7-A799-38D1A7AF111A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "libobs/obs-module.c"
+            filePath = "libobs/obs-encoder.c"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "423"
-            endingLineNumber = "423"
-            landmarkName = "find_modules_in_path(omp, callback, param)"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "obs_encoder_get_display_name(id)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E774EEB2-6127-4033-AD8B-BA430E281D8E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UI/window-basic-settings.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "994"
-            endingLineNumber = "994"
-            landmarkName = "OBSBasicSettings::LoadFormats()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "35FDF77D-9671-45D0-A7FC-24A0636AACD9"
+            uuid = "14F5994C-29BA-4DF1-A6AD-0C9FEF881A4A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UI/window-basic-settings.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3823"
-            endingLineNumber = "3823"
-            landmarkName = "OBSBasicSettings::on_advOutFFFormat_currentIndexChanged(idx)"
+            startingLineNumber = "3790"
+            endingLineNumber = "3790"
+            landmarkName = "OBSBasicSettings::on_advOutFFIgnoreCompat_stateChanged()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0F16651B-BC29-4513-AA10-16463EB96AEE"
+            uuid = "8A11B565-BD72-47DE-B8ED-DD9EA6AB7C57"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UI/window-basic-main-outputs.cpp"
+            filePath = "UI/window-basic-settings.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "323"
-            endingLineNumber = "323"
-            landmarkName = "SimpleOutput::LoadRecordingPreset_h264(encoderId)"
+            startingLineNumber = "3574"
+            endingLineNumber = "3574"
+            landmarkName = "OBSBasicSettings::SaveSettings()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3FE60A01-F184-4BDB-81CB-16C90D1253CD"
+            uuid = "DE5A1B88-C3B2-4FFD-8FEB-EC2037A684AE"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UI/window-basic-auto-config-test.cpp"
+            filePath = "UI/window-basic-main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
-            landmarkName = "AutoConfigTestPage::TestBandwidthThread()"
+            startingLineNumber = "3915"
+            endingLineNumber = "3915"
+            landmarkName = "OBSBasic::ReceivedIntroJson(text)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "00F12929-6A81-4371-ABDF-1B0F5BD9D3AF"
+            uuid = "83B17319-807A-48A3-A7F6-4B7693C597F3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UI/window-basic-auto-config-test.cpp"
+            filePath = "UI/window-basic-main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "530"
-            endingLineNumber = "530"
-            landmarkName = "AutoConfigTestPage::TestSoftwareEncoding()"
+            startingLineNumber = "6581"
+            endingLineNumber = "6581"
+            landmarkName = "OBSBasic::ReceivedIntroJson(text)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D8258F47-CA35-4166-814A-E418D61B4C98"
+            uuid = "DD11B60A-F13D-45EE-80F4-AA00F083517E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UI/window-basic-main-outputs.cpp"
+            filePath = "UI/window-basic-main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
-            landmarkName = "SimpleOutput::LoadStreamingPreset_h264(encoderId)"
+            startingLineNumber = "3933"
+            endingLineNumber = "3933"
+            landmarkName = "OBSBasic::ReceivedIntroJson(text)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2D994BFD-DB80-4940-9D96-15B84A5C17E0"
+            uuid = "BB7E0F96-870F-48AE-9D91-54F79478F77D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UI/window-basic-main-outputs.cpp"
+            filePath = "UI/window-basic-settings.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1197"
-            endingLineNumber = "1197"
-            landmarkName = "AdvancedOutput::AdvancedOutput(main_)"
+            startingLineNumber = "3578"
+            endingLineNumber = "3578"
+            landmarkName = "OBSBasicSettings::SaveSettings()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "66E31F46-2C9C-413B-BFC3-BAF60935BDA7"
+            uuid = "106DDBE8-18F7-4272-AFF9-86E383AC0B37"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UI/window-basic-main-outputs.cpp"
+            filePath = "UI/window-basic-main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1207"
-            endingLineNumber = "1207"
-            landmarkName = "AdvancedOutput::AdvancedOutput(main_)"
+            startingLineNumber = "3962"
+            endingLineNumber = "3962"
+            landmarkName = "OBSBasic::ReceivedIntroJson(text)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6FEC93A0-B61E-4C7B-8EDD-E22B5DF69650"
+            uuid = "DA8C5EC3-B33E-4A1E-9518-6347905895E3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libobs/obs-encoder.c"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "obs_video_encoder_create(id, name, settings, hotkey_data)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE635107-BEFE-46EB-8FB1-58FAF289EEA7"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -167,175 +167,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "75F939D4-27E3-404A-B4C6-8F460EFEEA33"
+            uuid = "DF8E073E-DD31-40AA-A059-353A88624C63"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UI/window-basic-settings.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3561"
-            endingLineNumber = "3561"
-            landmarkName = "OBSBasicSettings::SaveSettings()"
+            startingLineNumber = "3393"
+            endingLineNumber = "3393"
+            landmarkName = "OBSBasicSettings::SaveOutputSettings()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DC4E9BEB-9EEA-43F3-A12F-7A8500B9AC9F"
+            uuid = "BD2CC083-753A-4C5B-A319-58468DA8F819"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UI/window-basic-settings.cpp"
+            filePath = "UI/window-basic-main-outputs.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3565"
-            endingLineNumber = "3565"
-            landmarkName = "OBSBasicSettings::SaveSettings()"
+            startingLineNumber = "1129"
+            endingLineNumber = "1129"
+            landmarkName = "AdvancedOutput::AdvancedOutput(main_)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "572A0EC3-09C2-4C30-8E2D-C16341B5C677"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UI/window-basic-settings.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3567"
-            endingLineNumber = "3567"
-            landmarkName = "OBSBasicSettings::SaveSettings()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B0479884-79D7-4AF8-B14A-6AF24351B90E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UI/window-basic-settings.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3980"
-            endingLineNumber = "3980"
-            landmarkName = "OBSBasicSettings::OutputsChanged()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C104F566-D74F-4134-92B8-5EAF53E121BC"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UI/window-basic-settings.hpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "OBSBasicSettings"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7E119508-A89F-4279-A3FA-6306AA32513C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UI/window-basic-settings.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1431"
-            endingLineNumber = "1431"
-            landmarkName = "OBSBasicSettings::ResetDownscales(cx, cy)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F232D801-5102-4C17-AFF3-82F8961A82F8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UI/window-basic-settings.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4100"
-            endingLineNumber = "4100"
-            landmarkName = "OBSBasicSettings::VideoChangedRestart()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A2274979-DFB2-41EF-8BB1-BA2B03947E2C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UI/window-basic-settings.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4121"
-            endingLineNumber = "4121"
-            landmarkName = "OBSBasicSettings::VideoChangedResolution()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B2F28404-B8AC-4C8B-AFB9-FF3274B07BFE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UI/window-basic-settings.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4130"
-            endingLineNumber = "4130"
-            landmarkName = "OBSBasicSettings::VideoChanged()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BDE30E73-F085-459A-9317-BE82676ABB6B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UI/window-basic-settings.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
-            landmarkName = "OBSBasicSettings::OBSBasicSettings(parent)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "93F5776E-8C3B-4323-9DA4-6D5001DC61AA"
+            uuid = "3B4212B9-A47A-4499-BCDE-1EAB33D29DC7"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UI/window-basic-main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4343"
-            endingLineNumber = "4343"
+            startingLineNumber = "6586"
+            endingLineNumber = "6586"
             landmarkName = "OBSBasic::ReceivedIntroJson(text)"
             landmarkType = "7">
          </BreakpointContent>
@@ -343,48 +215,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "63D9C987-13E2-4B28-92A7-0942B41EB4FD"
+            uuid = "ADF23092-DDA7-41F2-A569-F0111277FA9F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libobs/util/config-file.c"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "546"
+            endingLineNumber = "546"
+            landmarkName = "config_find_item(sections, section, name)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6212D4ED-7267-4967-BC3D-B1B98D523B9D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libobs/util/config-file.c"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "547"
+            endingLineNumber = "547"
+            landmarkName = "config_find_item(sections, section, name)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E14986D4-125F-4F10-ADB3-F1432F60FBB6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libobs/util/config-file.c"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "552"
+            endingLineNumber = "552"
+            landmarkName = "config_find_item(sections, section, name)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DD6F4340-5B72-4DFE-894B-57B66DB2A4CB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libobs/util/config-file.c"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "694"
+            endingLineNumber = "694"
+            landmarkName = "config_get_string(config, section, name)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A3B1D99C-4568-4418-B0A7-EB21B81C714D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UI/window-basic-main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4351"
-            endingLineNumber = "4351"
-            landmarkName = "OBSBasic::ReceivedIntroJson(text)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2A73DDBD-CDB5-49CF-9E83-4F4E9FB7552D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "bxglivesdk/bxglivesdk/REOBSCommon.mm"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "REOBSCommon::getProfilePath(path, size)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F3D80606-9E46-447E-AFB2-D8D0AF3B6137"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "bxglivesdk/bxglivesdk/REOBSMainVC.mm"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "-onStreamRecord:"
+            startingLineNumber = "1306"
+            endingLineNumber = "1306"
+            landmarkName = "OBSBasic::InitBasicConfigDefaults()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

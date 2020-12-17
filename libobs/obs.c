@@ -1319,7 +1319,7 @@ bool obs_enum_encoder_types(size_t idx, const char **id)
 {
 	if (idx >= obs->encoder_types.num)
 		return false;
-	*id = obs->encoder_types.array[idx].id;
+	*id = obs->encoder_types.array[idx].id; //## 返回的就是指定 idx 的 obs_encoder_info.id
 	return true;
 }
 
