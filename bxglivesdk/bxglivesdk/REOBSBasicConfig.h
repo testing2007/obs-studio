@@ -1,12 +1,12 @@
 //
-//  REOBSAVConfigManager.hpp
+//  REOBSBasicConfig.hpp
 //  obs-test
 //
 //  Created by ZhiQiang wei on 2020/12/14.
 //
 
-#ifndef REOBSAVConfigManager_hpp
-#define REOBSAVConfigManager_hpp
+#ifndef REOBSBasicConfig_hpp
+#define REOBSBasicConfig_hpp
 
 #include <stdio.h>
 #include <memory>
@@ -29,10 +29,10 @@ public:
 using OBSFFCodecDesc = std::unique_ptr<const ff_codec_desc, OBSFFDeleter>;
 using OBSFFFormatDesc = std::unique_ptr<const ff_format_desc, OBSFFDeleter>;
 
-class REOBSAVConfigManager {
+class REOBSBasicConfig {
   
 public:
-    static REOBSAVConfigManager* share();
+    static REOBSBasicConfig* share();
     
     ff_format_desc* getFormatDesc();
     ff_format_desc* getFormatDescByIndex(int index);
@@ -76,7 +76,7 @@ public:
 //    ff_format_desc_next(const struct ff_format_desc *format_desc);
     
 private:
-    REOBSAVConfigManager();
+    REOBSBasicConfig();
 
 private:
     bool _initCfg();
@@ -91,9 +91,9 @@ private:
 
 };
 
-#endif /* REOBSAVConfigManager_hpp */
+#endif /* REOBSBasicConfig_hpp */
 
-#define REOBSAVConfigInstance (REOBSAVConfigManager::share())
+#define REOBSAVConfigInstance (REOBSBasicConfig::share())
 
 //strcat(path, "/basic.ini");
 //

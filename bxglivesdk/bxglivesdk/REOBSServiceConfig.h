@@ -12,10 +12,10 @@
 #include "obs.hpp" //包含了 obs.h
 
 //TODO: 暂时仅作为服务配置， 后续可能需要拆成多种配置类
-class REOBSConfigManager {
+class REOBSServiceConfig {
 
 public:
-    static REOBSConfigManager* share();
+    static REOBSServiceConfig* share();
     
 public:
     
@@ -59,12 +59,12 @@ private:
     void _saveService();
 
 private:
-    REOBSConfigManager() ;
+    REOBSServiceConfig() ;
 
 private:
     OBSService service;
 };
 
-#define REOBSConfigInstance  (REOBSConfigManager::share())
+#define REOBSConfigInstance  (REOBSServiceConfig::share())
 
 #endif /* REOBSConfig_hpp */

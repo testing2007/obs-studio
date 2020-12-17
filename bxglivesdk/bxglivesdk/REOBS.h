@@ -13,8 +13,8 @@
 #import "REOBSCommonMacro.h"
 #import "REOBSCommon.h"
 #import "REOBSManager.h"
-#import "REOBSConfigManager.h"
-#import "REOBSAVConfigManager.h"
+#import "REOBSServiceConfig.h"
+#import "REOBSBasicConfig.h"
 
 
 #endif /* REOBS_h */

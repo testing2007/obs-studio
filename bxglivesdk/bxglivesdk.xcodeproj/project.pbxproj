@@ -19,8 +19,8 @@
 		9427E5252588A4E40057E67D /* data in Resources */ = {isa = PBXBuildFile; fileRef = 9427E5242588A4E40057E67D /* data */; };
 		9427E5292588A50B0057E67D /* ff-util.c in Sources */ = {isa = PBXBuildFile; fileRef = 9427E5282588A50B0057E67D /* ff-util.c */; };
 		9427E5602588A5850057E67D /* REOBSManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9427E5562588A5850057E67D /* REOBSManager.cpp */; };
-		9427E5612588A5850057E67D /* REOBSAVConfigManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9427E55A2588A5850057E67D /* REOBSAVConfigManager.cpp */; };
-		9427E5622588A5850057E67D /* REOBSConfigManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9427E55C2588A5850057E67D /* REOBSConfigManager.cpp */; };
+		9427E5612588A5850057E67D /* REOBSBasicConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9427E55A2588A5850057E67D /* REOBSBasicConfig.cpp */; };
+		9427E5622588A5850057E67D /* REOBSServiceConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9427E55C2588A5850057E67D /* REOBSServiceConfig.cpp */; };
 		9427E5632588A5850057E67D /* REOBSCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9427E55E2588A5850057E67D /* REOBSCommon.mm */; };
 		9427E5672588A5B10057E67D /* libobs.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9427E5662588A5B10057E67D /* libobs.0.dylib */; };
 		9427E5682588A5B10057E67D /* libobs.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9427E5662588A5B10057E67D /* libobs.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -83,14 +83,14 @@
 		9427E5242588A4E40057E67D /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = ../../build/rundir/Debug/data; sourceTree = "<group>"; };
 		9427E5272588A50B0057E67D /* ff-util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ff-util.h"; path = "../../deps/libff/libff/ff-util.h"; sourceTree = "<group>"; };
 		9427E5282588A50B0057E67D /* ff-util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "ff-util.c"; path = "../../deps/libff/libff/ff-util.c"; sourceTree = "<group>"; };
-		9427E5532588A5850057E67D /* REOBSConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSConfigManager.h; sourceTree = "<group>"; };
+		9427E5532588A5850057E67D /* REOBSServiceConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSServiceConfig.h; sourceTree = "<group>"; };
 		9427E5562588A5850057E67D /* REOBSManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = REOBSManager.cpp; sourceTree = "<group>"; };
 		9427E5572588A5850057E67D /* REOBSCommonMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSCommonMacro.h; sourceTree = "<group>"; };
 		9427E5582588A5850057E67D /* REOBSManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSManager.h; sourceTree = "<group>"; };
-		9427E5592588A5850057E67D /* REOBSAVConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSAVConfigManager.h; sourceTree = "<group>"; };
-		9427E55A2588A5850057E67D /* REOBSAVConfigManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = REOBSAVConfigManager.cpp; sourceTree = "<group>"; };
+		9427E5592588A5850057E67D /* REOBSBasicConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSBasicConfig.h; sourceTree = "<group>"; };
+		9427E55A2588A5850057E67D /* REOBSBasicConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = REOBSBasicConfig.cpp; sourceTree = "<group>"; };
 		9427E55B2588A5850057E67D /* REOBS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBS.h; sourceTree = "<group>"; };
-		9427E55C2588A5850057E67D /* REOBSConfigManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = REOBSConfigManager.cpp; sourceTree = "<group>"; };
+		9427E55C2588A5850057E67D /* REOBSServiceConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = REOBSServiceConfig.cpp; sourceTree = "<group>"; };
 		9427E55D2588A5850057E67D /* REOBSCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSCommon.h; sourceTree = "<group>"; };
 		9427E55E2588A5850057E67D /* REOBSCommon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = REOBSCommon.mm; sourceTree = "<group>"; };
 		9427E5662588A5B10057E67D /* libobs.0.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libobs.0.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,15 +165,15 @@
 				9427E5B82588B1910057E67D /* REOBSMainVC.xib */,
 				9427E5B32588B14C0057E67D /* MainMenu.xib */,
 				9427E55B2588A5850057E67D /* REOBS.h */,
-				9427E55A2588A5850057E67D /* REOBSAVConfigManager.cpp */,
-				9427E5592588A5850057E67D /* REOBSAVConfigManager.h */,
+				9427E5572588A5850057E67D /* REOBSCommonMacro.h */,
 				9427E55D2588A5850057E67D /* REOBSCommon.h */,
 				9427E55E2588A5850057E67D /* REOBSCommon.mm */,
-				9427E5572588A5850057E67D /* REOBSCommonMacro.h */,
-				9427E5532588A5850057E67D /* REOBSConfigManager.h */,
-				9427E55C2588A5850057E67D /* REOBSConfigManager.cpp */,
 				9427E5582588A5850057E67D /* REOBSManager.h */,
 				9427E5562588A5850057E67D /* REOBSManager.cpp */,
+				9427E5532588A5850057E67D /* REOBSServiceConfig.h */,
+				9427E55C2588A5850057E67D /* REOBSServiceConfig.cpp */,
+				9427E5592588A5850057E67D /* REOBSBasicConfig.h */,
+				9427E55A2588A5850057E67D /* REOBSBasicConfig.cpp */,
 				9427E4E92588A0100057E67D /* Info.plist */,
 				9427E4EA2588A0100057E67D /* main.m */,
 				9427E4EC2588A0100057E67D /* bxglivesdk.entitlements */,
@@ -289,7 +289,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nmkdir -p ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins\n\n# obs-test_copy_dep_lib_exec_dir:\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/bin/libobs-opengl.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/MacOS/\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/bin/libobsglad.0.dylib \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/MacOS/\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/bin/libobs.0.dylib \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/MacOS/\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/bin/obs-ffmpeg-mux \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/MacOS/\n\n# obs-test_copy_plugin_so: \n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/coreaudio-encoder.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}//Plugins/coreaudio-encoder.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/image-source.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/image-source.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/mac-avcapture.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/mac-avcapture.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/mac-capture.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/mac-capture.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-ffmpeg.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-ffmpeg.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-filters.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/obs-plugins/obs-filters.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-libfdk.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-libfdk.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-outputs.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-outputs.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-transitions.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-transitions.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-x264.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-transitions.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/rtmp-services.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/rtmp-services.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/text-freetype2.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/text-freetype2.so\n\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nmkdir -p ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins\n\n# obs-test_copy_dep_lib_exec_dir:\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/bin/libobs-opengl.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/MacOS/\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/bin/libobsglad.0.dylib \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/MacOS/\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/bin/libobs.0.dylib \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/MacOS/\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/bin/obs-ffmpeg-mux \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/MacOS/\n\n# obs-test_copy_plugin_so: \n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/coreaudio-encoder.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}//Plugins/coreaudio-encoder.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/image-source.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/image-source.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/mac-avcapture.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/mac-avcapture.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/mac-capture.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/mac-capture.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-ffmpeg.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-ffmpeg.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-filters.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/obs-plugins/obs-filters.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-libfdk.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-libfdk.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-outputs.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-outputs.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-transitions.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-transitions.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-x264.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-x264.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/rtmp-services.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/rtmp-services.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/text-freetype2.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/text-freetype2.so\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -304,8 +304,8 @@
 				9427E4EB2588A0100057E67D /* main.m in Sources */,
 				9427E4E32588A00D0057E67D /* AppDelegate.m in Sources */,
 				9427E5B92588B1910057E67D /* REOBSMainVC.mm in Sources */,
-				9427E5612588A5850057E67D /* REOBSAVConfigManager.cpp in Sources */,
-				9427E5622588A5850057E67D /* REOBSConfigManager.cpp in Sources */,
+				9427E5612588A5850057E67D /* REOBSBasicConfig.cpp in Sources */,
+				9427E5622588A5850057E67D /* REOBSServiceConfig.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

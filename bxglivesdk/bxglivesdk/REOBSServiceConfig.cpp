@@ -1,11 +1,11 @@
 //
-//  REOBSConfigManager.cpp
+//  REOBSServiceConfig.cpp
 //  obs-test
 //
 //  Created by ZhiQiang wei on 2020/12/9.
 //
 
-#include "REOBSConfigManager.h"
+#include "REOBSServiceConfig.h"
 #include "REOBSCommonMacro.h"
 #include "REOBSCommon.h"
 #include "util/platform.h"
@@ -14,19 +14,19 @@
 
 
 /*static*/
-REOBSConfigManager* REOBSConfigManager::share() {
-    static REOBSConfigManager* instance = nullptr;
+REOBSServiceConfig* REOBSServiceConfig::share() {
+    static REOBSServiceConfig* instance = nullptr;
     if(instance == nullptr) {
-        instance = new REOBSConfigManager();
+        instance = new REOBSServiceConfig();
     }
     return instance;
 }
 
-REOBSConfigManager::REOBSConfigManager() {
+REOBSServiceConfig::REOBSServiceConfig() {
     
 }
 
-bool REOBSConfigManager::initService()
+bool REOBSServiceConfig::initService()
 {
     if (_loadService())
         return true;
@@ -40,7 +40,7 @@ bool REOBSConfigManager::initService()
     return true;
 }
 
-obs_service_t* REOBSConfigManager::getService() {
+obs_service_t* REOBSServiceConfig::getService() {
     if (!service) {
         service = obs_service_create("rtmp_common", NULL, NULL, nullptr);
         obs_service_release(service);
@@ -48,15 +48,15 @@ obs_service_t* REOBSConfigManager::getService() {
     return service;
 }
 
-void REOBSConfigManager::saveCustomService(const char* server, const char *key, bool isNeedAuthorization, const char* username, const char *password) {
+void REOBSServiceConfig::saveCustomService(const char* server, const char *key, bool isNeedAuthorization, const char* username, const char *password) {
     this->_saveService(true, nullptr, server, key, isNeedAuthorization, username, password);
 }
 
-void REOBSConfigManager::saveDefaultService(const char* serviceName, const char* server, const char *key) {
+void REOBSServiceConfig::saveDefaultService(const char* serviceName, const char* server, const char *key) {
     this->_saveService(false, serviceName, server, key, false, nullptr, nullptr);
 }
 
-void REOBSConfigManager::_saveService(bool isCustom, const char*serviceName, const char* server, const char *key, bool isNeedAuthorization, const char* username, const char *password) {
+void REOBSServiceConfig::_saveService(bool isCustom, const char*serviceName, const char* server, const char *key, bool isNeedAuthorization, const char* username, const char *password) {
 //    "settings": {
 //        "bwtest": false,
 //        "key": "test",//串流密钥
@@ -109,13 +109,13 @@ void REOBSConfigManager::_saveService(bool isCustom, const char*serviceName, con
 //        main->auth->LoadUI();
 }
 
-void REOBSConfigManager::_setService(obs_service_t *newService) {
+void REOBSServiceConfig::_setService(obs_service_t *newService) {
     if (newService)
         service = newService;
 }
 
 
-void REOBSConfigManager::_saveService() {
+void REOBSServiceConfig::_saveService() {
     if(!service) {
         return ;
     }
@@ -140,7 +140,7 @@ void REOBSConfigManager::_saveService() {
     obs_data_release(data);
 }
 
-bool REOBSConfigManager::_loadService() {
+bool REOBSServiceConfig::_loadService() {
     const char *type;
 
     char dirPath[500];
@@ -179,7 +179,7 @@ bool REOBSConfigManager::_loadService() {
     return !!service;
 }
     
-//int REOBSConfigManager::getProfilePath(char *path, int size)
+//int REOBSServiceConfig::getProfilePath(char *path, int size)
 //{
 //    //TODO: obs-test 最好能获取 appName 的系统API来代替
 //    char server_cfg_path[512];

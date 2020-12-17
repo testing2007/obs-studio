@@ -1,22 +1,22 @@
 //
-//  REOBSAVConfigManager.cpp
+//  REOBSBasicConfig.cpp
 //  obs-test
 //
 //  Created by ZhiQiang wei on 2020/12/14.
 //
 
-#include "REOBSAVConfigManager.h"
+#include "REOBSBasicConfig.h"
 #include "REOBSCommon.h"
 
-/*static*/ REOBSAVConfigManager* REOBSAVConfigManager::share() {
-    static REOBSAVConfigManager* instance = nullptr;
+/*static*/ REOBSBasicConfig* REOBSBasicConfig::share() {
+    static REOBSBasicConfig* instance = nullptr;
     if(instance == nullptr) {
-        instance = new REOBSAVConfigManager();
+        instance = new REOBSBasicConfig();
     }
     return instance;
 }
 
-REOBSAVConfigManager::REOBSAVConfigManager(){
+REOBSBasicConfig::REOBSBasicConfig(){
     
     ff_init();
     
@@ -27,7 +27,7 @@ REOBSAVConfigManager::REOBSAVConfigManager(){
     
 }
 
-bool REOBSAVConfigManager::_initCfg() {
+bool REOBSBasicConfig::_initCfg() {
     const char *type;
 
     char dirPath[512];
@@ -62,7 +62,7 @@ static const double scaled_vals[] = {1.0,         1.25, (1.0 / 0.75), 1.5,
                      (1.0 / 0.6), 1.75, 2.0,          2.25,
                      2.5,         2.75, 3.0,          0.0};
 
-bool REOBSAVConfigManager::_initBasicConfigDefaults() {
+bool REOBSBasicConfig::_initBasicConfigDefaults() {
     
     uint32_t cx = 1920;
     uint32_t cy = 1080;

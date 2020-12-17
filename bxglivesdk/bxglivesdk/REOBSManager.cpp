@@ -6,7 +6,7 @@
 //
 
 #include "REOBSManager.h"
-#include "REOBSConfigManager.h"
+#include "REOBSServiceConfig.h"
 #include <string>
 
 const int base_width = 1920; //800;
