@@ -7,9 +7,6 @@
 
 #import "REOBSMainVC.h"
 #import "REOBS.h"
-//#import "UI/platform.hpp"
-//OBSBasicSettings"
-//#import "UI/window-basic-settings.hpp"
 
 @interface REOBSMainVC ()
 @property (weak) IBOutlet NSView *contentView;
@@ -18,7 +15,10 @@
 
 @property (nonatomic, assign) bool bPushStream;
 @property (weak) IBOutlet NSButton *btnPushStream;
-@property (weak) IBOutlet NSTextField *liveAddrTxt;
+
+@property (weak) IBOutlet NSTextField *liveTxtField;
+@property (weak) IBOutlet NSPopUpButton *popFormatBtn;
+@property (weak) IBOutlet NSPopUpButton *popVBitrateBtn;
 
 @end
 
@@ -28,8 +28,10 @@
     [super viewDidLoad];
     // Do view setup here.
     [self.btnRecord setTitle:@"开始录制"];
-    REOBSInstance->setContentView(self.contentView);
-//    EnableOSXVSync(true);
+    REOBSManagerInstance->setContentView(self.contentView);
+    
+//    const vector<REOBSFormatDesc>& formats = REOBSManagerInstance->getFormats();
+//    blog(LOG_DEBUG, "11");
 }
 
 - (BOOL)isActive {
@@ -38,11 +40,11 @@
 
 - (IBAction)onRecord:(id)sender {
     if(_bRecording) {
-        REOBSInstance->stopRecord();
+        REOBSManagerInstance->stopRecord();
         self.bRecording = !_bRecording;
     } else {
         if(![self isActive]) {
-            REOBSInstance->startRecord();
+            REOBSManagerInstance->startRecord();
             self.bRecording = !_bRecording;
         } else {
             blog(LOG_INFO, "开启新的链路之前请先关闭现有的链路");
@@ -61,11 +63,11 @@
 
 - (IBAction)onStreamRecord:(id)sender {
     if(_bPushStream) {
-        REOBSInstance->stopPushStream();
+        REOBSManagerInstance->stopPushStream();
         self.bPushStream = !_bPushStream;
     } else {
         if(![self isActive]) {
-            REOBSInstance->startPushStream();
+            REOBSManagerInstance->startPushStream();
             self.bPushStream = !_bPushStream;
         } else {
             blog(LOG_INFO, "开启新的链路之前请先关闭现有的链路");
@@ -83,6 +85,12 @@
 }
 
 -(void)windowWillClose:(NSNotification *)notification {
-    REOBSInstance->terminal();
+    REOBSManagerInstance->terminal();
 }
+
+
+
+
+
+
 @end

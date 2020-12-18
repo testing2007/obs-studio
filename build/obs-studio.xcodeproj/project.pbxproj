@@ -1396,29 +1396,6 @@
 		93778AB7663042D5AF729E41 /* obs-x264-test.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = "obs-x264-test.c"; path = "plugins/obs-x264/obs-x264-test.c"; sourceTree = SOURCE_ROOT; };
 		9378C29BECE4463AB065B12F /* SyphonServer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SyphonServer.h; path = "plugins/mac-syphon/syphon-framework/SyphonServer.h"; sourceTree = SOURCE_ROOT; };
 		93A8B1516C534C0EA0A74E45 /* context-bar-controls.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = "context-bar-controls.hpp"; path = "UI/context-bar-controls.hpp"; sourceTree = SOURCE_ROOT; };
-		942270F02589DEDE0095274F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		942270F12589DEDE0095274F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		942270F32589DEDE0095274F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		942270F42589DEDE0095274F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		942270F52589DEDE0095274F /* bxglive.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = bxglive.entitlements; sourceTree = "<group>"; };
-		942270F62589DEDE0095274F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		942270F72589DEDE0095274F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		942271222589DF2D0095274F /* REOBS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBS.h; sourceTree = "<group>"; };
-		942271232589DF2D0095274F /* REOBSConfigManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = REOBSConfigManager.cpp; sourceTree = "<group>"; };
-		942271242589DF2D0095274F /* REOBSAVConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSAVConfigManager.h; sourceTree = "<group>"; };
-		942271252589DF2D0095274F /* REOBSCommonMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSCommonMacro.h; sourceTree = "<group>"; };
-		942271262589DF2D0095274F /* REOBSMainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = REOBSMainVC.xib; sourceTree = "<group>"; };
-		942271272589DF2D0095274F /* REOBSManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSManager.h; sourceTree = "<group>"; };
-		942271282589DF2D0095274F /* REOBSCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSCommon.h; sourceTree = "<group>"; };
-		942271292589DF2D0095274F /* REOBSCommon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = REOBSCommon.mm; sourceTree = "<group>"; };
-		9422712A2589DF2D0095274F /* REOBSConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSConfigManager.h; sourceTree = "<group>"; };
-		9422712B2589DF2E0095274F /* REOBSAVConfigManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = REOBSAVConfigManager.cpp; sourceTree = "<group>"; };
-		9422712C2589DF2E0095274F /* REOBSManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = REOBSManager.cpp; sourceTree = "<group>"; };
-		942271572589DFB00095274F /* REOBSMainVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = REOBSMainVC.mm; sourceTree = "<group>"; };
-		942271582589DFB00095274F /* REOBSMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REOBSMainVC.h; sourceTree = "<group>"; };
-		9422725D2589E0B30095274F /* ff-util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "ff-util.c"; path = "deps/libff/libff/ff-util.c"; sourceTree = SOURCE_ROOT; };
-		9422725E2589E0B30095274F /* ff-util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ff-util.h"; path = "deps/libff/libff/ff-util.h"; sourceTree = SOURCE_ROOT; };
-		942272D02589E19B0095274F /* data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = data; path = build/rundir/Debug/data; sourceTree = SOURCE_ROOT; };
 		94DF2C3689F64906AB7FD3B1 /* async-delay-filter.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = "async-delay-filter.c"; path = "plugins/obs-filters/async-delay-filter.c"; sourceTree = SOURCE_ROOT; };
 		950CE779E0684914858824EB /* obs-convenience.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = "obs-convenience.c"; path = "plugins/text-freetype2/obs-convenience.c"; sourceTree = SOURCE_ROOT; };
 		9552DC01545A4644BA54D25A /* bounds.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = bounds.h; path = libobs/graphics/bounds.h; sourceTree = SOURCE_ROOT; };
@@ -2455,7 +2432,6 @@
 		5A18E8F510D749F099748993 = {
 			isa = PBXGroup;
 			children = (
-				942270EF2589DEDE0095274F /* bxglive */,
 				A566D1367FC64750BEF467C2 /* ALL_BUILD */,
 				93D2BC903DA14443B52455FB /* deps */,
 				D726B3AA82CD42D5B4BEB112 /* core */,
@@ -2906,36 +2882,6 @@
 				D86C3711085C4B6CADB4551C /* file-updater */,
 			);
 			name = deps;
-			sourceTree = "<group>";
-		};
-		942270EF2589DEDE0095274F /* bxglive */ = {
-			isa = PBXGroup;
-			children = (
-				942272D02589E19B0095274F /* data */,
-				9422725D2589E0B30095274F /* ff-util.c */,
-				9422725E2589E0B30095274F /* ff-util.h */,
-				942270F02589DEDE0095274F /* AppDelegate.h */,
-				942270F12589DEDE0095274F /* Assets.xcassets */,
-				942270F22589DEDE0095274F /* MainMenu.xib */,
-				942270F42589DEDE0095274F /* main.m */,
-				942270F52589DEDE0095274F /* bxglive.entitlements */,
-				942270F62589DEDE0095274F /* AppDelegate.m */,
-				942270F72589DEDE0095274F /* Info.plist */,
-				942271262589DF2D0095274F /* REOBSMainVC.xib */,
-				942271582589DFB00095274F /* REOBSMainVC.h */,
-				942271572589DFB00095274F /* REOBSMainVC.mm */,
-				942271222589DF2D0095274F /* REOBS.h */,
-				9422712B2589DF2E0095274F /* REOBSAVConfigManager.cpp */,
-				942271242589DF2D0095274F /* REOBSAVConfigManager.h */,
-				942271282589DF2D0095274F /* REOBSCommon.h */,
-				942271292589DF2D0095274F /* REOBSCommon.mm */,
-				942271252589DF2D0095274F /* REOBSCommonMacro.h */,
-				942271232589DF2D0095274F /* REOBSConfigManager.cpp */,
-				9422712A2589DF2D0095274F /* REOBSConfigManager.h */,
-				9422712C2589DF2E0095274F /* REOBSManager.cpp */,
-				942271272589DF2D0095274F /* REOBSManager.h */,
-			);
-			path = bxglive;
 			sourceTree = "<group>";
 		};
 		960F36EF1E39422C835FC77F /* CMake Rules */ = {
@@ -6086,17 +6032,6 @@
 			targetProxy = C82C6408A2294660BA047EB7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		942270F22589DEDE0095274F /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				942270F32589DEDE0095274F /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		03803206FF254135B14F2D77 /* RelWithDebInfo */ = {

@@ -25,6 +25,11 @@ const int cy = 720;  //600;
 REOBSManager::REOBSManager() {
     _initOBS();//TODO:还没想好放哪
     _initAV();
+    _loadFormats();
+}
+
+const vector<REOBSFormatDesc>& REOBSManager::getFormats() {
+    return formats;
 }
 
 bool REOBSManager::_initOBS() {
@@ -155,7 +160,8 @@ void REOBSManager::terminal() {
 
 void REOBSManager::startRecord() {
     if(fileOutput == nullptr) {
-        // 本地文件输出
+        // simple: 本地文件输出 对应 id = "ffmpeg_muxer"
+        // advance:       url 对应 id = "ffmpeg_output"
         fileOutput = obs_output_create("ffmpeg_muxer", "simple_file_output", nullptr, nullptr);
         if (!fileOutput) {
             throw "Failed to create recording FFmpeg output "
@@ -214,6 +220,115 @@ void REOBSManager::startPushStream() {
 
 void REOBSManager::stopPushStream() {
     obs_output_stop(streamOutput);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void REOBSManager::reloadCodecs(const ff_format_desc *formatDesc, OUT vector<REOBSCodecDesc> &vCodecDesc, OUT vector<REOBSCodecDesc> &aCodecDesc) {
+    vCodecDesc.clear();
+    aCodecDesc.clear();
+    
+    if(formatDesc == nullptr) {
+        return ;
+    }
+
+    const ff_codec_desc *codec = ff_codec_supported(formatDesc, false);
+    while (codec != nullptr) {
+        switch (ff_codec_desc_type(codec)) {
+        case FF_CODEC_VIDEO:
+            vCodecDesc.push_back(_createCodec(codec));
+                break;
+        case FF_CODEC_AUDIO:
+            aCodecDesc.push_back(_createCodec(codec));
+            break;
+        default:
+            break;
+        }
+
+        codec = ff_codec_desc_next(codec);
+    }
+
+    if (ff_format_desc_has_video(formatDesc)) {
+        _updateDefaultCodec(vCodecDesc, formatDesc, FF_CODEC_VIDEO);
+    }
+    if (ff_format_desc_has_audio(formatDesc)) {
+        _updateDefaultCodec(aCodecDesc, formatDesc, FF_CODEC_AUDIO);
+    }
+}
+
+int REOBSManager::_findEncoder(vector<REOBSCodecDesc> &codecDesc, const char *name, int id)
+{
+    REOBSCodecDesc cd(name, id);
+    for (int i = 0; i < codecDesc.size(); i++) {
+        REOBSCodecDesc &v = codecDesc[i];
+        if (cd == v) {
+            return i;
+            break;
+        }
+    }
+    return -1;
+}
+
+void REOBSManager::_updateDefaultCodec(vector<REOBSCodecDesc> &codecDesc, const ff_format_desc *formatDesc, ff_codec_type codecType)
+{
+    const REOBSCodecDesc &cd = _getDefaultCodecDesc(formatDesc, codecType);
+    int existingIdx = _findEncoder(codecDesc, cd.name, cd.id);
+    if(existingIdx >= 0) {
+        REOBSCodecDesc &rcd = codecDesc[existingIdx];
+        rcd.isDefaultCodec = true;
+        rcd.name = cd.name;
+    } else {
+        codecDesc.push_back(cd);
+    }
+}
+
+REOBSCodecDesc REOBSManager::_createCodec(const ff_codec_desc *codec_desc)
+{
+    REOBSCodecDesc cd(ff_codec_desc_name(codec_desc),
+             ff_codec_desc_id(codec_desc));
+    return cd;
+}
+
+REOBSCodecDesc REOBSManager::_getDefaultCodecDesc(const ff_format_desc *formatDesc, ff_codec_type codecType)
+{
+    int id = 0;
+    switch (codecType) {
+    case FF_CODEC_AUDIO:
+        id = ff_format_desc_audio(formatDesc);
+        break;
+    case FF_CODEC_VIDEO:
+        id = ff_format_desc_video(formatDesc);
+        break;
+    default:
+        return REOBSCodecDesc();
+    }
+
+    return REOBSCodecDesc(ff_format_desc_get_default_name(formatDesc, codecType), id);
+}
+
+void REOBSManager::_loadFormats()
+{
+    formats.clear();
+    const ff_format_desc *format = ff_format_supported();
+
+    while (format != nullptr) {
+        bool audio = ff_format_desc_has_audio(format);
+        bool video = ff_format_desc_has_video(format);
+        REOBSFormatDesc formatDesc(ff_format_desc_name(format),
+                      ff_format_desc_mime_type(format), format);
+//        if (audio || video) {
+//            QString itemText(ff_format_desc_name(format));
+//            if (audio ^ video)
+//                itemText += QString(" (%1)").arg(
+//                    audio ? AUDIO_STR : VIDEO_STR);
+//
+//            ui->advOutFFFormat->addItem(
+//                itemText, QVariant::fromValue(formatDesc));
+//        }
+
+        formats.push_back(formatDesc);
+
+        format = ff_format_desc_next(format);
+    }
 }
 
 

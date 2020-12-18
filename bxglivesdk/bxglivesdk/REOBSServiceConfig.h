@@ -11,7 +11,6 @@
 #include <stdio.h>
 #include "obs.hpp" //包含了 obs.h
 
-//TODO: 暂时仅作为服务配置， 后续可能需要拆成多种配置类
 class REOBSServiceConfig {
 
 public:

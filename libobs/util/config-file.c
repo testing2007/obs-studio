@@ -688,7 +688,7 @@ const char *config_get_string(config_t *config, const char *section,
 	const char *value = NULL;
 
 	pthread_mutex_lock(&config->mutex);
-
+    //## 优先查询配置文件，其次查询设置的默认值，最后都查询不到返回"";
 	item = config_find_item(&config->sections, section, name);
 	if (!item)
 		item = config_find_item(&config->defaults, section, name);

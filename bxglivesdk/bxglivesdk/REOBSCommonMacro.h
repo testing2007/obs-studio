@@ -10,7 +10,7 @@
 
 #define APP_CONFIG_PATH "obs-bxglivesdk/config" //TODO:工程名称
 #define SERVICE_CONFIG_NAME "service.json"
-#define AV_CONFIG_NAME "avconfig.ini"
+#define BASIC_CONFIG_NAME "basic.ini"
 
 #define VOLUME_METER_DECAY_FAST 23.53
 #define VOLUME_METER_DECAY_MEDIUM 11.76

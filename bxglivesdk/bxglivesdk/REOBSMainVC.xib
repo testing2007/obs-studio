@@ -11,7 +11,9 @@
                 <outlet property="btnPushStream" destination="JLT-Ea-G8I" id="bEe-wA-EHf"/>
                 <outlet property="btnRecord" destination="phF-d1-T4v" id="Ixk-T1-nLN"/>
                 <outlet property="contentView" destination="bzF-qm-G9G" id="YWD-xU-P9W"/>
-                <outlet property="liveAddrTxt" destination="E9R-JV-Pl7" id="38c-Mb-yhk"/>
+                <outlet property="liveTxtField" destination="E9R-JV-Pl7" id="78L-Rf-yEM"/>
+                <outlet property="popFormatBtn" destination="tpG-1P-KxD" id="oTK-vh-e1e"/>
+                <outlet property="popVBitrateBtn" destination="URM-3q-fDS" id="oqD-pH-dk9"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>

@@ -3352,12 +3352,12 @@ void OBSBasicSettings::SaveOutputSettings()
 	SaveCheckBox(ui->advOutFFNoSpace, "AdvOut", "FFFileNameWithoutSpace");
 	SaveEdit(ui->advOutFFURL, "AdvOut", "FFURL");
 	SaveFormat(ui->advOutFFFormat);
-	SaveEdit(ui->advOutFFMCfg, "AdvOut", "FFMCustom");
+	SaveEdit(ui->advOutFFMCfg, "AdvOut", "FFMCustom");//## --没有考虑, 混音器设置（如果有）
 	SaveSpinBox(ui->advOutFFVBitrate, "AdvOut", "FFVBitrate");
 	SaveSpinBox(ui->advOutFFVGOPSize, "AdvOut", "FFVGOPSize");
-	SaveCheckBox(ui->advOutFFUseRescale, "AdvOut", "FFRescale");
-	SaveCheckBox(ui->advOutFFIgnoreCompat, "AdvOut", "FFIgnoreCompat");
-	SaveCombo(ui->advOutFFRescale, "AdvOut", "FFRescaleRes");
+	SaveCheckBox(ui->advOutFFUseRescale, "AdvOut", "FFRescale");//## --没有考虑， 重新缩放输出
+	SaveCheckBox(ui->advOutFFIgnoreCompat, "AdvOut", "FFIgnoreCompat");//## --没有考虑，显示所有编码器(即使可能不兼容)
+	SaveCombo(ui->advOutFFRescale, "AdvOut", "FFRescaleRes");//## --没有考虑，重新缩放输出分辨率
 	SaveEncoder(ui->advOutFFVEncoder, "AdvOut", "FFVEncoder");
 	SaveEdit(ui->advOutFFVCfg, "AdvOut", "FFVCustom");
 	SaveSpinBox(ui->advOutFFABitrate, "AdvOut", "FFABitrate");
@@ -3390,7 +3390,7 @@ void OBSBasicSettings::SaveOutputSettings()
 
 	WriteJsonData(streamEncoderProps, "streamEncoder.json");
 	WriteJsonData(recordEncoderProps, "recordEncoder.json");
-	main->ResetOutputs();//obs_video_encoder_create 创建编码器
+	main->ResetOutputs();//## obs_video_encoder_create / obs_output_create 创建
 }
 
 void OBSBasicSettings::SaveAudioSettings()

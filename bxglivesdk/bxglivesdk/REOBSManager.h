@@ -12,12 +12,22 @@
 //
 #include <util/base.h>
 #include "obs.hpp" //包含了 obs.h
+#include "REOBSCommon.h"
+
 
 using namespace std;
 
 class REOBSManager {
 public:
     static REOBSManager* share();
+    
+    const vector<REOBSFormatDesc>& getFormats();
+    /// 指定容器格式所支持的音视频编解码
+    /// @param formatDesc 指定容器格式
+    /// @param vCodecDesc 视频编解码
+    /// @param aCodecDesc 音频编解码
+    void reloadCodecs(const ff_format_desc *formatDesc, OUT vector<REOBSCodecDesc> &vCodecDesc, OUT vector<REOBSCodecDesc> &aCodecDesc);
+
     
     //初始化 OBS
     bool _initOBS();
@@ -44,6 +54,14 @@ private:
     void _initAV();
     void _createDisplay(id view);
     
+    
+    /// 载入平台支持的容器格式
+    void _loadFormats();
+    int _findEncoder(vector<REOBSCodecDesc> &codecDesc, const char *name, int id);
+    void _updateDefaultCodec(vector<REOBSCodecDesc> &codecDesc, const ff_format_desc *formatDesc, ff_codec_type codecType);
+    REOBSCodecDesc _getDefaultCodecDesc(const ff_format_desc *formatDesc, ff_codec_type codecType);
+    REOBSCodecDesc _createCodec(const ff_codec_desc *codec_desc);
+    
 private:
     
     REOBSManager();
@@ -61,8 +79,12 @@ private:
 
     OBSService streamService;
     OBSOutput streamOutput;
+    
+    vector<REOBSFormatDesc> formats;
+    vector<REOBSCodecDesc> audioCodecs;
+    vector<REOBSCodecDesc> videoCodecs;
 };
 
-#define REOBSInstance  (REOBSManager::share())
+#define REOBSManagerInstance  (REOBSManager::share())
 
 #endif /* REOBSManagerImpl_hpp */
