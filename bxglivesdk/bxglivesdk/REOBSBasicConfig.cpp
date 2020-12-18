@@ -102,23 +102,28 @@ void REOBSBasicConfig::saveCfg() {
 }
 
 const char* REOBSBasicConfig::getOutputURL() {
-    return config_get_string(basicConfig, "AdvOut", "FFURL");
+    const char* ret = config_get_string(basicConfig, "AdvOut", "FFURL");
+    return ret == nullptr ? "" : ret;
 }
 
 const char* REOBSBasicConfig::getOutputFormat() {
-    return config_get_string(basicConfig, "AdvOut", "FFFormat");
+    const char* ret = config_get_string(basicConfig, "AdvOut", "FFFormat");
+    return ret == nullptr ? "" : ret;
 }
 
 const char* REOBSBasicConfig::getOutputFormatMimeType() {
-    return config_get_string(basicConfig, "AdvOut", "FFFormatMimeType");
+    const char* ret = config_get_string(basicConfig, "AdvOut", "FFFormatMimeType");
+    return ret == nullptr ? "" : ret;
 }
 
 const char* REOBSBasicConfig::getOutputFormatExtension() {
-    return config_get_string(basicConfig, "AdvOut", "FFExtension");
+    const char* ret = config_get_string(basicConfig, "AdvOut", "FFExtension");
+    return ret == nullptr ? "" : ret;
 }
 
 const char* REOBSBasicConfig::getOutputVideoCodecName()  {
-    return config_get_string(basicConfig, "AdvOut", "FFVEncoder");
+    const char* ret = config_get_string(basicConfig, "AdvOut", "FFVEncoder");
+    return ret == nullptr ? "" : ret;
 }
 
 int64_t REOBSBasicConfig::getOutputVideoCodecId() {
@@ -135,11 +140,13 @@ int64_t REOBSBasicConfig::getOutputVideoGOPSize() {
 }
 
 const char* REOBSBasicConfig::getOutputVideoCodecParam() {
-    return config_get_string(basicConfig, "AdvOut", "FFVCustom");
+    const char* ret = config_get_string(basicConfig, "AdvOut", "FFVCustom");
+    return ret == nullptr ? "" : ret;
 }
 
 const char* REOBSBasicConfig::getOutputAudioCodecName() {
-    return config_get_string(basicConfig, "AdvOut", "FFAEncoder");
+    const char* ret = config_get_string(basicConfig, "AdvOut", "FFAEncoder");
+    return ret == nullptr ? "" : ret;
 }
 
 int64_t REOBSBasicConfig::getOutputAudioCodecId() {
@@ -147,7 +154,8 @@ int64_t REOBSBasicConfig::getOutputAudioCodecId() {
 }
 
 const char* REOBSBasicConfig::getOutputAudioCodecParam() {
-    return config_get_string(basicConfig, "AdvOut", "FFACustom");
+    const char* ret = config_get_string(basicConfig, "AdvOut", "FFACustom");
+    return ret == nullptr ? "" : ret;
 }
 
 int64_t REOBSBasicConfig::getOutputAudioBitrate() {

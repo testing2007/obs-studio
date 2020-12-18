@@ -8,12 +8,31 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="REOBSMainVC">
             <connections>
+                <outlet property="aBitrateBtn" destination="dOb-jN-QGU" id="ZMN-GV-yED"/>
+                <outlet property="aCheckBtn1" destination="zOp-cB-Kzd" id="8iM-WT-PTq"/>
+                <outlet property="aCheckBtn2" destination="tNR-aF-QyL" id="7lF-gk-9Ev"/>
+                <outlet property="aCheckBtn3" destination="4H1-Rf-ZZh" id="qcU-pD-BE0"/>
+                <outlet property="aCheckBtn4" destination="o5J-NI-eyC" id="BrG-LE-n9h"/>
+                <outlet property="aCheckBtn5" destination="7LA-ew-6Og" id="dPI-Lo-Yjh"/>
+                <outlet property="aCheckBtn6" destination="F2e-bv-Q57" id="A9B-7m-7a0"/>
+                <outlet property="audioCell" destination="JgR-gb-cRP" id="A7J-dK-3vB"/>
+                <outlet property="audioCodecBtn" destination="Sp6-Qb-lja" id="yEg-bq-SbZ"/>
+                <outlet property="audioCodecParamTxt" destination="I6B-pw-Crg" id="S6o-92-Xib"/>
                 <outlet property="btnPushStream" destination="JLT-Ea-G8I" id="bEe-wA-EHf"/>
                 <outlet property="btnRecord" destination="phF-d1-T4v" id="Ixk-T1-nLN"/>
                 <outlet property="contentView" destination="bzF-qm-G9G" id="YWD-xU-P9W"/>
-                <outlet property="liveTxtField" destination="E9R-JV-Pl7" id="78L-Rf-yEM"/>
+                <outlet property="cpAddrBtn" destination="pAV-PV-NMw" id="m5c-at-FZD"/>
+                <outlet property="formatBtn" destination="tpG-1P-KxD" id="dXF-wu-TzL"/>
+                <outlet property="formatCell" destination="i3l-nU-cIN" id="fsB-0h-Dum"/>
+                <outlet property="hlsCheckBtn" destination="Gxb-kW-2Ta" id="N9e-zn-YSL"/>
+                <outlet property="liveTxt" destination="E9R-JV-Pl7" id="4Nw-ya-oAH"/>
                 <outlet property="popFormatBtn" destination="tpG-1P-KxD" id="oTK-vh-e1e"/>
-                <outlet property="popVBitrateBtn" destination="URM-3q-fDS" id="oqD-pH-dk9"/>
+                <outlet property="rtmpCheckBtn" destination="tyd-5S-C9h" id="C6g-tS-4tH"/>
+                <outlet property="vBitrateBtn" destination="URM-3q-fDS" id="kiG-Kf-UQ9"/>
+                <outlet property="vGOPBtn" destination="bRb-Ge-HdT" id="tvC-Yk-I4I"/>
+                <outlet property="videoCell" destination="2PD-i8-kFg" id="ru9-Pf-nyr"/>
+                <outlet property="videoCodecBtn" destination="mmU-z9-Adv" id="9u3-2j-cqm"/>
+                <outlet property="videoCodecParamTxt" destination="6eI-U5-mpH" id="YPe-Ls-5Ra"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -135,16 +154,10 @@
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tpG-1P-KxD">
                                 <rect key="frame" x="141" y="287" width="365" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="zse-p1-l6w" id="i3l-nU-cIN">
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="i3l-nU-cIN">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" id="nyV-Z3-QfS">
-                                        <items>
-                                            <menuItem title="Item 1" state="on" id="zse-p1-l6w"/>
-                                            <menuItem title="Item 2" id="08b-lG-oz0"/>
-                                            <menuItem title="Item 3" id="bKi-Rw-vMt"/>
-                                        </items>
-                                    </menu>
+                                    <menu key="menu" id="nyV-Z3-QfS"/>
                                 </popUpButtonCell>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2uc-C7-dIi">
