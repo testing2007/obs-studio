@@ -21,13 +21,18 @@ class REOBSManager {
 public:
     static REOBSManager* share();
     
-    const vector<REOBSFormatDesc>& getFormats();
+    const vector<REOBSFormatDesc>& getFormats(int &lastSelIndex);
     /// 指定容器格式所支持的音视频编解码
     /// @param formatDesc 指定容器格式
     /// @param vCodecDesc 视频编解码
     /// @param aCodecDesc 音频编解码
-    void reloadCodecs(const ff_format_desc *formatDesc, OUT vector<REOBSCodecDesc> &vCodecDesc, OUT vector<REOBSCodecDesc> &aCodecDesc);
-
+    void reloadCodecs(const ff_format_desc *formatDesc,
+                      OUT vector<REOBSCodecDesc> &vCodecDesc,
+                      OUT int& selVideoCodecIndex,
+                      OUT vector<REOBSCodecDesc> &aCodecDesc,
+                      OUT int& selAudioCodecIndex);
+    
+    const ff_format_desc* getCurFormatDesc();
     
     //初始化 OBS
     bool _initOBS();
@@ -56,9 +61,9 @@ private:
     
     
     /// 载入平台支持的容器格式
-    void _loadFormats();
+    int _loadFormats();
     int _findEncoder(vector<REOBSCodecDesc> &codecDesc, const char *name, int id);
-    void _updateDefaultCodec(vector<REOBSCodecDesc> &codecDesc, const ff_format_desc *formatDesc, ff_codec_type codecType);
+    void _updateDefaultCodec(vector<REOBSCodecDesc> &codecDesc, const ff_format_desc *formatDesc, ff_codec_type codecType,  int &defaultCodecId);
     REOBSCodecDesc _getDefaultCodecDesc(const ff_format_desc *formatDesc, ff_codec_type codecType);
     REOBSCodecDesc _createCodec(const ff_codec_desc *codec_desc);
     
@@ -70,6 +75,8 @@ private:
     REOBSManager& operator=(const REOBSManager&) = delete;
     
 private:
+    int lastSelIndex = -1;
+    
     OBSDisplay display;
     OBSScene scene;
     OBSEncoder h264Recording;
@@ -79,6 +86,8 @@ private:
 
     OBSService streamService;
     OBSOutput streamOutput;
+    
+    const ff_format_desc *curFormatDesc;
     
     vector<REOBSFormatDesc> formats;
     vector<REOBSCodecDesc> audioCodecs;

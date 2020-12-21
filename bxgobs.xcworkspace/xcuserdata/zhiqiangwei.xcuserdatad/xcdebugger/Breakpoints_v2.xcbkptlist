@@ -23,22 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7E0AED1B-F981-47BE-A7EC-EAFC8203701A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "bxglivesdk/bxglivesdk/REOBSMainVC.mm"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "-loadData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "E5ED8ED2-E8DA-4DF1-B895-15D309DCC513"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -46,41 +30,137 @@
             filePath = "bxglivesdk/bxglivesdk/REOBSManager.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "REOBSManager::REOBSManager()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E5ED8ED2-E8DA-4DF1-B895-15D309DCC513 - 9a0d10298b3abbe6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "REOBSManager::REOBSManager()"
+                  moduleName = "bxglivesdk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhiqiangwei/Work/openSource/obs-studio/bxglivesdk/bxglivesdk/REOBSManager.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "21">
+               </Location>
+               <Location
+                  uuid = "E5ED8ED2-E8DA-4DF1-B895-15D309DCC513 - 9a0d10298b3abbe6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "REOBSManager::REOBSManager()"
+                  moduleName = "bxglivesdk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhiqiangwei/Work/openSource/obs-studio/bxglivesdk/bxglivesdk/REOBSManager.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "287">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7C48EA94-D1F5-451B-BE30-1DD694E57DD6"
+            uuid = "EA78D169-AB80-40AC-B2C3-C02E30400DFB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bxglivesdk/bxglivesdk/REOBSMainVC.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "-fillVideoCodecsCtrl:"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "-changeFormat:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7D63B733-F1CE-4586-946B-D43F6DC774A6"
+            uuid = "B7721BC0-E1F7-4648-9413-F0E342ABFE22"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bxglivesdk/bxglivesdk/REOBSMainVC.mm"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
+            landmarkName = "-onHLS:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F423648D-05CC-42B5-81F3-B20516AD6691"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bxglivesdk/bxglivesdk/REOBSMainVC.mm"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
+            landmarkName = "-onRTMP:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A6B95EBB-FF8F-4F98-95A1-1DBB13DE9FE2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UI/window-basic-settings.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "3361"
+            endingLineNumber = "3361"
+            landmarkName = "OBSBasicSettings::SaveOutputSettings()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "051FAE61-9483-4CC0-8F46-312F7C3C5C6F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bxglivesdk/bxglivesdk/REOBSManager.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
-            landmarkName = "REOBSManager::_updateDefaultCodec(codecDesc, formatDesc, codecType)"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "REOBSManager::_createCodec(codec_desc)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B176F924-DA7F-4645-A577-2EDAEF34EFA2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bxglivesdk/bxglivesdk/REOBSManager.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
+            landmarkName = "REOBSManager::_updateDefaultCodec(codecDesc, formatDesc, codecType, selCodecIndex)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

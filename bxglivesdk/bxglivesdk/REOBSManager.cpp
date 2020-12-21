@@ -7,6 +7,7 @@
 
 #include "REOBSManager.h"
 #include "REOBSServiceConfig.h"
+#include "REOBSBasicConfig.h"
 #include <string>
 
 const int base_width = 1920; //800;
@@ -25,10 +26,11 @@ const int cy = 720;  //600;
 REOBSManager::REOBSManager() {
     _initOBS();//TODO:还没想好放哪
     _initAV();
-    _loadFormats();
+    lastSelIndex = _loadFormats();
 }
 
-const vector<REOBSFormatDesc>& REOBSManager::getFormats() {
+const vector<REOBSFormatDesc>& REOBSManager::getFormats(int &lastSelIndex) {
+    lastSelIndex = this->lastSelIndex;
     return formats;
 }
 
@@ -221,11 +223,16 @@ void REOBSManager::startPushStream() {
 void REOBSManager::stopPushStream() {
     obs_output_stop(streamOutput);
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void REOBSManager::reloadCodecs(const ff_format_desc *formatDesc, OUT vector<REOBSCodecDesc> &vCodecDesc, OUT vector<REOBSCodecDesc> &aCodecDesc) {
+void REOBSManager::reloadCodecs(const ff_format_desc *formatDesc,
+                                OUT vector<REOBSCodecDesc> &vCodecDesc,
+                                OUT int& selVideoCodecIndex,
+                                OUT vector<REOBSCodecDesc> &aCodecDesc,
+                                OUT int& selAudioCodecIndex){
     vCodecDesc.clear();
     aCodecDesc.clear();
+    
+    curFormatDesc = formatDesc;
     
     if(formatDesc == nullptr) {
         return ;
@@ -248,12 +255,16 @@ void REOBSManager::reloadCodecs(const ff_format_desc *formatDesc, OUT vector<REO
     }
 
     if (ff_format_desc_has_video(formatDesc)) {
-        _updateDefaultCodec(vCodecDesc, formatDesc, FF_CODEC_VIDEO);
+        _updateDefaultCodec(vCodecDesc, formatDesc, FF_CODEC_VIDEO, selVideoCodecIndex);
     }
     if (ff_format_desc_has_audio(formatDesc)) {
-        _updateDefaultCodec(aCodecDesc, formatDesc, FF_CODEC_AUDIO);
+        _updateDefaultCodec(aCodecDesc, formatDesc, FF_CODEC_AUDIO, selAudioCodecIndex);
     }
 }
+
+const ff_format_desc* REOBSManager::getCurFormatDesc(){
+    return curFormatDesc;
+};
 
 int REOBSManager::_findEncoder(vector<REOBSCodecDesc> &codecDesc, const char *name, int id)
 {
@@ -268,24 +279,25 @@ int REOBSManager::_findEncoder(vector<REOBSCodecDesc> &codecDesc, const char *na
     return -1;
 }
 
-void REOBSManager::_updateDefaultCodec(vector<REOBSCodecDesc> &codecDesc, const ff_format_desc *formatDesc, ff_codec_type codecType)
+void REOBSManager::_updateDefaultCodec(vector<REOBSCodecDesc> &codecDesc, const ff_format_desc *formatDesc, ff_codec_type codecType, int& selCodecIndex)
 {
     const REOBSCodecDesc &cd = _getDefaultCodecDesc(formatDesc, codecType);
     int existingIdx = _findEncoder(codecDesc, cd.name, cd.id);
     if(existingIdx >= 0) {
         REOBSCodecDesc &rcd = codecDesc[existingIdx];
-//        rcd.isDefaultCodec = true;
         rcd.name = cd.name;
-        rcd.defaultCodecIndex = existingIdx;
+        selCodecIndex = existingIdx;
+        rcd.isDefaultCodec = true;
     } else {
         codecDesc.push_back(cd);
+        selCodecIndex = -1;
     }
 }
 
 REOBSCodecDesc REOBSManager::_createCodec(const ff_codec_desc *codec_desc)
 {
     REOBSCodecDesc cd(ff_codec_desc_name(codec_desc),
-             ff_codec_desc_id(codec_desc));
+             ff_codec_desc_id(codec_desc), codec_desc);
     return cd;
 }
 
@@ -303,19 +315,28 @@ REOBSCodecDesc REOBSManager::_getDefaultCodecDesc(const ff_format_desc *formatDe
         return REOBSCodecDesc();
     }
 
-    return REOBSCodecDesc(ff_format_desc_get_default_name(formatDesc, codecType), id);
+    return REOBSCodecDesc(ff_format_desc_get_default_name(formatDesc, codecType), id, formatDesc);
 }
 
-void REOBSManager::_loadFormats()
+int REOBSManager::_loadFormats()
 {
     formats.clear();
     const ff_format_desc *format = ff_format_supported();
 
+    const char* selFormatName = REOBSBasicConfigInstance->getOutputFormat();
+    const char* selFormatMineType = REOBSBasicConfigInstance->getOutputFormatMimeType();
+    const REOBSFormatDesc &selFormatDesc = REOBSFormatDesc(selFormatName, selFormatMineType);
+    
+    int lastSelIndex = -1;
+    int index = -1;
     while (format != nullptr) {
+        index++;
         bool audio = ff_format_desc_has_audio(format);
         bool video = ff_format_desc_has_video(format);
         REOBSFormatDesc formatDesc(ff_format_desc_name(format),
                       ff_format_desc_mime_type(format), format);
+        
+        
 //        if (audio || video) {
 //            QString itemText(ff_format_desc_name(format));
 //            if (audio ^ video)
@@ -325,12 +346,18 @@ void REOBSManager::_loadFormats()
 //            ui->advOutFFFormat->addItem(
 //                itemText, QVariant::fromValue(formatDesc));
 //        }
+        
+        if(selFormatDesc == formatDesc) {
+            lastSelIndex = index;
+        }
 
         formats.push_back(formatDesc);
 
         format = ff_format_desc_next(format);
     }
     
+    return lastSelIndex;
 }
+
 
 

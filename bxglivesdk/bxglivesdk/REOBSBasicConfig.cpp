@@ -22,7 +22,7 @@ void REOBSBasicConfig::setOutputURL(const char* outputURL) {
     outputsChanged = true;
 }
 
-void REOBSBasicConfig::setOutputFormat(struct ff_format_desc* formatDesc) {
+void REOBSBasicConfig::setOutputFormat(const struct ff_format_desc* formatDesc) {
         if(formatDesc != nullptr) {
             config_set_string(basicConfig, "AdvOut", "FFFormat", ff_format_desc_name(formatDesc));
             config_set_string(basicConfig, "AdvOut", "FFFormatMimeType", ff_format_desc_mime_type(formatDesc));
@@ -41,7 +41,7 @@ void REOBSBasicConfig::setOutputFormat(struct ff_format_desc* formatDesc) {
         outputsChanged = true;
 }
 
-void REOBSBasicConfig::setOutputVideoCodec(ff_codec_desc *codecDesc) {
+void REOBSBasicConfig::setOutputVideoCodec(const struct ff_codec_desc *codecDesc) {
         if(codecDesc != nullptr) {
             int encoderId = ff_codec_desc_id(codecDesc);
             config_set_int(basicConfig, "AdvOut", "FFVEncoderId", encoderId);
@@ -69,7 +69,7 @@ void REOBSBasicConfig::setOutputVideoCodecParam(const char* params) {
     outputsChanged = true;
 }
 
-void REOBSBasicConfig::setOutputAudioCodec(ff_codec_desc *codecDesc) {
+void REOBSBasicConfig::setOutputAudioCodec(const struct ff_codec_desc *codecDesc) {
     if(codecDesc != nullptr) {
         int encoderId = ff_codec_desc_id(codecDesc);
         config_set_int(basicConfig, "AdvOut", "FFAEncoderId", encoderId);
@@ -89,6 +89,11 @@ void REOBSBasicConfig::setOutputAudioCodecParam(const char* params) {
 
 void REOBSBasicConfig::setOutputAudioBitrate(int64_t audioBitrate) {
     config_set_int(basicConfig, "AdvOut", "FFABitrate", audioBitrate);
+    outputsChanged = true;
+}
+
+void REOBSBasicConfig::setOutputAudioMixes(int64_t audioMixes) {
+    config_set_int(basicConfig, "AdvOut", "FFAudioMixes", audioMixes);
     outputsChanged = true;
 }
 
@@ -160,6 +165,10 @@ const char* REOBSBasicConfig::getOutputAudioCodecParam() {
 
 int64_t REOBSBasicConfig::getOutputAudioBitrate() {
     return config_get_int(basicConfig, "AdvOut", "FFABitrate");
+}
+
+int64_t REOBSBasicConfig::getOutputAudioMixes() {
+    return config_get_int(basicConfig, "AdvOut", "FFAudioMixes");
 }
 
 REOBSBasicConfig::REOBSBasicConfig(){

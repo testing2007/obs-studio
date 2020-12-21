@@ -39,25 +39,24 @@ struct REOBSFormatDesc {
     {
         if (strcmp(name, f.name) != 0)
             return false;
-        return strcmp(mimeType, f.mimeType);
+        return strcmp(mimeType, f.mimeType) == 0 ? true : false;
     }
 };
 
 struct REOBSCodecDesc {
     const char *name = nullptr;
     int id = 0;
-//    bool isDefaultCodec = false;
-    int defaultCodecIndex = -1;
+    bool isDefaultCodec = false;//对应format的codec是否是默认的
+    const ff_codec_desc *desc = nullptr;
 
     inline REOBSCodecDesc() = default;
-    inline REOBSCodecDesc(const char *name, int id) : name(name), id(id) {}
+    inline REOBSCodecDesc(const char *name, int id, bool isDefaultCodec=false, const ff_codec_desc *desc=nullptr) : name(name), id(id), isDefaultCodec(isDefaultCodec), desc(desc) {}
 
     bool operator==(const REOBSCodecDesc &codecDesc) const
     {
         if (id != codecDesc.id)
             return false;
-        int ret = strcmp(name, codecDesc.name);
-        return ret==0 ? true : false;
+        return strcmp(name, codecDesc.name)==0 ? true : false;
     }
 };
 

@@ -21,19 +21,20 @@ public:
     
     ///outputsChanged: 设置
     void setOutputURL(const char* outputURL);//FFURL
-    void setOutputFormat(struct ff_format_desc* formatDesc);//FFFormat + FFFormatMimeType + FFExtension
-    void setOutputVideoCodec(ff_codec_desc *codecDesc);//FFVEncoder + FFVEncoderId
+    void setOutputFormat(const struct ff_format_desc* formatDesc);//FFFormat + FFFormatMimeType + FFExtension
+    void setOutputVideoCodec(const struct ff_codec_desc *codecDesc);//FFVEncoder + FFVEncoderId
     void setOutputVideoBitrate(int64_t videoBitrate);//FFVBitrate
     void setOutputVideoGOPSize(int64_t gopSize);//FFVGOPSize
     /// 设置视频编码参数
     /// @param params 参数 key1=value1&key2=value2 格式
     void setOutputVideoCodecParam(const char* params);//FFVCustom
-    void setOutputAudioCodec(ff_codec_desc *codecDesc);//FFAEncoder + FFAEncoderId
+    void setOutputAudioCodec(const struct ff_codec_desc *codecDesc);//FFAEncoder + FFAEncoderId
     void setOutputAudioBitrate(int64_t audioBitrate);//FFABitrate
+    void setOutputAudioMixes(int64_t audioMixes);//FFAudioMixes
     /// 设置音频编码参数
     /// @param params 参数 key1=value1&key2=value2 格式
     void setOutputAudioCodecParam(const char* params);//FFACustom
-
+    
     ///设置完成以后，需要调用保存接口，才能最终写入文件中
     void saveCfg();
 
@@ -51,6 +52,7 @@ public:
     int64_t getOutputAudioCodecId();
     const char* getOutputAudioCodecParam();
     int64_t getOutputAudioBitrate();
+    int64_t getOutputAudioMixes();
 
 
 private:
@@ -73,10 +75,6 @@ private:
     
     
 private:
-//    vector<REOBSFormatDesc> formats;
-//    vector<REOBSCodecDesc> audioCodecs;
-//    vector<REOBSCodecDesc> videoCodecs;
-        
     config_t* basicConfig;//配置文件
 };
 
