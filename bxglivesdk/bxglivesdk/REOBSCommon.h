@@ -46,7 +46,8 @@ struct REOBSFormatDesc {
 struct REOBSCodecDesc {
     const char *name = nullptr;
     int id = 0;
-    bool isDefaultCodec = false;
+//    bool isDefaultCodec = false;
+    int defaultCodecIndex = -1;
 
     inline REOBSCodecDesc() = default;
     inline REOBSCodecDesc(const char *name, int id) : name(name), id(id) {}
@@ -55,7 +56,8 @@ struct REOBSCodecDesc {
     {
         if (id != codecDesc.id)
             return false;
-        return strcmp(name, codecDesc.name);
+        int ret = strcmp(name, codecDesc.name);
+        return ret==0 ? true : false;
     }
 };
 

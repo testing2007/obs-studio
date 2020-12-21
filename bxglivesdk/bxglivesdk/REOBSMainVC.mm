@@ -85,27 +85,36 @@
 
 -(void)fillVideoCodecsCtrl:(vector<REOBSCodecDesc>&)vCodecDesc {
     int i=0;
+    int foundDefaultIndex = -1;
     for(vector<REOBSCodecDesc>::const_iterator codecIter = vCodecDesc.begin(); codecIter!= vCodecDesc.end(); ++codecIter) {
         REOBSCodecDesc item = (*codecIter);
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@(item.name) action:@selector(onChangeVideoCodec:) keyEquivalent:@(i).stringValue];
-        if(item.isDefaultCodec) {
-            [self.videoCodecBtn selectItemAtIndex:i];
+        if(item.defaultCodecIndex == @(i).intValue) {
+            foundDefaultIndex = item.defaultCodecIndex;
         }
         [self.videoCodecBtn.cell.menu addItem:menuItem];
         i++;
+    }
+    if(foundDefaultIndex!=-1) {
+        [self.videoCodecBtn selectItemAtIndex:foundDefaultIndex];
     }
 }
 
 -(void)fillAudioCodecsCtrl:(vector<REOBSCodecDesc>&)aCodecDesc {
     int i=0;
+    int foundDefaultIndex = -1;
     for(vector<REOBSCodecDesc>::const_iterator codecIter = aCodecDesc.begin(); codecIter!= aCodecDesc.end(); ++codecIter) {
         REOBSCodecDesc item = (*codecIter);
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@(item.name) action:@selector(onChangeAudioCodec:) keyEquivalent:@(i).stringValue];
-        if(item.isDefaultCodec) {
-            [self.audioCodecBtn selectItemAtIndex:i];
+        if(item.defaultCodecIndex == @(i).intValue) {
+            foundDefaultIndex = item.defaultCodecIndex;
         }
         [self.audioCodecBtn.cell.menu addItem:menuItem];
         i++;
+    }
+    
+    if(foundDefaultIndex!=0) {
+        [self.audioCodecBtn selectItemAtIndex:foundDefaultIndex];
     }
 }
 

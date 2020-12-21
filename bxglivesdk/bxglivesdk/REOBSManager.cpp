@@ -274,8 +274,9 @@ void REOBSManager::_updateDefaultCodec(vector<REOBSCodecDesc> &codecDesc, const 
     int existingIdx = _findEncoder(codecDesc, cd.name, cd.id);
     if(existingIdx >= 0) {
         REOBSCodecDesc &rcd = codecDesc[existingIdx];
-        rcd.isDefaultCodec = true;
+//        rcd.isDefaultCodec = true;
         rcd.name = cd.name;
+        rcd.defaultCodecIndex = existingIdx;
     } else {
         codecDesc.push_back(cd);
     }
@@ -329,6 +330,7 @@ void REOBSManager::_loadFormats()
 
         format = ff_format_desc_next(format);
     }
+    
 }
 
 
