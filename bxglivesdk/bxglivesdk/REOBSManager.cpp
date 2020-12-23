@@ -297,7 +297,7 @@ void REOBSManager::_updateDefaultCodec(vector<REOBSCodecDesc> &codecDesc, const 
 REOBSCodecDesc REOBSManager::_createCodec(const ff_codec_desc *codec_desc)
 {
     REOBSCodecDesc cd(ff_codec_desc_name(codec_desc),
-             ff_codec_desc_id(codec_desc), codec_desc);
+             ff_codec_desc_id(codec_desc), false, codec_desc);
     return cd;
 }
 
@@ -314,8 +314,8 @@ REOBSCodecDesc REOBSManager::_getDefaultCodecDesc(const ff_format_desc *formatDe
     default:
         return REOBSCodecDesc();
     }
-
-    return REOBSCodecDesc(ff_format_desc_get_default_name(formatDesc, codecType), id, formatDesc);
+    
+    return REOBSCodecDesc(ff_format_desc_get_default_name(formatDesc, codecType), id, false);
 }
 
 int REOBSManager::_loadFormats()

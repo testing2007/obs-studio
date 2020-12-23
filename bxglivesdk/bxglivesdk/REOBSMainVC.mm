@@ -70,8 +70,10 @@ const char* RMTP_URL = "rtmp://47.93.202.254/rtmp/test"; //rtmp录像形式
     NSAssert([format isKindOfClass:[NSMenuItem class]], @"menu item is not a NSMenuItem type");
     NSMenuItem *menuItem = (NSMenuItem*)format;
     NSLog(@"onChangeFormat %@", menuItem.keyEquivalent);
-    const REOBSFormatDesc &formatDesc = (*formats)[menuItem.keyEquivalent.intValue];
-    [self changeFormat:formatDesc];
+    if(menuItem.keyEquivalent.length > 0) {
+        const REOBSFormatDesc &formatDesc = (*formats)[menuItem.keyEquivalent.intValue];
+        [self changeFormat:formatDesc];
+    }
 }
 
 - (void)onChangeVideoCodec:(NSObject*)vCodec {
@@ -217,7 +219,8 @@ const char* RMTP_URL = "rtmp://47.93.202.254/rtmp/test"; //rtmp录像形式
         if(lastSelIndex != -1 && lastSelIndex<formatsSize) {
             [self.formatBtn selectItemAtIndex:lastSelIndex];
         } else {
-            [self.formatBtn selectItemAtIndex:0];
+            lastSelIndex = 0;
+            [self.formatBtn selectItemAtIndex:lastSelIndex];
         }
         const REOBSFormatDesc &selectFormat = (*formats)[lastSelIndex];
         [self changeFormat:selectFormat];
