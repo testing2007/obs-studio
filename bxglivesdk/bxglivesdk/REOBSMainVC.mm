@@ -9,7 +9,8 @@
 #import "REOBS.h"
 
 const char* HLS_URL = "rtmp://47.93.202.254/rtmp"; //m3u8/ts 网页查看， test 为密钥
-const char* RMTP_URL = "rtmp://47.93.202.254/rtmp/test"; //rtmp录像形式
+//const char* RMTP_URL = "rtmp://47.93.202.254/rtmp/test"; //rtmp录像形式
+const char* RMTP_URL = "rtmp://47.93.202.254/hls/test"; //rtmp录像形式
 
 @interface REOBSMainVC ()<NSMenuDelegate> {
     const vector<REOBSFormatDesc> *formats;
@@ -61,193 +62,9 @@ const char* RMTP_URL = "rtmp://47.93.202.254/rtmp/test"; //rtmp录像形式
     // Do view setup here.
     [self.btnRecord setTitle:@"开始录制"];
     REOBSManagerInstance->setContentView(self.contentView);
-
+    
     [self resetCtrl];
     [self loadData];
-}
-
-- (void)onChangeFormat:(NSObject*)format {
-    NSAssert([format isKindOfClass:[NSMenuItem class]], @"menu item is not a NSMenuItem type");
-    NSMenuItem *menuItem = (NSMenuItem*)format;
-    NSLog(@"onChangeFormat %@", menuItem.keyEquivalent);
-    if(menuItem.keyEquivalent.length > 0) {
-        const REOBSFormatDesc &formatDesc = (*formats)[menuItem.keyEquivalent.intValue];
-        [self changeFormat:formatDesc];
-    }
-}
-
-- (void)onChangeVideoCodec:(NSObject*)vCodec {
-//    self.video
-//    self.vCodecDesc[self.selVideoCodecIndex]
-    NSString* strIndex = (NSString*)(vCodec);
-    self.selVideoCodecIndex = strIndex.intValue;
-    [self.videoCodecBtn selectItemAtIndex:self.selVideoCodecIndex];
-    REOBSCodecDesc &selCodec = self->vCodecDesc[self.selVideoCodecIndex];
-    REOBSBasicConfigInstance->setOutputVideoCodec(selCodec.desc);
-}
-
-- (void)onChangeAudioCodec:(NSObject*)aCodec {
-    NSString* strIndex = (NSString*)(aCodec);
-    self.selVideoCodecIndex = strIndex.intValue;
-    [self.videoCodecBtn selectItemAtIndex:self.selVideoCodecIndex];
-    REOBSCodecDesc &selCodec = self->aCodecDesc[self.selVideoCodecIndex];
-    REOBSBasicConfigInstance->setOutputAudioCodec(selCodec.desc);
-}
-
--(void)fillFormatsCtrl {
-    int i=0;
-    for(vector<REOBSFormatDesc>::const_iterator iter = formats->begin(); iter!= formats->end(); ++iter) {
-        REOBSFormatDesc item = (*iter);
-        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@(item.name) action:@selector(onChangeFormat:) keyEquivalent:@(i).stringValue];
-        [self.formatBtn.cell.menu addItem:menuItem];
-        i++;
-    }
-}
-
--(void)fillVideoCodecsCtrl:(vector<REOBSCodecDesc>&)vCodecDesc {
-    int i=0;
-    int selCodecIndex = -1;
-    int64_t selCodecId = REOBSBasicConfigInstance->getOutputVideoCodecId();
-    for(vector<REOBSCodecDesc>::const_iterator codecIter = vCodecDesc.begin(); codecIter!= vCodecDesc.end(); ++codecIter) {
-        REOBSCodecDesc item = (*codecIter);
-        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@(item.name) action:@selector(onChangeVideoCodec:) keyEquivalent:@(i).stringValue];
-        if(selCodecId != 0) {
-            selCodecIndex = i;
-        } else if(item.isDefaultCodec){
-            selCodecIndex = i;
-        }
-        
-        [self.videoCodecBtn.cell.menu addItem:menuItem];
-        i++;
-    }
-    if(selCodecIndex!=-1) {
-        [self.videoCodecBtn selectItemAtIndex:selCodecIndex];
-    }
-    self.selVideoCodecIndex = selCodecIndex;
-}
-
--(void)fillAudioCodecsCtrl:(vector<REOBSCodecDesc>&)aCodecDesc {
-    int i=0;
-    int selCodecIndex = -1;
-    int64_t selCodecId = REOBSBasicConfigInstance->getOutputVideoCodecId();
-    for(vector<REOBSCodecDesc>::const_iterator codecIter = aCodecDesc.begin(); codecIter!= aCodecDesc.end(); ++codecIter) {
-        REOBSCodecDesc item = (*codecIter);
-        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@(item.name) action:@selector(onChangeAudioCodec:) keyEquivalent:@(i).stringValue];
-        if(selCodecId != 0) {
-            selCodecIndex = i;
-        } else if(item.isDefaultCodec){
-            selCodecIndex = i;
-        }
-        [self.audioCodecBtn.cell.menu addItem:menuItem];
-        i++;
-    }
-    
-    if(selCodecIndex!=0) {
-        [self.audioCodecBtn selectItemAtIndex:selCodecIndex];
-    }
-    self.selAudioCodecIndex = selCodecIndex;
-}
-
--(void)changeFormat:(const REOBSFormatDesc&)newFormat {
-    [self.videoCodecBtn removeAllItems];
-    [self.audioCodecBtn removeAllItems];
-    self->vCodecDesc.clear();
-    self->aCodecDesc.clear();
-
-    int videoCodecIndex;
-    int audioCodecIndex;
-    REOBSManagerInstance->reloadCodecs(newFormat.desc, self->vCodecDesc, videoCodecIndex, self->aCodecDesc, audioCodecIndex);
-
-    //填充音视频控件值 TODO:step value
-    int videoBitrate = REOBSBasicConfigInstance->getOutputVideoBitrate();
-    [self.videoCodecBtn setTitle:@(videoBitrate).stringValue];
-    int gop = REOBSBasicConfigInstance->getOutputVideoGOPSize();
-    [self.vGOPBtn setTitle:@(gop).stringValue];
-    [self fillVideoCodecsCtrl:vCodecDesc];
-
-    const char* vCodecParams = REOBSBasicConfigInstance->getOutputVideoCodecParam();
-    [self.videoCodecParamTxt.cell setTitle:@(vCodecParams)];
-    
-    int audioBitrate = REOBSBasicConfigInstance->getOutputAudioBitrate();
-    [self.audioCodecBtn setTitle:@(audioBitrate).stringValue];
-    int audioMixes = REOBSBasicConfigInstance->getOutputAudioMixes();
-    [self.aCheckBtn1 setState:(audioMixes & (1 << 0)) ? NSControlStateValueOn : NSControlStateValueOff ];
-    [self.aCheckBtn2 setState:(audioMixes & (1 << 1)) ? NSControlStateValueOn : NSControlStateValueOff ];
-    [self.aCheckBtn3 setState:(audioMixes & (1 << 2)) ? NSControlStateValueOn : NSControlStateValueOff ];
-    [self.aCheckBtn4 setState:(audioMixes & (1 << 3)) ? NSControlStateValueOn : NSControlStateValueOff ];
-    [self.aCheckBtn5 setState:(audioMixes & (1 << 4)) ? NSControlStateValueOn : NSControlStateValueOff ];
-    [self.aCheckBtn6 setState:(audioMixes & (1 << 5)) ? NSControlStateValueOn : NSControlStateValueOff ];
-    
-    [self fillAudioCodecsCtrl:aCodecDesc];
-
-    const char* aCodecParams = REOBSBasicConfigInstance->getOutputAudioCodecParam();
-    [self.audioCodecParamTxt.cell setTitle:@(aCodecParams)];
-
-    //禁用/启用视频相关控件
-    [self.vBitrateBtn setEnabled:videoCodecIndex == -1 ? false : true];
-    [self.vGOPBtn setEnabled:videoCodecIndex == -1 ? false : true];
-    [self.videoCodecBtn setEnabled:videoCodecIndex == -1 ? false : true];
-    [self.videoCodecParamTxt setEnabled:videoCodecIndex == -1 ? false : true];
-
-    //禁用/启用音频相关控件
-    [self.aBitrateBtn setEnabled:audioCodecIndex == -1 ? false : true];
-    [self.aCheckBtn1 setEnabled:audioCodecIndex == -1 ? false : true];
-    [self.aCheckBtn2 setEnabled:audioCodecIndex == -1 ? false : true];
-    [self.aCheckBtn3 setEnabled:audioCodecIndex == -1 ? false : true];
-    [self.aCheckBtn4 setEnabled:audioCodecIndex == -1 ? false : true];
-    [self.aCheckBtn5 setEnabled:audioCodecIndex == -1 ? false : true];
-    [self.aCheckBtn6 setEnabled:audioCodecIndex == -1 ? false : true];
-    [self.audioCodecBtn setEnabled:audioCodecIndex == -1 ? false : true];
-    [self.audioCodecParamTxt setEnabled:audioCodecIndex == -1 ? false : true];
-}
-
--(void)loadData {
-    const char* url = REOBSBasicConfigInstance->getOutputURL();
-    
-    if(::strcmp(url, RMTP_URL) == 0 || url==NULL || ::strlen(url)==0) {
-        [self checkRTMP];
-    } else {
-        [self checkHLS];
-    }
-    
-    int lastSelIndex;
-    self->formats = &(REOBSManagerInstance->getFormats(lastSelIndex));
-    [self fillFormatsCtrl];
-
-    int formatsSize = formats->size();
-    if(formatsSize>0) {
-        if(lastSelIndex != -1 && lastSelIndex<formatsSize) {
-            [self.formatBtn selectItemAtIndex:lastSelIndex];
-        } else {
-            lastSelIndex = 0;
-            [self.formatBtn selectItemAtIndex:lastSelIndex];
-        }
-        const REOBSFormatDesc &selectFormat = (*formats)[lastSelIndex];
-        [self changeFormat:selectFormat];
-    } else {
-//        [self ctrlByNonFormat];
-    }
-    
-}
-
-- (void)checkHLS {
-    [self.hlsCheckBtn setState:NSControlStateValueOn];
-    [self.liveTxt.cell setTitle:@(HLS_URL)];
-    [self.rtmpCheckBtn setState:NSControlStateValueOff];
-}
-
-- (void)checkRTMP {
-    [self.rtmpCheckBtn setState:NSControlStateValueOn];
-    [self.liveTxt.cell setTitle:@(RMTP_URL)];
-    [self.hlsCheckBtn setState:NSControlStateValueOff];
-}
-
-- (void)onHLS:(NSButton*)hlsObj {
-    [self checkHLS];
-}
-
-- (void)onRTMP:(NSButton*)rtmpObj {
-    [self checkRTMP];
 }
 
 -(void)resetCtrl {
@@ -271,51 +88,328 @@ const char* RMTP_URL = "rtmp://47.93.202.254/rtmp/test"; //rtmp录像形式
     self.aCheckBtn1.tag = 1;
     [self.aCheckBtn1 setAction:@selector(onCheckBtn:)];
     [self.aCheckBtn2.cell setEnabled:TRUE];
-    self.aCheckBtn1.tag = 2;
-    [self.aCheckBtn1 setAction:@selector(onCheckBtn:)];
+    self.aCheckBtn2.tag = 2;
+    [self.aCheckBtn2 setAction:@selector(onCheckBtn:)];
     [self.aCheckBtn3.cell setEnabled:TRUE];
-    self.aCheckBtn1.tag = 3;
-    [self.aCheckBtn1 setAction:@selector(onCheckBtn:)];
+    self.aCheckBtn3.tag = 3;
+    [self.aCheckBtn3 setAction:@selector(onCheckBtn:)];
     [self.aCheckBtn4.cell setEnabled:TRUE];
-    self.aCheckBtn1.tag = 4;
-    [self.aCheckBtn1 setAction:@selector(onCheckBtn:)];
+    self.aCheckBtn4.tag = 4;
+    [self.aCheckBtn4 setAction:@selector(onCheckBtn:)];
     [self.aCheckBtn5.cell setEnabled:TRUE];
-    self.aCheckBtn1.tag = 5;
-    [self.aCheckBtn1 setAction:@selector(onCheckBtn:)];
+    self.aCheckBtn5.tag = 5;
+    [self.aCheckBtn5 setAction:@selector(onCheckBtn:)];
     [self.aCheckBtn6.cell setEnabled:TRUE];
-    self.aCheckBtn1.tag = 6;
-    [self.aCheckBtn1 setAction:@selector(onCheckBtn:)];
+    self.aCheckBtn6.tag = 6;
+    [self.aCheckBtn6 setAction:@selector(onCheckBtn:)];
 
     [self.audioCodecBtn removeAllItems];
     [self.audioCodecParamTxt.cell setTitle:@""];
+    
+    
+    //初始化数据
+//    FFURL=rtmp://47.93.202.254/hls/test
+//    FFFormat=hls
+//    FFFormatMimeType=
+//    FFExtension=m3u8
+//    FFVBitrate=128
+//    FFVGOPSize=90
+//    FFVEncoderId=27
+//    FFVEncoder=libx264
+//    FFVCustom=tune=zerolatency
+//    FFABitrate=96
+//    FFAudioMixes=0
+//    FFAEncoderId=86018
+//    FFAEncoder=aac
+//    FFACustom=
+    
+    [self checkRTMP];
+    const char* format = REOBSBasicConfigInstance->getOutputFormat();
+    NSMenuItem *formatMenuItem = [[NSMenuItem alloc] initWithTitle:format==nullptr ? @("hls") : @(format) action:nil keyEquivalent:@("0")];
+    if(format == nullptr) {
+        REOBSBasicConfigInstance->setOutputFormat("hls", nullptr, "m3u8");
+    }
+    [self.formatBtn.cell.menu addItem:formatMenuItem];
+    
+    NSInteger nVBitrate = REOBSBasicConfigInstance->getOutputVideoBitrate();
+    NSMenuItem *vBitrateMenuItem = [[NSMenuItem alloc] initWithTitle:nVBitrate==0 ? @("128") : @(nVBitrate).stringValue action:nil keyEquivalent:@("0")];
+    [self.vBitrateBtn.cell.menu addItem:vBitrateMenuItem];
+    
+    NSInteger nGOPSize = REOBSBasicConfigInstance->getOutputVideoGOPSize();
+    NSMenuItem *vGOPMenuItem = [[NSMenuItem alloc] initWithTitle:nGOPSize==0 ? @("90") : @(nGOPSize).stringValue action:nil keyEquivalent:@("0")];
+    [self.vGOPBtn.cell.menu addItem:vGOPMenuItem];
+
+    const char* vCodecName = REOBSBasicConfigInstance->getOutputVideoCodecName();
+    NSMenuItem *vCodecMenuItem = [[NSMenuItem alloc] initWithTitle:vCodecName==nullptr ? @("libx264") : @(vCodecName) action:nil keyEquivalent:@("0")];
+    if(vCodecName == nullptr) {
+        REOBSBasicConfigInstance->setOutputVideoCodec(27, "libx264");
+    }
+    [self.videoCodecBtn.cell.menu addItem:vCodecMenuItem];
+    
+    const char* vCodecParams = REOBSBasicConfigInstance->getOutputVideoCodecParam();
+    [self.videoCodecParamTxt.cell setTitle:vCodecParams==nullptr ? @"tune=zerolatency" : @(vCodecParams)];
+    NSInteger nABitrate = REOBSBasicConfigInstance->getOutputAudioBitrate();
+    NSMenuItem *aBitrateMenuItem = [[NSMenuItem alloc] initWithTitle:nABitrate==0 ? @("96") : @(nABitrate).stringValue action:nil keyEquivalent:@("0")];
+    [self.aBitrateBtn.cell.menu addItem:aBitrateMenuItem];
+
+    NSInteger audioMixes = REOBSBasicConfigInstance->getOutputAudioMixes();
+    [self.aCheckBtn1 setState:(audioMixes & (1 << 0)) ? NSControlStateValueOn : NSControlStateValueOff ];
+    [self.aCheckBtn2 setState:(audioMixes & (1 << 1)) ? NSControlStateValueOn : NSControlStateValueOff ];
+    [self.aCheckBtn3 setState:(audioMixes & (1 << 2)) ? NSControlStateValueOn : NSControlStateValueOff ];
+    [self.aCheckBtn4 setState:(audioMixes & (1 << 3)) ? NSControlStateValueOn : NSControlStateValueOff ];
+    [self.aCheckBtn5 setState:(audioMixes & (1 << 4)) ? NSControlStateValueOn : NSControlStateValueOff ];
+    [self.aCheckBtn6 setState:(audioMixes & (1 << 5)) ? NSControlStateValueOn : NSControlStateValueOff ];
+
+    const char* aCodecName = REOBSBasicConfigInstance->getOutputAudioCodecName();
+    NSMenuItem *aCodecMenuItem = [[NSMenuItem alloc] initWithTitle:aCodecName==nullptr ? @("aac") : @(aCodecName) action:nil keyEquivalent:@("0")];
+    if(aCodecName == nullptr) {
+        REOBSBasicConfigInstance->setOutputAudioCodec(86018, "aac");
+    }
+    [self.audioCodecBtn.cell.menu addItem:aCodecMenuItem];
+
+    const char* aCodecParams = REOBSBasicConfigInstance->getOutputAudioCodecParam();
+    [self.audioCodecParamTxt.cell setTitle:vCodecParams==nullptr ? @"" : @(aCodecParams)];
+}
+
+-(void)loadData {
+    const char* url = REOBSBasicConfigInstance->getOutputURL();
+    
+    if(url==NULL || astrcmpi(url, RMTP_URL) == 0) {
+        [self checkRTMP];
+    } else {
+        [self checkHLS];
+    }
+    
+    int lastSelIndex;
+    self->formats = &(REOBSManagerInstance->getFormats(lastSelIndex));
+    [self fillFormatsCtrl];
+
+    NSInteger formatsSize = formats->size();
+    if(formatsSize>0) {
+        if(lastSelIndex != -1 && lastSelIndex<formatsSize) {
+            [self.formatBtn selectItemAtIndex:lastSelIndex];
+        } else {
+            lastSelIndex = 0;
+            [self.formatBtn selectItemAtIndex:lastSelIndex];
+        }
+        const REOBSFormatDesc &selectFormat = (*formats)[lastSelIndex];
+        [self changeFormat:selectFormat];
+    } else {
+        [self disalbeSettingCtrl];
+    }
+}
+
+- (void)disalbeSettingCtrl {
+    [self.liveTxt.cell setEnabled:false];
+    
+    [self.hlsCheckBtn setEnabled:false];
+    [self.rtmpCheckBtn setEnabled:false];
+    
+    [self.formatBtn setEnabled:false];
+    [self.vBitrateBtn setEnabled:false];
+    [self.vGOPBtn setEnabled:false];
+    [self.videoCodecBtn setEnabled:false];
+    [self.videoCodecParamTxt setEnabled:false];
+    [self.aBitrateBtn setEnabled:false];
+    
+    [self.aCheckBtn1 setEnabled:false];
+    [self.aCheckBtn2 setEnabled:false];
+    [self.aCheckBtn3 setEnabled:false];
+    [self.aCheckBtn4 setEnabled:false];
+    [self.aCheckBtn5 setEnabled:false];
+    [self.aCheckBtn6 setEnabled:false];
+
+    [self.audioCodecBtn setEnabled:false];
+    [self.audioCodecParamTxt setEnabled:false];
+}
+
+-(void)changeFormat:(const REOBSFormatDesc&)newFormat {
+    [self.videoCodecBtn removeAllItems];
+    [self.audioCodecBtn removeAllItems];
+    self->vCodecDesc.clear();
+    self->aCodecDesc.clear();
+
+    int defaultVideoCodecIndex;
+    int defaultAudioCodecIndex;
+    REOBSManagerInstance->reloadCodecs(newFormat.desc, self->vCodecDesc, defaultVideoCodecIndex, self->aCodecDesc, defaultAudioCodecIndex);
+
+    //填充音视频控件值 TODO:step value
+    [self fillVideoCodecsCtrl:vCodecDesc];
+
+    [self fillAudioCodecsCtrl:aCodecDesc];
+
+
+    //禁用/启用视频相关控件
+    NSInteger userSelVideoId = REOBSBasicConfigInstance->getOutputVideoCodecId();
+    [self.vBitrateBtn setEnabled:defaultVideoCodecIndex == -1 && userSelVideoId==0 ? false : true];
+    [self.vGOPBtn setEnabled:defaultVideoCodecIndex == -1  && userSelVideoId==0 ? false : true];
+    [self.videoCodecBtn setEnabled:defaultVideoCodecIndex == -1  && userSelVideoId==0 ? false : true];
+    [self.videoCodecParamTxt setEnabled:defaultVideoCodecIndex == -1  && userSelVideoId==0 ? false : true];
+
+    //禁用/启用音频相关控件
+    NSInteger userSelAudioId = REOBSBasicConfigInstance->getOutputAudioCodecId();
+    [self.aBitrateBtn setEnabled:defaultAudioCodecIndex == -1 && userSelAudioId==0 ? false : true];
+    [self.aCheckBtn1 setEnabled:defaultAudioCodecIndex == -1 && userSelAudioId==0 ? false : true];
+    [self.aCheckBtn2 setEnabled:defaultAudioCodecIndex == -1 && userSelAudioId==0 ? false : true];
+    [self.aCheckBtn3 setEnabled:defaultAudioCodecIndex == -1 && userSelAudioId==0 ? false : true];
+    [self.aCheckBtn4 setEnabled:defaultAudioCodecIndex == -1 && userSelAudioId==0 ? false : true];
+    [self.aCheckBtn5 setEnabled:defaultAudioCodecIndex == -1 && userSelAudioId==0 ? false : true];
+    [self.aCheckBtn6 setEnabled:defaultAudioCodecIndex == -1 && userSelAudioId==0 ? false : true];
+    [self.audioCodecBtn setEnabled:defaultAudioCodecIndex == -1 && userSelAudioId==0  ? false : true];
+    [self.audioCodecParamTxt setEnabled:defaultAudioCodecIndex == -1 && userSelAudioId==0 ? false : true];
+}
+
+-(void)fillFormatsCtrl {
+    [self.formatBtn removeAllItems];
+    int i=0;
+    for(vector<REOBSFormatDesc>::const_iterator iter = formats->begin(); iter!= formats->end(); ++iter) {
+        REOBSFormatDesc item = (*iter);
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@(item.name) action:@selector(onChangeFormat:) keyEquivalent:@(i).stringValue];
+        [self.formatBtn.cell.menu addItem:menuItem];
+        i++;
+    }
+}
+
+-(void)fillVideoCodecsCtrl:(vector<REOBSCodecDesc>&)vCodecDesc {
+    int i=0;
+    int selCodecIndex = -1;
+    int64_t selCodecId = REOBSBasicConfigInstance->getOutputVideoCodecId();
+    for(vector<REOBSCodecDesc>::const_iterator codecIter = vCodecDesc.begin(); codecIter!= vCodecDesc.end(); ++codecIter) {
+        REOBSCodecDesc item = (*codecIter);
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@(item.name) action:@selector(onChangeVideoCodec:) keyEquivalent:@(i).stringValue];
+        if(selCodecId != 0) {
+            selCodecIndex = i;
+        } else if(item.defaultSelIndex != -1){
+            selCodecIndex = item.defaultSelIndex;
+        }
+        
+        [self.videoCodecBtn.cell.menu addItem:menuItem];
+        i++;
+    }
+    if(vCodecDesc.size() > 0) {
+        if(selCodecIndex == -1) {
+            selCodecIndex = 0;
+        }
+        [self.videoCodecBtn selectItemAtIndex:selCodecIndex];
+    }
+    self.selVideoCodecIndex = selCodecIndex;
+}
+
+-(void)fillAudioCodecsCtrl:(vector<REOBSCodecDesc>&)aCodecDesc {
+    int i=0;
+    int selCodecIndex = -1;
+    int64_t selCodecId = REOBSBasicConfigInstance->getOutputAudioCodecId();
+    for(vector<REOBSCodecDesc>::const_iterator codecIter = aCodecDesc.begin(); codecIter!= aCodecDesc.end(); ++codecIter) {
+        REOBSCodecDesc item = (*codecIter);
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@(item.name) action:@selector(onChangeAudioCodec:) keyEquivalent:@(i).stringValue];
+        if(selCodecId != 0) {
+            selCodecIndex = i;
+        } else if(item.defaultSelIndex != -1){
+            selCodecIndex = item.defaultSelIndex;
+        }
+        [self.audioCodecBtn.cell.menu addItem:menuItem];
+        i++;
+    }
+    if(aCodecDesc.size() > 0) {
+        if(selCodecIndex == -1) {
+            selCodecIndex = 0;
+        }
+        [self.audioCodecBtn selectItemAtIndex:selCodecIndex];
+    }
+    self.selAudioCodecIndex = selCodecIndex;
+}
+
+- (void)checkHLS {
+    [self.hlsCheckBtn setState:NSControlStateValueOn];
+    [self.liveTxt.cell setTitle:@(HLS_URL)];
+    [self.rtmpCheckBtn setState:NSControlStateValueOff];
+}
+
+- (void)checkRTMP {
+    [self.rtmpCheckBtn setState:NSControlStateValueOn];
+    [self.liveTxt.cell setTitle:@(RMTP_URL)];
+    [self.hlsCheckBtn setState:NSControlStateValueOff];
+}
+
+- (void)onChangeFormat:(NSObject*)format {
+    NSAssert([format isKindOfClass:[NSMenuItem class]], @"menu item is not a NSMenuItem type");
+    NSMenuItem *menuItem = (NSMenuItem*)format;
+    NSLog(@"onChangeFormat %@", menuItem.keyEquivalent);
+    if(menuItem.keyEquivalent.length > 0) {
+        const REOBSFormatDesc &formatDesc = (*formats)[menuItem.keyEquivalent.intValue];
+        [self changeFormat:formatDesc];
+    }
+}
+
+- (void)onChangeVideoCodec:(NSObject*)vCodec {
+    NSString* strIndex = (NSString*)(vCodec);
+    self.selVideoCodecIndex = strIndex.intValue;
+    [self.videoCodecBtn selectItemAtIndex:self.selVideoCodecIndex];
+    REOBSCodecDesc &selCodec = self->vCodecDesc[self.selVideoCodecIndex];
+    REOBSBasicConfigInstance->setOutputVideoCodec(selCodec.id, selCodec.name);
+}
+
+- (void)onChangeAudioCodec:(NSObject*)aCodec {
+    NSString* strIndex = (NSString*)(aCodec);
+    self.selAudioCodecIndex = strIndex.intValue;
+    [self.audioCodecBtn selectItemAtIndex:self.selAudioCodecIndex];
+    REOBSCodecDesc &selCodec = self->aCodecDesc[self.selAudioCodecIndex];
+    REOBSBasicConfigInstance->setOutputAudioCodec(selCodec.id, selCodec.name);
+}
+
+- (void)onCheckBtn:(NSButton*)obj {
+    NSButton *target = obj;
+    switch(target.tag) {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+            [obj setState: obj.state == NSControlStateValueOn ? NSControlStateValueOff : NSControlStateValueOn];
+            break;
+        default :
+            break;
+    }
+}
+
+- (void)onHLS:(NSButton*)hlsObj {
+    [self checkHLS];
+}
+
+- (void)onRTMP:(NSButton*)rtmpObj {
+    [self checkRTMP];
+}
+
+- (BOOL)isActive {
+    return _bPushStream || _bRecording;
 }
 
 - (IBAction)onConfirm:(id)sender {
+    //设置视频参数
     NSString *strURL = (NSString*)(self.liveTxt.cell.title);
     REOBSBasicConfigInstance->setOutputURL(strURL.UTF8String);
-    
     const struct ff_format_desc * format = REOBSManagerInstance->getCurFormatDesc();
-    REOBSBasicConfigInstance->setOutputFormat(format);
-    
+    const char *formatName = format ? ff_format_desc_name(format) : nullptr;
+    const char *formatMimeType = format ? ff_format_desc_mime_type(format) : nullptr;
+    const char *formatExtension = format ? ff_format_desc_extensions(format) : nullptr;
+    REOBSBasicConfigInstance->setOutputFormat(formatName, formatMimeType, formatExtension);
     NSString *strVBitrate = self.vBitrateBtn.title;
-    if(strVBitrate) {
-        REOBSBasicConfigInstance->setOutputVideoBitrate(strVBitrate.intValue);
-    }
+    REOBSBasicConfigInstance->setOutputVideoBitrate(strVBitrate.intValue);
     NSString *strVGOPSize = self.vGOPBtn.title;
-    if(strVGOPSize) {
-        REOBSBasicConfigInstance->setOutputVideoGOPSize(strVGOPSize.intValue);
+    REOBSBasicConfigInstance->setOutputVideoGOPSize(strVGOPSize.intValue);
+    
+    NSInteger vCodecSize = self->vCodecDesc.size();
+    if(_selVideoCodecIndex>=0 && vCodecSize>0 && _selVideoCodecIndex<vCodecSize) {
+        REOBSCodecDesc &desc = self->vCodecDesc[_selVideoCodecIndex];
+        REOBSBasicConfigInstance->setOutputVideoCodec(desc.id, desc.name);
     }
-    
-    
-//    REOBSBasicConfigInstance->setOutputVideoCodec(<#int codecId#>, <#const char *codecName#>)
-    
-
-
     NSString *strVCodecParam = self.videoCodecParamTxt.cell.title;
-    if(strVCodecParam) {
-        REOBSBasicConfigInstance->setOutputVideoCodecParam(strVCodecParam.UTF8String);
-    }
+    REOBSBasicConfigInstance->setOutputVideoCodecParam(strVCodecParam.UTF8String);
     
+    //设置音频参数
+    NSString *strBitrate = self.aBitrateBtn.cell.title;
+    REOBSBasicConfigInstance->setOutputAudioBitrate(strBitrate.intValue);
     int audioMixes = 0;
     if(self.aCheckBtn1.state == NSControlStateValueOn) {
         audioMixes += (1 << 0);
@@ -336,23 +430,15 @@ const char* RMTP_URL = "rtmp://47.93.202.254/rtmp/test"; //rtmp录像形式
         audioMixes += (1 << 5);
     }
     REOBSBasicConfigInstance->setOutputAudioMixes(audioMixes);
+    NSInteger aCodecSize = self->aCodecDesc.size();
+    if(_selAudioCodecIndex>=0 && aCodecSize>0 && _selAudioCodecIndex<aCodecSize) {
+        REOBSCodecDesc &desc = self->aCodecDesc[_selAudioCodecIndex];
+        REOBSBasicConfigInstance->setOutputAudioCodec(desc.id, desc.name);
+    }
+    NSString *strACodecParam = self.audioCodecParamTxt.cell.title;
+    REOBSBasicConfigInstance->setOutputAudioCodecParam(strACodecParam.UTF8String);
     
-    
-
-}
-
-
-
-//- (BOOL)menu:(NSMenu*)menu updateItem:(NSMenuItem*)item atIndex:(NSInteger)index shouldCancel:(BOOL)shouldCancel {
-//    NSLog(@"shouldCancel= %@", shouldCancel ? @"true" : @"false");
-//    return true;
-//}
-////- (void)menuDidClose:(NSMenu *)menu API_AVAILABLE(macos(10.5)) {
-////    NSLog(@"menuDidClose %@", menu);
-////}
-
-- (BOOL)isActive {
-    return _bPushStream || _bRecording;
+    REOBSBasicConfigInstance->saveCfg();
 }
 
 - (IBAction)onRecord:(id)sender {
@@ -404,10 +490,5 @@ const char* RMTP_URL = "rtmp://47.93.202.254/rtmp/test"; //rtmp录像形式
 -(void)windowWillClose:(NSNotification *)notification {
     REOBSManagerInstance->terminal();
 }
-
-
-
-
-
 
 @end

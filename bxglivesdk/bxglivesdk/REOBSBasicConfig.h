@@ -21,14 +21,15 @@ public:
     
     ///outputsChanged: 设置
     void setOutputURL(const char* outputURL);//FFURL
-    void setOutputFormat(const struct ff_format_desc* formatDesc);//FFFormat + FFFormatMimeType + FFExtension
-    void setOutputVideoCodec(const struct ff_codec_desc *codecDesc);//FFVEncoder + FFVEncoderId
+    void setOutputFormat(const char* format, const char* mimeType, const char* extension);//FFFormat + FFFormatMimeType + FFExtension
+    void setOutputVideoCodec(int codecId, const char *codecName);//FFVEncoder + FFVEncoderId
     void setOutputVideoBitrate(int64_t videoBitrate);//FFVBitrate
     void setOutputVideoGOPSize(int64_t gopSize);//FFVGOPSize
+    
     /// 设置视频编码参数
     /// @param params 参数 key1=value1&key2=value2 格式
     void setOutputVideoCodecParam(const char* params);//FFVCustom
-    void setOutputAudioCodec(const struct ff_codec_desc *codecDesc);//FFAEncoder + FFAEncoderId
+    void setOutputAudioCodec(int codecId, const char *codecName);//FFAEncoder + FFAEncoderId
     void setOutputAudioBitrate(int64_t audioBitrate);//FFABitrate
     void setOutputAudioMixes(int64_t audioMixes);//FFAudioMixes
     /// 设置音频编码参数
@@ -58,7 +59,7 @@ public:
 private:
     REOBSBasicConfig();
     bool _initConfig();
-//    bool _initBasicConfigDefaults();
+    bool _initBasicConfigDefaults();
 
     void _clearChange() {
         outputsChanged = false;

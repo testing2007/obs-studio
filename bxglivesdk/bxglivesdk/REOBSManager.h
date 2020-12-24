@@ -58,7 +58,9 @@ public:
 private:
     void _initAV();
     void _createDisplay(id view);
-    
+    bool _createAudioCodec();
+    bool _createVideoCodec();
+    void _setupFFmpeg();
     
     /// 载入平台支持的容器格式
     int _loadFormats();

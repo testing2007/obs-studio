@@ -18,7 +18,6 @@
                 <outlet property="audioCell" destination="JgR-gb-cRP" id="A7J-dK-3vB"/>
                 <outlet property="audioCodecBtn" destination="Sp6-Qb-lja" id="yEg-bq-SbZ"/>
                 <outlet property="audioCodecParamTxt" destination="I6B-pw-Crg" id="S6o-92-Xib"/>
-                <outlet property="btnPushStream" destination="JLT-Ea-G8I" id="bEe-wA-EHf"/>
                 <outlet property="btnRecord" destination="phF-d1-T4v" id="Ixk-T1-nLN"/>
                 <outlet property="contentView" destination="bzF-qm-G9G" id="YWD-xU-P9W"/>
                 <outlet property="cpAddrBtn" destination="pAV-PV-NMw" id="m5c-at-FZD"/>
@@ -59,27 +58,6 @@
                                         <action selector="onRecord:" target="-2" id="K1w-dA-lz1"/>
                                     </connections>
                                 </buttonCell>
-                            </button>
-                        </subviews>
-                    </view>
-                </box>
-                <box fixedFrame="YES" title="推流" translatesAutoresizingMaskIntoConstraints="NO" id="6uj-4c-rgg">
-                    <rect key="frame" x="25" y="9" width="136" height="114"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" id="sXX-xm-T1a">
-                        <rect key="frame" x="3" y="3" width="130" height="96"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button verticalHuggingPriority="750" id="JLT-Ea-G8I" userLabel="recordBtn">
-                                <rect key="frame" x="14" y="2" width="94" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="开始推流" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EsG-sV-dHS">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="onStreamRecord:" target="-2" id="281-hx-mIm"/>
-                                </connections>
                             </button>
                         </subviews>
                     </view>
@@ -355,20 +333,12 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4mM-RQ-yf2">
-                                <rect key="frame" x="359" y="10" width="67" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NRG-dd-zgd">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WwY-YK-hfR">
-                                <rect key="frame" x="442" y="10" width="67" height="32"/>
+                                <rect key="frame" x="432" y="10" width="88" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="确定" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K05-wn-R2p">
+                                <buttonCell key="cell" type="push" title="保存参数" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K05-wn-R2p">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="onConfirm:" target="-2" id="Mi2-J1-tBI"/>
@@ -391,7 +361,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </customView>
             </subviews>
-            <point key="canvasLocation" x="244.5" y="242"/>
+            <point key="canvasLocation" x="-45" y="209"/>
         </customView>
     </objects>
 </document>

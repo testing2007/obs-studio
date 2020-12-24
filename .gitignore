@@ -42,7 +42,7 @@
 #*.xcodeproj/
 /build/**/xcshareddata/
 /build/**/xcuserdata/
-/*.xcworkspace/xcuserdata/
+*.xcworkspace/xcuserdata/
 
 #clion
 .idea/

@@ -17,6 +17,7 @@
 #include "libff/ff-util.h"
 #include "libobs/util/util.hpp"
 #include "libobs/util/config-file.h"
+#include "libobs/util/dstr.h"
 
 using namespace std;
 
@@ -37,26 +38,27 @@ struct REOBSFormatDesc {
 
     bool operator==(const REOBSFormatDesc &f) const
     {
-        if (strcmp(name, f.name) != 0)
+        if (astrcmpi(name, f.name) != 0)
             return false;
-        return strcmp(mimeType, f.mimeType) == 0 ? true : false;
+        return astrcmpi(mimeType, f.mimeType) == 0 ? true : false;
     }
 };
 
 struct REOBSCodecDesc {
     const char *name = nullptr;
     int id = 0;
-    bool isDefaultCodec = false;//对应format的codec是否是默认的
+    int defaultSelIndex = -1;//对应format的codec是否是默认的
     const ff_codec_desc *desc = nullptr;
 
     inline REOBSCodecDesc() = default;
-    inline REOBSCodecDesc(const char *name, int id, bool isDefaultCodec=false, const ff_codec_desc *desc=nullptr) : name(name), id(id), isDefaultCodec(isDefaultCodec), desc(desc) {}
+    inline REOBSCodecDesc(const char *name, int id, const int defaultSelIndex=-1, const ff_codec_desc *desc=nullptr) : name(name), id(id), defaultSelIndex(defaultSelIndex), desc(desc) {}
 
     bool operator==(const REOBSCodecDesc &codecDesc) const
     {
-        if (id != codecDesc.id)
+        if (id != codecDesc.id || defaultSelIndex != codecDesc.defaultSelIndex)
             return false;
-        return strcmp(name, codecDesc.name)==0 ? true : false;
+        
+        return astrcmpi(name, codecDesc.name)==0 ? true : false;
     }
 };
 

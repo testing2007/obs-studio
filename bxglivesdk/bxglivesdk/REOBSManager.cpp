@@ -122,31 +122,16 @@ void REOBSManager::setContentView(id view) {
             obs_render_main_texture_src_color_only();
             },
             nullptr);
-
-        //录制视频编码器
-        h264Recording = obs_video_encoder_create("obs_x264", "video_h264_recording", nullptr, nullptr);
-        if (!h264Recording){
-            throw "Failed to create h264 recording encoder (simple output)";
-        }
-        obs_encoder_release(h264Recording);
-        //录制音频编码器
-        aacRecording = obs_audio_encoder_create("CoreAudio_AAC", "audio_aac_recording", nullptr, 0, nullptr);
-        if(!aacRecording) {
-            throw "Failed to create aacRecording output";
-        }
-        obs_encoder_release(aacRecording);
-
-        //将元素链路关联起来
+        //将预览链路关联起来
         obs_scene_add(scene, source);
         obs_set_output_source(0, obs_scene_get_source(scene)); //set the scene as the primary draw source and go
         
-        obs_encoder_set_video(h264Recording, obs_get_video());
-        obs_encoder_set_audio(aacRecording, obs_get_audio());
-        
-//        obs_output_set_audio_encoder(streamOutput, streamAudioEnc, 0);
-//        obs_encoder_set_scaled_size(h264Streaming, cx, cy);
-//        obs_encoder_set_video(h264Streaming, obs_get_video());
-
+        if(!_createVideoCodec()) {
+            throw "fail to create video codec";
+        }
+        if(!_createAudioCodec()) {
+            throw "fail to create audio codec";
+        }        
     } catch (char const *error) {
         printf("%s\n", error);
         this->terminal();
@@ -160,10 +145,53 @@ void REOBSManager::terminal() {
     printf("Number of memory leaks: %lu", bnum_allocs());
 }
 
+bool REOBSManager::_createVideoCodec() {
+    //录制视频编码器
+    if(h264Recording == nullptr) {
+        h264Recording = obs_video_encoder_create("obs_x264", "video encoder", nullptr, nullptr);//"obs_x264"
+        if (!h264Recording){
+            blog(LOG_ERROR, "fail to create obs_x264 video encoder");
+            return false;
+        }
+        obs_encoder_release(h264Recording);
+
+        obs_encoder_set_video(h264Recording, obs_get_video());
+    }
+    return true;
+}
+
+bool REOBSManager::_createAudioCodec() {
+    if(aacRecording == nullptr) {
+        //录制音频编码器
+        aacRecording = obs_audio_encoder_create("CoreAudio_AAC", "audio encoder", nullptr, 0, nullptr);//"CoreAudio_AAC"
+        if(!aacRecording) {
+            blog(LOG_ERROR, "fail to create CoreAudio_AAC audio encoder");
+            return false;
+        }
+        obs_encoder_release(aacRecording);
+
+        //录制链路
+        obs_encoder_set_audio(aacRecording, obs_get_audio());
+    }
+    return true;
+}
+
 void REOBSManager::startRecord() {
     if(fileOutput == nullptr) {
         // simple: 本地文件输出 对应 id = "ffmpeg_muxer"
         // advance:       url 对应 id = "ffmpeg_output"
+        
+        fileOutput = obs_output_create("ffmpeg_output", "adv_ffmpeg_output", nullptr, nullptr);
+        if (!fileOutput)
+            throw "Failed to create recording FFmpeg output "
+                  "(advanced output)";
+        obs_output_release(fileOutput);
+        
+        
+        obs_output_set_video_encoder(fileOutput, h264Recording);
+        obs_output_set_audio_encoder(fileOutput, aacRecording, 0);
+        
+        /*录制本地路径
         fileOutput = obs_output_create("ffmpeg_muxer", "simple_file_output", nullptr, nullptr);
         if (!fileOutput) {
             throw "Failed to create recording FFmpeg output "
@@ -176,16 +204,70 @@ void REOBSManager::startRecord() {
         obs_data_set_string(video_settings, "path", strPath);
         obs_output_update(fileOutput, video_settings);
         obs_data_release(video_settings);
-        
-        // 本地文件输出
         obs_output_set_video_encoder(fileOutput, h264Recording);
         obs_output_set_audio_encoder(fileOutput, aacRecording, 0);
         obs_output_set_media(fileOutput, obs_get_video(), obs_get_audio());
+        //*/
     }
     
+    _setupFFmpeg();
+    
     if (!obs_output_start(fileOutput)) {
-        printf("fail to obs_output_start");
+        blog(LOG_ERROR, "fail to obs_output_start");
     }
+}
+
+void REOBSManager::_setupFFmpeg()
+{
+    const char *url = REOBSBasicConfigInstance->getOutputURL();
+    int vBitrate = REOBSBasicConfigInstance->getOutputVideoBitrate();
+    int gopSize = REOBSBasicConfigInstance->getOutputVideoGOPSize();
+//    bool rescale = REOBSBasicConfigInstance-> "FFRescale");
+//    const char *rescaleRes =
+//        config_get_string(main->Config(), "AdvOut", "FFRescaleRes");
+    const char *formatName = REOBSBasicConfigInstance->getOutputFormat();
+    const char *mimeType = REOBSBasicConfigInstance->getOutputFormatMimeType();
+//    const char *muxCustom =REOBSBasicConfigInstance-> "FFMCustom");
+    const char *vEncoder = REOBSBasicConfigInstance->getOutputVideoCodecName();// "FFVEncoder");
+    int vEncoderId = REOBSBasicConfigInstance->getOutputVideoCodecId();// "FFVEncoderId");
+    const char *vEncCustom = REOBSBasicConfigInstance->getOutputVideoCodecParam(); // "FFVCustom");
+    int aBitrate = REOBSBasicConfigInstance->getOutputAudioBitrate(); // "FFABitrate");
+    int aMixes = REOBSBasicConfigInstance->getOutputAudioMixes(); // "FFAudioMixes");
+    const char *aEncoder = REOBSBasicConfigInstance->getOutputAudioCodecName();// "FFAEncoder");
+    int aEncoderId = REOBSBasicConfigInstance->getOutputAudioCodecId(); // "FFAEncoderId");
+    const char *aEncCustom = REOBSBasicConfigInstance->getOutputAudioCodecParam(); // "FFACustom");
+    obs_data_t *settings = obs_data_create();
+
+    obs_data_set_string(settings, "url", url);
+    obs_data_set_string(settings, "format_name", formatName);
+    obs_data_set_string(settings, "format_mime_type", mimeType);
+//    obs_data_set_string(settings, "muxer_settings", muxCustom);
+    obs_data_set_int(settings, "gop_size", gopSize);
+    obs_data_set_int(settings, "video_bitrate", vBitrate);
+    obs_data_set_string(settings, "video_encoder", vEncoder);
+    obs_data_set_int(settings, "video_encoder_id", vEncoderId);
+    obs_data_set_string(settings, "video_settings", vEncCustom);
+    obs_data_set_int(settings, "audio_bitrate", aBitrate);
+    obs_data_set_string(settings, "audio_encoder", aEncoder);
+    obs_data_set_int(settings, "audio_encoder_id", aEncoderId);
+    obs_data_set_string(settings, "audio_settings", aEncCustom);
+ 
+//    if (rescale && rescaleRes && *rescaleRes) {
+//        int width;
+//        int height;
+//        int val = sscanf(rescaleRes, "%dx%d", &width, &height);
+//
+//        if (val == 2 && width && height) {
+//            obs_data_set_int(settings, "scale_width", width);
+//            obs_data_set_int(settings, "scale_height", height);
+//        }
+//    }
+
+    obs_output_set_mixers(fileOutput, aMixes);
+    obs_output_set_media(fileOutput, obs_get_video(), obs_get_audio());
+    obs_output_update(fileOutput, settings);
+
+    obs_data_release(settings);
 }
 
 void REOBSManager::stopRecord() {
@@ -216,7 +298,7 @@ void REOBSManager::startPushStream() {
         obs_output_set_service(streamOutput, streamService);
     }
     if (!obs_output_start(streamOutput)) {
-        printf("fail to obs_output_start");
+        blog(LOG_ERROR, "fail to obs_output_start");
     }
 }
 
@@ -231,6 +313,8 @@ void REOBSManager::reloadCodecs(const ff_format_desc *formatDesc,
                                 OUT int& selAudioCodecIndex){
     vCodecDesc.clear();
     aCodecDesc.clear();
+    selVideoCodecIndex = -1;
+    selAudioCodecIndex = -1;
     
     curFormatDesc = formatDesc;
     
@@ -287,10 +371,10 @@ void REOBSManager::_updateDefaultCodec(vector<REOBSCodecDesc> &codecDesc, const 
         REOBSCodecDesc &rcd = codecDesc[existingIdx];
         rcd.name = cd.name;
         selCodecIndex = existingIdx;
-        rcd.isDefaultCodec = true;
+        rcd.defaultSelIndex = existingIdx;
     } else {
         codecDesc.push_back(cd);
-        selCodecIndex = -1;
+        selCodecIndex = 0;
     }
 }
 
@@ -315,7 +399,7 @@ REOBSCodecDesc REOBSManager::_getDefaultCodecDesc(const ff_format_desc *formatDe
         return REOBSCodecDesc();
     }
     
-    return REOBSCodecDesc(ff_format_desc_get_default_name(formatDesc, codecType), id, false);
+    return REOBSCodecDesc(ff_format_desc_get_default_name(formatDesc, codecType), id, 0);
 }
 
 int REOBSManager::_loadFormats()
@@ -346,7 +430,7 @@ int REOBSManager::_loadFormats()
 //            ui->advOutFFFormat->addItem(
 //                itemText, QVariant::fromValue(formatDesc));
 //        }
-        
+//        blog(LOG_INFO, "##format name=%s, index=%ld", formatDesc.name, index);
         if(selFormatDesc == formatDesc) {
             lastSelIndex = index;
         }

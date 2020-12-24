@@ -22,31 +22,25 @@ void REOBSBasicConfig::setOutputURL(const char* outputURL) {
     outputsChanged = true;
 }
 
-void REOBSBasicConfig::setOutputFormat(const struct ff_format_desc* formatDesc) {
-        if(formatDesc != nullptr) {
-            config_set_string(basicConfig, "AdvOut", "FFFormat", ff_format_desc_name(formatDesc));
-            config_set_string(basicConfig, "AdvOut", "FFFormatMimeType", ff_format_desc_mime_type(formatDesc));
-            const char *ext = ff_format_desc_extensions(formatDesc);
-            string extStr = ext ? ext : "";
+void REOBSBasicConfig::setOutputFormat(const char* format, const char* mimeType, const char* extension) {
+        config_set_string(basicConfig, "AdvOut", "FFFormat", format);
+        config_set_string(basicConfig, "AdvOut", "FFFormatMimeType", mimeType);
+        const char *ext = extension;
+        string extStr = ext ? ext : "";
 
-            char *comma = strchr(&extStr[0], ',');
-            if (comma)
-                *comma = 0;
-            config_set_string(basicConfig, "AdvOut", "FFExtension", extStr.c_str());// FFExtension 与 RecFormat 相对， 表示输出的容器格式；
-        } else {
-            config_set_string(basicConfig, "AdvOut", "FFFormat", nullptr);
-            config_set_string(basicConfig, "AdvOut", "FFFormatMimeType", nullptr);
-            config_remove_value(basicConfig, "AdvOut", "FFExtension");
-        }
+        char *comma = strchr(&extStr[0], ',');
+        if (comma)
+            *comma = 0;
+        config_set_string(basicConfig, "AdvOut", "FFExtension", extStr.c_str());// FFExtension 与 RecFormat 相对， 表示输出的容器格式；
+
         outputsChanged = true;
 }
 
-void REOBSBasicConfig::setOutputVideoCodec(const struct ff_codec_desc *codecDesc) {
-        if(codecDesc != nullptr) {
-            int encoderId = ff_codec_desc_id(codecDesc);
-            config_set_int(basicConfig, "AdvOut", "FFVEncoderId", encoderId);
-            if (encoderId != 0)
-                config_set_string(basicConfig, "AdvOut", "FFVEncoder", ff_codec_desc_name(codecDesc));
+void REOBSBasicConfig::setOutputVideoCodec(int codecId, const char *codecName) {
+        if(codecName != nullptr) {
+            config_set_int(basicConfig, "AdvOut", "FFVEncoderId", codecId);
+            if (codecId != 0)
+                config_set_string(basicConfig, "AdvOut", "FFVEncoder", codecName);
             else
                 config_set_string(basicConfig, "AdvOut", "FFVEncoder", nullptr);
 
@@ -69,12 +63,11 @@ void REOBSBasicConfig::setOutputVideoCodecParam(const char* params) {
     outputsChanged = true;
 }
 
-void REOBSBasicConfig::setOutputAudioCodec(const struct ff_codec_desc *codecDesc) {
-    if(codecDesc != nullptr) {
-        int encoderId = ff_codec_desc_id(codecDesc);
-        config_set_int(basicConfig, "AdvOut", "FFAEncoderId", encoderId);
-        if (encoderId != 0)
-            config_set_string(basicConfig, "AdvOut", "FFAEncoder", ff_codec_desc_name(codecDesc));
+void REOBSBasicConfig::setOutputAudioCodec(int codecId, const char *codecName) {
+    if(codecName != nullptr) {
+        config_set_int(basicConfig, "AdvOut", "FFAEncoderId", codecId);
+        if (codecId != 0)
+            config_set_string(basicConfig, "AdvOut", "FFAEncoder", codecName);
         else
             config_set_string(basicConfig, "AdvOut", "FFAEncoder", nullptr);
 
@@ -99,7 +92,6 @@ void REOBSBasicConfig::setOutputAudioMixes(int64_t audioMixes) {
 
 void REOBSBasicConfig::saveCfg() {
     if(outputsChanged) {
-//        config_save(basicConfig);
         config_save_safe(basicConfig, "tmp", nullptr);
 
         _clearChange();
@@ -108,27 +100,27 @@ void REOBSBasicConfig::saveCfg() {
 
 const char* REOBSBasicConfig::getOutputURL() {
     const char* ret = config_get_string(basicConfig, "AdvOut", "FFURL");
-    return ret == nullptr ? "" : ret;
+    return ret;
 }
 
 const char* REOBSBasicConfig::getOutputFormat() {
     const char* ret = config_get_string(basicConfig, "AdvOut", "FFFormat");
-    return ret == nullptr ? "" : ret;
+    return ret;
 }
 
 const char* REOBSBasicConfig::getOutputFormatMimeType() {
     const char* ret = config_get_string(basicConfig, "AdvOut", "FFFormatMimeType");
-    return ret == nullptr ? "" : ret;
+    return ret;
 }
 
 const char* REOBSBasicConfig::getOutputFormatExtension() {
     const char* ret = config_get_string(basicConfig, "AdvOut", "FFExtension");
-    return ret == nullptr ? "" : ret;
+    return ret;
 }
 
 const char* REOBSBasicConfig::getOutputVideoCodecName()  {
     const char* ret = config_get_string(basicConfig, "AdvOut", "FFVEncoder");
-    return ret == nullptr ? "" : ret;
+    return ret;
 }
 
 int64_t REOBSBasicConfig::getOutputVideoCodecId() {
@@ -146,12 +138,12 @@ int64_t REOBSBasicConfig::getOutputVideoGOPSize() {
 
 const char* REOBSBasicConfig::getOutputVideoCodecParam() {
     const char* ret = config_get_string(basicConfig, "AdvOut", "FFVCustom");
-    return ret == nullptr ? "" : ret;
+    return ret;
 }
 
 const char* REOBSBasicConfig::getOutputAudioCodecName() {
     const char* ret = config_get_string(basicConfig, "AdvOut", "FFAEncoder");
-    return ret == nullptr ? "" : ret;
+    return ret;
 }
 
 int64_t REOBSBasicConfig::getOutputAudioCodecId() {
@@ -160,7 +152,7 @@ int64_t REOBSBasicConfig::getOutputAudioCodecId() {
 
 const char* REOBSBasicConfig::getOutputAudioCodecParam() {
     const char* ret = config_get_string(basicConfig, "AdvOut", "FFACustom");
-    return ret == nullptr ? "" : ret;
+    return ret;
 }
 
 int64_t REOBSBasicConfig::getOutputAudioBitrate() {
@@ -189,15 +181,9 @@ bool REOBSBasicConfig::_initConfig() {
     char path[512];
     sprintf(path, "%s/%s", dirPath, BASIC_CONFIG_NAME);
 
-//    if(!os_file_exists(path)) {
-//
-//        if(!basicConfig) {
-//            return false;
-//        }
-//    } else {
-//        return true;
-//    }
-    basicConfig = config_create(path);
+    if(!os_file_exists(path)) {
+        basicConfig = config_create(path);
+    }
     int code = config_open(&basicConfig, path, CONFIG_OPEN_ALWAYS);
     if (code != CONFIG_SUCCESS) {
         blog(LOG_ERROR, "fail to open basic.ini:%d", code);
@@ -205,7 +191,7 @@ bool REOBSBasicConfig::_initConfig() {
     }
  
 
-//    _initBasicConfigDefaults();
+    _initBasicConfigDefaults();
 
     return true;
 }
@@ -213,6 +199,41 @@ bool REOBSBasicConfig::_initConfig() {
 static const double scaled_vals[] = {1.0,         1.25, (1.0 / 0.75), 1.5,
                      (1.0 / 0.6), 1.75, 2.0,          2.25,
                      2.5,         2.75, 3.0,          0.0};
+
+bool REOBSBasicConfig::_initBasicConfigDefaults() {
+    //    FFURL=rtmp://47.93.202.254/hls/test
+    //    FFFormat=hls
+    //    FFFormatMimeType=
+    //    FFExtension=m3u8
+    //    FFVBitrate=128
+    //    FFVGOPSize=90
+    //    FFVEncoderId=27
+    //    FFVEncoder=libx264
+    //    FFVCustom=tune=zerolatency
+    //    FFABitrate=96
+    //    FFAudioMixes=0
+    //    FFAEncoderId=86018
+    //    FFAEncoder=aac
+    //    FFACustom=
+        
+    config_set_default_string(basicConfig, "AdvOut", "FFURL", "rtmp://47.93.202.254/hls/test");
+    config_set_default_string(basicConfig, "AdvOut", "FFFormat", "hls");
+//    config_get_string(basicConfig, "AdvOut", "FFormat)
+    config_set_default_string(basicConfig, "AdvOut", "FFFormatMimeType", nullptr);
+    config_set_default_string(basicConfig, "AdvOut", "FFExtension", "m3u8");
+    config_set_default_int(basicConfig, "AdvOut", "FFVBitrate", 128);
+    config_set_default_int(basicConfig, "AdvOut", "FFVGOPSize", 90);
+    config_set_default_int(basicConfig, "AdvOut", "FFVEncoderId", 27);
+    config_set_default_string(basicConfig, "AdvOut", "FFVEncoder", "libx264");
+    config_set_default_string(basicConfig, "AdvOut", "FFVCustom", "tune=zerolatency");
+    config_set_default_int(basicConfig, "AdvOut", "FFABitrate", 96);
+    config_set_default_int(basicConfig, "AdvOut", "FFAudioMixes", 1);
+    config_set_default_int(basicConfig, "AdvOut", "FFAEncoderId", 86018);
+    config_set_default_string(basicConfig, "AdvOut", "FFAEncoder", "aac");
+    config_set_default_string(basicConfig, "AdvOut", "FFACustom", nullptr);
+
+    return true;
+}
 
 //bool REOBSBasicConfig::_initBasicConfigDefaults() {
 //    uint32_t cx = 1920;
