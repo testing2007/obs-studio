@@ -9,8 +9,8 @@
 #import "REOBS.h"
 
 const char* HLS_URL = "rtmp://47.93.202.254/rtmp"; //m3u8/ts 网页查看， test 为密钥
-//const char* RMTP_URL = "rtmp://47.93.202.254/rtmp/test"; //rtmp录像形式
-const char* RMTP_URL = "rtmp://47.93.202.254/hls/test"; //rtmp录像形式
+//const char* RMTP_URL = "rtmp://47.93.202.254/hls/test"; //rtmp录像形式
+const char* RMTP_URL = "rtmp://localhost/hls/test"; //rtmp录像形式
 
 @interface REOBSMainVC ()<NSMenuDelegate> {
     const vector<REOBSFormatDesc> *formats;
@@ -176,6 +176,9 @@ const char* RMTP_URL = "rtmp://47.93.202.254/hls/test"; //rtmp录像形式
     
     if(url==NULL || astrcmpi(url, RMTP_URL) == 0) {
         [self checkRTMP];
+        if(url==NULL) {
+            REOBSBasicConfigInstance->setOutputURL(RMTP_URL);
+        }
     } else {
         [self checkHLS];
     }

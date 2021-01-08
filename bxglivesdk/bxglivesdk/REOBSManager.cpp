@@ -136,7 +136,6 @@ void REOBSManager::setContentView(id view) {
         printf("%s\n", error);
         this->terminal();
     }
-//    OBSBasicSettings setting;
 }
 
 void REOBSManager::terminal() {
@@ -148,7 +147,7 @@ void REOBSManager::terminal() {
 bool REOBSManager::_createVideoCodec() {
     //录制视频编码器
     if(h264Recording == nullptr) {
-        h264Recording = obs_video_encoder_create("obs_x264", "video encoder", nullptr, nullptr);//"obs_x264"
+        h264Recording = obs_video_encoder_create("obs_x264", "video encoder", nullptr, nullptr);
         if (!h264Recording){
             blog(LOG_ERROR, "fail to create obs_x264 video encoder");
             return false;
@@ -163,7 +162,7 @@ bool REOBSManager::_createVideoCodec() {
 bool REOBSManager::_createAudioCodec() {
     if(aacRecording == nullptr) {
         //录制音频编码器
-        aacRecording = obs_audio_encoder_create("CoreAudio_AAC", "audio encoder", nullptr, 0, nullptr);//"CoreAudio_AAC"
+        aacRecording = obs_audio_encoder_create("CoreAudio_AAC", "audio encoder", nullptr, 0, nullptr);
         if(!aacRecording) {
             blog(LOG_ERROR, "fail to create CoreAudio_AAC audio encoder");
             return false;
@@ -180,7 +179,6 @@ void REOBSManager::startRecord() {
     if(fileOutput == nullptr) {
         // simple: 本地文件输出 对应 id = "ffmpeg_muxer"
         // advance:       url 对应 id = "ffmpeg_output"
-        
         fileOutput = obs_output_create("ffmpeg_output", "adv_ffmpeg_output", nullptr, nullptr);
         if (!fileOutput)
             throw "Failed to create recording FFmpeg output "
@@ -220,8 +218,8 @@ void REOBSManager::startRecord() {
 void REOBSManager::_setupFFmpeg()
 {
     const char *url = REOBSBasicConfigInstance->getOutputURL();
-    int vBitrate = REOBSBasicConfigInstance->getOutputVideoBitrate();
-    int gopSize = REOBSBasicConfigInstance->getOutputVideoGOPSize();
+    int64_t vBitrate = REOBSBasicConfigInstance->getOutputVideoBitrate();
+    int64_t gopSize = REOBSBasicConfigInstance->getOutputVideoGOPSize();
 //    bool rescale = REOBSBasicConfigInstance-> "FFRescale");
 //    const char *rescaleRes =
 //        config_get_string(main->Config(), "AdvOut", "FFRescaleRes");
@@ -229,12 +227,12 @@ void REOBSManager::_setupFFmpeg()
     const char *mimeType = REOBSBasicConfigInstance->getOutputFormatMimeType();
 //    const char *muxCustom =REOBSBasicConfigInstance-> "FFMCustom");
     const char *vEncoder = REOBSBasicConfigInstance->getOutputVideoCodecName();// "FFVEncoder");
-    int vEncoderId = REOBSBasicConfigInstance->getOutputVideoCodecId();// "FFVEncoderId");
+    int64_t vEncoderId = REOBSBasicConfigInstance->getOutputVideoCodecId();// "FFVEncoderId");
     const char *vEncCustom = REOBSBasicConfigInstance->getOutputVideoCodecParam(); // "FFVCustom");
-    int aBitrate = REOBSBasicConfigInstance->getOutputAudioBitrate(); // "FFABitrate");
-    int aMixes = REOBSBasicConfigInstance->getOutputAudioMixes(); // "FFAudioMixes");
+    int64_t aBitrate = REOBSBasicConfigInstance->getOutputAudioBitrate(); // "FFABitrate");
+    int64_t aMixes = REOBSBasicConfigInstance->getOutputAudioMixes(); // "FFAudioMixes");
     const char *aEncoder = REOBSBasicConfigInstance->getOutputAudioCodecName();// "FFAEncoder");
-    int aEncoderId = REOBSBasicConfigInstance->getOutputAudioCodecId(); // "FFAEncoderId");
+    int64_t aEncoderId = REOBSBasicConfigInstance->getOutputAudioCodecId(); // "FFAEncoderId");
     const char *aEncCustom = REOBSBasicConfigInstance->getOutputAudioCodecParam(); // "FFACustom");
     obs_data_t *settings = obs_data_create();
 
@@ -305,7 +303,7 @@ void REOBSManager::startPushStream() {
 void REOBSManager::stopPushStream() {
     obs_output_stop(streamOutput);
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void REOBSManager::reloadCodecs(const ff_format_desc *formatDesc,
                                 OUT vector<REOBSCodecDesc> &vCodecDesc,
                                 OUT int& selVideoCodecIndex,
@@ -419,8 +417,6 @@ int REOBSManager::_loadFormats()
         bool video = ff_format_desc_has_video(format);
         REOBSFormatDesc formatDesc(ff_format_desc_name(format),
                       ff_format_desc_mime_type(format), format);
-        
-        
 //        if (audio || video) {
 //            QString itemText(ff_format_desc_name(format));
 //            if (audio ^ video)

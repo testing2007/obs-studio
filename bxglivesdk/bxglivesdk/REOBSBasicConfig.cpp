@@ -216,7 +216,7 @@ bool REOBSBasicConfig::_initBasicConfigDefaults() {
     //    FFAEncoder=aac
     //    FFACustom=
         
-    config_set_default_string(basicConfig, "AdvOut", "FFURL", "rtmp://47.93.202.254/hls/test");
+//    config_set_default_string(basicConfig, "AdvOut", "FFURL", "rtmp://47.93.202.254/hls/test");
     config_set_default_string(basicConfig, "AdvOut", "FFFormat", "hls");
 //    config_get_string(basicConfig, "AdvOut", "FFormat)
     config_set_default_string(basicConfig, "AdvOut", "FFFormatMimeType", nullptr);
