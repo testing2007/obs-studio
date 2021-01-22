@@ -12,8 +12,8 @@
 #include <string>
 #include <vector>
 #include "REOBSCommonMacro.h"
-#include "util/base.h"
-#include "util/platform.h"
+#include "libobs/util/base.h"
+#include "libobs/util/platform.h"
 #include "libff/ff-util.h"
 #include "libobs/util/util.hpp"
 #include "libobs/util/config-file.h"

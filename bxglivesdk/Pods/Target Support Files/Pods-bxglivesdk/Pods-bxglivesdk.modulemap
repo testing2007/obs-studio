@@ -1,0 +1,6 @@
+framework module Pods_bxglivesdk {
+  umbrella header "Pods-bxglivesdk-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "main:main.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "std::string strName = newj[&quot;name&quot;].get&lt;std::string&gt;()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "testNetwork():main.mm">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

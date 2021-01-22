@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9418C92425B9980A00079714 /* BXGNetworkResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9418C92225B9980A00079714 /* BXGNetworkResult.cpp */; };
+		9418C93125BA70E800079714 /* BXGBaseModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9418C92F25BA70E800079714 /* BXGBaseModel.cpp */; };
+		9418C93425BA70F700079714 /* BXGPushStreamModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9418C93225BA70F700079714 /* BXGPushStreamModel.cpp */; };
+		9418C94325BA9ECF00079714 /* BXGNetworkTool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9418C94125BA9ECF00079714 /* BXGNetworkTool.cpp */; };
 		9422700F2589C2990095274F /* libfdk-aac.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9422700E2589C2990095274F /* libfdk-aac.2.dylib */; };
 		942270102589C2990095274F /* libfdk-aac.2.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9422700E2589C2990095274F /* libfdk-aac.2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		942270122589C3200095274F /* libmbedtls.2.24.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 942270112589C3200095274F /* libmbedtls.2.24.0.dylib */; };
@@ -15,7 +19,7 @@
 		9422701C2589D8F90095274F /* libx264.161.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9422701A2589D8F90095274F /* libx264.161.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9427E4E32588A00D0057E67D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427E4E22588A00D0057E67D /* AppDelegate.m */; };
 		9427E4E52588A0100057E67D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9427E4E42588A0100057E67D /* Assets.xcassets */; };
-		9427E4EB2588A0100057E67D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427E4EA2588A0100057E67D /* main.m */; };
+		9427E4EB2588A0100057E67D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9427E4EA2588A0100057E67D /* main.mm */; };
 		9427E5252588A4E40057E67D /* data in Resources */ = {isa = PBXBuildFile; fileRef = 9427E5242588A4E40057E67D /* data */; };
 		9427E5292588A50B0057E67D /* ff-util.c in Sources */ = {isa = PBXBuildFile; fileRef = 9427E5282588A50B0057E67D /* ff-util.c */; };
 		9427E5602588A5850057E67D /* REOBSManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9427E5562588A5850057E67D /* REOBSManager.cpp */; };
@@ -41,6 +45,7 @@
 		9427E5B52588B14C0057E67D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9427E5B32588B14C0057E67D /* MainMenu.xib */; };
 		9427E5B92588B1910057E67D /* REOBSMainVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9427E5B72588B1910057E67D /* REOBSMainVC.mm */; };
 		9427E5BA2588B1910057E67D /* REOBSMainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9427E5B82588B1910057E67D /* REOBSMainVC.xib */; };
+		E493468771A072DD94CC5D9D /* Pods_bxglivesdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73171EE678C9E09118770335 /* Pods_bxglivesdk.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -68,6 +73,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		73171EE678C9E09118770335 /* Pods_bxglivesdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bxglivesdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9418C92225B9980A00079714 /* BXGNetworkResult.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BXGNetworkResult.cpp; sourceTree = "<group>"; };
+		9418C92325B9980A00079714 /* BXGNetworkResult.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BXGNetworkResult.hpp; sourceTree = "<group>"; };
+		9418C92F25BA70E800079714 /* BXGBaseModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BXGBaseModel.cpp; sourceTree = "<group>"; };
+		9418C93025BA70E800079714 /* BXGBaseModel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BXGBaseModel.hpp; sourceTree = "<group>"; };
+		9418C93225BA70F700079714 /* BXGPushStreamModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BXGPushStreamModel.cpp; sourceTree = "<group>"; };
+		9418C93325BA70F700079714 /* BXGPushStreamModel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BXGPushStreamModel.hpp; sourceTree = "<group>"; };
+		9418C94125BA9ECF00079714 /* BXGNetworkTool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BXGNetworkTool.cpp; sourceTree = "<group>"; };
+		9418C94225BA9ECF00079714 /* BXGNetworkTool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BXGNetworkTool.hpp; sourceTree = "<group>"; };
 		9422700E2589C2990095274F /* libfdk-aac.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libfdk-aac.2.dylib"; path = "../../../../../../usr/local/Cellar/fdk-aac/2.0.1/lib/libfdk-aac.2.dylib"; sourceTree = "<group>"; };
 		942270112589C3200095274F /* libmbedtls.2.24.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmbedtls.2.24.0.dylib; path = ../../../../../../usr/local/Cellar/mbedtls/2.24.0/lib/libmbedtls.2.24.0.dylib; sourceTree = "<group>"; };
 		942270142589C33D0095274F /* libx264.161.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libx264.161.dylib; path = ../../../../../../usr/local/lib/libx264.161.dylib; sourceTree = "<group>"; };
@@ -78,7 +92,7 @@
 		9427E4E22588A00D0057E67D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9427E4E42588A0100057E67D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9427E4E92588A0100057E67D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9427E4EA2588A0100057E67D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9427E4EA2588A0100057E67D /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		9427E4EC2588A0100057E67D /* bxglivesdk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bxglivesdk.entitlements; sourceTree = "<group>"; };
 		9427E5242588A4E40057E67D /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = ../../build/rundir/Debug/data; sourceTree = "<group>"; };
 		9427E5272588A50B0057E67D /* ff-util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ff-util.h"; path = "../../deps/libff/libff/ff-util.h"; sourceTree = "<group>"; };
@@ -106,10 +120,15 @@
 		9427E5B62588B1910057E67D /* REOBSMainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = REOBSMainVC.h; sourceTree = "<group>"; };
 		9427E5B72588B1910057E67D /* REOBSMainVC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = REOBSMainVC.mm; sourceTree = "<group>"; };
 		9427E5B82588B1910057E67D /* REOBSMainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = REOBSMainVC.xib; sourceTree = "<group>"; };
+		9446E6E525B5319400225395 /* httplib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = httplib.h; sourceTree = "<group>"; };
+		9446E6F125B561B000225395 /* json.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
 		946D20E9258A18A200F3DF91 /* QtCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtCore.framework; path = ../../../../../../usr/local/Cellar/qt/5.15.1/lib/QtCore.framework; sourceTree = "<group>"; };
 		946D20EA258A18A200F3DF91 /* QtGui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtGui.framework; path = ../../../../../../usr/local/Cellar/qt/5.15.1/lib/QtGui.framework; sourceTree = "<group>"; };
 		946D20EB258A18A200F3DF91 /* QtWidgets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtWidgets.framework; path = ../../../../../../usr/local/Cellar/qt/5.15.1/lib/QtWidgets.framework; sourceTree = "<group>"; };
 		946D20EC258A18A200F3DF91 /* QtXml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtXml.framework; path = ../../../../../../usr/local/Cellar/qt/5.15.1/lib/QtXml.framework; sourceTree = "<group>"; };
+		94AC496A25B021E100620FBC /* BXGPrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BXGPrefixHeader.h; sourceTree = "<group>"; };
+		C88ABCBE570231A0008432C7 /* Pods-bxglivesdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bxglivesdk.release.xcconfig"; path = "Target Support Files/Pods-bxglivesdk/Pods-bxglivesdk.release.xcconfig"; sourceTree = "<group>"; };
+		EC909AD698B6017F785C7B7D /* Pods-bxglivesdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bxglivesdk.debug.xcconfig"; path = "Target Support Files/Pods-bxglivesdk/Pods-bxglivesdk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,18 +147,40 @@
 				9427E5672588A5B10057E67D /* libobs.0.dylib in Frameworks */,
 				9427E5722588A6320057E67D /* libavfilter.7.85.100.dylib in Frameworks */,
 				942270122589C3200095274F /* libmbedtls.2.24.0.dylib in Frameworks */,
+				E493468771A072DD94CC5D9D /* Pods_bxglivesdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		443BE4159A8F3D4EF44A8A15 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EC909AD698B6017F785C7B7D /* Pods-bxglivesdk.debug.xcconfig */,
+				C88ABCBE570231A0008432C7 /* Pods-bxglivesdk.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9418C92E25BA70AF00079714 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9418C92F25BA70E800079714 /* BXGBaseModel.cpp */,
+				9418C93025BA70E800079714 /* BXGBaseModel.hpp */,
+				9418C93225BA70F700079714 /* BXGPushStreamModel.cpp */,
+				9418C93325BA70F700079714 /* BXGPushStreamModel.hpp */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		9427E4D52588A00D0057E67D = {
 			isa = PBXGroup;
 			children = (
 				9427E4E02588A00D0057E67D /* bxglivesdk */,
 				9427E4DF2588A00D0057E67D /* Products */,
 				9427E5652588A5B10057E67D /* Frameworks */,
+				443BE4159A8F3D4EF44A8A15 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -154,6 +195,11 @@
 		9427E4E02588A00D0057E67D /* bxglivesdk */ = {
 			isa = PBXGroup;
 			children = (
+				9418C92E25BA70AF00079714 /* Model */,
+				94978BAF25B057F400B80570 /* 3rd */,
+				94AC496825B0217100620FBC /* Macro */,
+				94AC490725B01C8E00620FBC /* Network */,
+				94AC489F25B0160A00620FBC /* LiveSDK */,
 				9427E5282588A50B0057E67D /* ff-util.c */,
 				9427E5272588A50B0057E67D /* ff-util.h */,
 				9427E5242588A4E40057E67D /* data */,
@@ -164,19 +210,10 @@
 				9427E5B72588B1910057E67D /* REOBSMainVC.mm */,
 				9427E5B82588B1910057E67D /* REOBSMainVC.xib */,
 				9427E5B32588B14C0057E67D /* MainMenu.xib */,
-				9427E55B2588A5850057E67D /* REOBS.h */,
-				9427E5572588A5850057E67D /* REOBSCommonMacro.h */,
-				9427E55D2588A5850057E67D /* REOBSCommon.h */,
-				9427E55E2588A5850057E67D /* REOBSCommon.mm */,
-				9427E5582588A5850057E67D /* REOBSManager.h */,
-				9427E5562588A5850057E67D /* REOBSManager.cpp */,
-				9427E5592588A5850057E67D /* REOBSBasicConfig.h */,
-				9427E55A2588A5850057E67D /* REOBSBasicConfig.cpp */,
-				9427E5532588A5850057E67D /* REOBSServiceConfig.h */,
-				9427E55C2588A5850057E67D /* REOBSServiceConfig.cpp */,
 				9427E4E92588A0100057E67D /* Info.plist */,
-				9427E4EA2588A0100057E67D /* main.m */,
+				9427E4EA2588A0100057E67D /* main.mm */,
 				9427E4EC2588A0100057E67D /* bxglivesdk.entitlements */,
+				94AC496A25B021E100620FBC /* BXGPrefixHeader.h */,
 			);
 			path = bxglivesdk;
 			sourceTree = "<group>";
@@ -202,8 +239,69 @@
 				9427E56B2588A6320057E67D /* libswresample.3.7.100.dylib */,
 				9427E5702588A6320057E67D /* libswscale.5.7.100.dylib */,
 				9427E5662588A5B10057E67D /* libobs.0.dylib */,
+				73171EE678C9E09118770335 /* Pods_bxglivesdk.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9446E6E425B5319400225395 /* cpp-httplib */ = {
+			isa = PBXGroup;
+			children = (
+				9446E6E525B5319400225395 /* httplib.h */,
+			);
+			path = "cpp-httplib";
+			sourceTree = "<group>";
+		};
+		9446E6F025B561B000225395 /* nlohmann */ = {
+			isa = PBXGroup;
+			children = (
+				9446E6F125B561B000225395 /* json.hpp */,
+			);
+			path = nlohmann;
+			sourceTree = "<group>";
+		};
+		94978BAF25B057F400B80570 /* 3rd */ = {
+			isa = PBXGroup;
+			children = (
+				9446E6F025B561B000225395 /* nlohmann */,
+				9446E6E425B5319400225395 /* cpp-httplib */,
+			);
+			path = 3rd;
+			sourceTree = "<group>";
+		};
+		94AC489F25B0160A00620FBC /* LiveSDK */ = {
+			isa = PBXGroup;
+			children = (
+				9427E55B2588A5850057E67D /* REOBS.h */,
+				9427E5572588A5850057E67D /* REOBSCommonMacro.h */,
+				9427E55D2588A5850057E67D /* REOBSCommon.h */,
+				9427E55E2588A5850057E67D /* REOBSCommon.mm */,
+				9427E5582588A5850057E67D /* REOBSManager.h */,
+				9427E5562588A5850057E67D /* REOBSManager.cpp */,
+				9427E5592588A5850057E67D /* REOBSBasicConfig.h */,
+				9427E55A2588A5850057E67D /* REOBSBasicConfig.cpp */,
+				9427E5532588A5850057E67D /* REOBSServiceConfig.h */,
+				9427E55C2588A5850057E67D /* REOBSServiceConfig.cpp */,
+			);
+			name = LiveSDK;
+			sourceTree = "<group>";
+		};
+		94AC490725B01C8E00620FBC /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				9418C92225B9980A00079714 /* BXGNetworkResult.cpp */,
+				9418C92325B9980A00079714 /* BXGNetworkResult.hpp */,
+				9418C94125BA9ECF00079714 /* BXGNetworkTool.cpp */,
+				9418C94225BA9ECF00079714 /* BXGNetworkTool.hpp */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		94AC496825B0217100620FBC /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Macro;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,11 +311,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9427E4EF2588A0100057E67D /* Build configuration list for PBXNativeTarget "bxglivesdk" */;
 			buildPhases = (
+				682FAFB7B2ED1330B06DEBF4 /* [CP] Check Pods Manifest.lock */,
 				9427E4DA2588A00D0057E67D /* Sources */,
 				9427E4DB2588A00D0057E67D /* Frameworks */,
 				9427E4DC2588A00D0057E67D /* Resources */,
 				9427E4F52588A2190057E67D /* ShellScript */,
 				9427E5692588A5B10057E67D /* Embed Libraries */,
+				E40808D2D7B2764B33867726 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -274,6 +374,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		682FAFB7B2ED1330B06DEBF4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-bxglivesdk-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9427E4F52588A2190057E67D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -291,6 +413,23 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nmkdir -p ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins\n\n# obs-test_copy_dep_lib_exec_dir:\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/bin/libobs-opengl.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/MacOS/\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/bin/libobsglad.0.dylib \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/MacOS/\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/bin/libobs.0.dylib \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/MacOS/\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/bin/obs-ffmpeg-mux \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/MacOS/\n\n# obs-test_copy_plugin_so: \n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/coreaudio-encoder.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}//Plugins/coreaudio-encoder.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/image-source.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/image-source.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/mac-avcapture.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/mac-avcapture.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/mac-capture.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/mac-capture.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-ffmpeg.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-ffmpeg.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-filters.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/obs-plugins/obs-filters.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-libfdk.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-libfdk.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-outputs.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-outputs.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-transitions.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-transitions.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/obs-x264.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/obs-x264.so\n\n    cmake -E copy \\\n    ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/rtmp-services.so \\\n    ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/rtmp-services.so\n\n#     cmake -E copy \\\n#     ${PROJECT_DIR}/../build/rundir/Debug/obs-plugins/text-freetype2.so \\\n#     ${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/text-freetype2.so\n\n";
 		};
+		E40808D2D7B2764B33867726 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-bxglivesdk/Pods-bxglivesdk-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-bxglivesdk/Pods-bxglivesdk-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bxglivesdk/Pods-bxglivesdk-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -299,11 +438,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				9427E5602588A5850057E67D /* REOBSManager.cpp in Sources */,
+				9418C93425BA70F700079714 /* BXGPushStreamModel.cpp in Sources */,
 				9427E5292588A50B0057E67D /* ff-util.c in Sources */,
 				9427E5632588A5850057E67D /* REOBSCommon.mm in Sources */,
-				9427E4EB2588A0100057E67D /* main.m in Sources */,
+				9418C94325BA9ECF00079714 /* BXGNetworkTool.cpp in Sources */,
+				9427E4EB2588A0100057E67D /* main.mm in Sources */,
 				9427E4E32588A00D0057E67D /* AppDelegate.m in Sources */,
+				9418C92425B9980A00079714 /* BXGNetworkResult.cpp in Sources */,
 				9427E5B92588B1910057E67D /* REOBSMainVC.mm in Sources */,
+				9418C93125BA70E800079714 /* BXGBaseModel.cpp in Sources */,
 				9427E5612588A5850057E67D /* REOBSBasicConfig.cpp in Sources */,
 				9427E5622588A5850057E67D /* REOBSServiceConfig.cpp in Sources */,
 			);
@@ -367,6 +510,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					BXG_SCHEME_DEVELOPMENT,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -436,9 +580,12 @@
 		};
 		9427E4F02588A0100057E67D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC909AD698B6017F785C7B7D /* Pods-bxglivesdk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_ENTITLEMENTS = bxglivesdk/bxglivesdk.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -446,6 +593,9 @@
 				DEVELOPMENT_TEAM = X8S3YSA9F9;
 				ENABLE_HARDENED_RUNTIME = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INPUT_FILETYPE = automatic;
+				GCC_PREFIX_HEADER = bxglivesdk/BXGPrefixHeader.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"'DL_OPENGL=\"libobs-opengl.so\"'",
@@ -458,6 +608,7 @@
 					"${PROJECT_DIR}/../",
 					/usr/local/include,
 					"${PROJECT_DIR}/../UI",
+					"${PROJECT_DIR}/${TARGET_NAME}/3rd",
 				);
 				INFOPLIST_FILE = bxglivesdk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -471,6 +622,7 @@
 					/usr/local/Cellar/mbedtls/2.24.0/lib,
 					/usr/local/Cellar/x264/r3027_1/lib,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itcast.bxglivesdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -481,9 +633,12 @@
 		};
 		9427E4F12588A0100057E67D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C88ABCBE570231A0008432C7 /* Pods-bxglivesdk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_ENTITLEMENTS = bxglivesdk/bxglivesdk.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -491,6 +646,9 @@
 				DEVELOPMENT_TEAM = X8S3YSA9F9;
 				ENABLE_HARDENED_RUNTIME = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INPUT_FILETYPE = automatic;
+				GCC_PREFIX_HEADER = bxglivesdk/BXGPrefixHeader.h;
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../build/UI",
 					"${PROJECT_DIR}/../deps/libff",
@@ -499,6 +657,7 @@
 					"${PROJECT_DIR}/../",
 					/usr/local/include,
 					"${PROJECT_DIR}/../UI",
+					"${PROJECT_DIR}/${TARGET_NAME}/3rd",
 				);
 				INFOPLIST_FILE = bxglivesdk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -512,6 +671,7 @@
 					/usr/local/Cellar/mbedtls/2.24.0/lib,
 					/usr/local/Cellar/x264/r3027_1/lib,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itcast.bxglivesdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";

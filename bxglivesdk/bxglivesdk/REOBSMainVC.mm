@@ -8,15 +8,24 @@
 #import "REOBSMainVC.h"
 #import "REOBS.h"
 
-const char* HLS_URL = "rtmp://47.93.202.254/rtmp"; //m3u8/ts 网页查看， test 为密钥
-//const char* RMTP_URL = "rtmp://47.93.202.254/hls/test"; //rtmp录像形式
-const char* RMTP_URL = "rtmp://localhost/hls/test"; //rtmp录像形式
+#include <string.h>
+#include "Network/BXGNetworkTool.hpp"
+#include "Network/BXGNetworkResult.hpp"
+#include "Model/BXGPushStreamModel.hpp"
+
+const char* HLS_URL = "rtmp://localhost/hls/test";
+//const char* RTMP_URL = "rtmp://localhost/rtmp/test"; //rtmp推流
+//const char* RTMP_URL = "rtmp://localhost/hls/test";  //hls 推流
+
+//TODO: 提供三个参数，需要客户端（推流/观看）登录后 由 服务器 返回 （直播名称：flv, 直播房间号： roomId, 直播授权码）
+//const char* RTMP_URL = "rtmp://localhost/flv/roomId?auth=123";    //http-flv推流
 
 @interface REOBSMainVC ()<NSMenuDelegate> {
     const vector<REOBSFormatDesc> *formats;
     vector<REOBSCodecDesc> vCodecDesc;
     vector<REOBSCodecDesc> aCodecDesc;
-
+    std::string RTMP_URL;
+    BXGPushStreamModel *pushStreamModel;
 }
 
 @property (weak) IBOutlet NSTextField *liveTxt;
@@ -65,6 +74,14 @@ const char* RMTP_URL = "rtmp://localhost/hls/test"; //rtmp录像形式
     
     [self resetCtrl];
     [self loadData];
+    
+//    std::string info = BXGNetworkTool::share()->getPushInfo();
+    
+//    BXGNetworkResult<BXGPushStreamModel> result;
+//    ::parse(inf);
+//    parse2();
+//    BXGPushStreamModel model;
+//    parsePushStreamData(info)
 }
 
 -(void)resetCtrl {
@@ -172,12 +189,15 @@ const char* RMTP_URL = "rtmp://localhost/hls/test"; //rtmp录像形式
 }
 
 -(void)loadData {
+//    if(self->RTMP_URL == nil) {
+//        return ;
+//    }
     const char* url = REOBSBasicConfigInstance->getOutputURL();
     
-    if(url==NULL || astrcmpi(url, RMTP_URL) == 0) {
+    if(url==NULL || astrcmpi(url, self->RTMP_URL.c_str()) == 0) {
         [self checkRTMP];
         if(url==NULL) {
-            REOBSBasicConfigInstance->setOutputURL(RMTP_URL);
+            REOBSBasicConfigInstance->setOutputURL(self->RTMP_URL.c_str());
         }
     } else {
         [self checkHLS];
@@ -329,9 +349,11 @@ const char* RMTP_URL = "rtmp://localhost/hls/test"; //rtmp录像形式
 }
 
 - (void)checkRTMP {
-    [self.rtmpCheckBtn setState:NSControlStateValueOn];
-    [self.liveTxt.cell setTitle:@(RMTP_URL)];
-    [self.hlsCheckBtn setState:NSControlStateValueOff];
+    if(self->RTMP_URL.length() != 0) {
+        [self.rtmpCheckBtn setState:NSControlStateValueOn];
+        [self.liveTxt.cell setTitle:@(self->RTMP_URL.c_str())];
+        [self.hlsCheckBtn setState:NSControlStateValueOff];
+    }
 }
 
 - (void)onChangeFormat:(NSObject*)format {
@@ -450,6 +472,7 @@ const char* RMTP_URL = "rtmp://localhost/hls/test"; //rtmp录像形式
         self.bRecording = !_bRecording;
     } else {
         if(![self isActive]) {
+            [self getPushStreamInfo];
             REOBSManagerInstance->startRecord();
             self.bRecording = !_bRecording;
         } else {
@@ -492,6 +515,25 @@ const char* RMTP_URL = "rtmp://localhost/hls/test"; //rtmp录像形式
 
 -(void)windowWillClose:(NSNotification *)notification {
     REOBSManagerInstance->terminal();
+}
+
+-(void)getPushStreamInfo {
+    if(self->pushStreamModel == nullptr) {
+        std::string msg;
+        bool bSuccess = BXGNetworkTool::share()->getPushStreamData(&self->pushStreamModel, msg);
+        //rtmp://localhost/flv/roomId?auth=123
+        
+//        std::string roomId;
+//        std::string liveImage;
+//        std::string liveSecret;
+//        std::string rtmpAddress;
+//        std::string startTime;
+        self->RTMP_URL = (self->pushStreamModel->rtmpAddress + std::string("/") + self->pushStreamModel->roomId + std::string("?auth=") + self->pushStreamModel->liveSecret);
+        if(self->RTMP_URL.length() > 0) {
+            [self checkRTMP];
+            REOBSBasicConfigInstance->setOutputURL(self->RTMP_URL.c_str());
+        }
+    }
 }
 
 @end

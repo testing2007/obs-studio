@@ -1,0 +1,15 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'bxglivesdk' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for bxglivesdk
+#  pod 'AFNetworking', '~> 3.2.1'
+#  pod 'YYModel', '~> 1.0.3'
+#  pod "nlohmann_json", '~>3.1.2'
+# 3.7.3, 3.5.0, 3.2.0, 3.1.2
+#  pod 'nlohmann_json', '~>3.7.3'
+  
+end

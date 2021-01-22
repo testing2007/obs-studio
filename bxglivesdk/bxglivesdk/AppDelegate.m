@@ -21,6 +21,7 @@
     self.window.delegate = vc;
     [self.window setContentViewController:vc];
     [self.window makeMainWindow];
+    
 }
 
 
