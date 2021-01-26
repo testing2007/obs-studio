@@ -20,13 +20,12 @@
                 <outlet property="audioCodecParamTxt" destination="I6B-pw-Crg" id="S6o-92-Xib"/>
                 <outlet property="btnRecord" destination="phF-d1-T4v" id="Ixk-T1-nLN"/>
                 <outlet property="contentView" destination="bzF-qm-G9G" id="YWD-xU-P9W"/>
-                <outlet property="cpAddrBtn" destination="pAV-PV-NMw" id="m5c-at-FZD"/>
+                <outlet property="flvCheckBtn" destination="tyd-5S-C9h" id="C6g-tS-4tH"/>
                 <outlet property="formatBtn" destination="tpG-1P-KxD" id="dXF-wu-TzL"/>
                 <outlet property="formatCell" destination="i3l-nU-cIN" id="fsB-0h-Dum"/>
                 <outlet property="hlsCheckBtn" destination="Gxb-kW-2Ta" id="N9e-zn-YSL"/>
                 <outlet property="liveTxt" destination="E9R-JV-Pl7" id="4Nw-ya-oAH"/>
                 <outlet property="popFormatBtn" destination="tpG-1P-KxD" id="oTK-vh-e1e"/>
-                <outlet property="rtmpCheckBtn" destination="tyd-5S-C9h" id="C6g-tS-4tH"/>
                 <outlet property="vBitrateBtn" destination="URM-3q-fDS" id="kiG-Kf-UQ9"/>
                 <outlet property="vGOPBtn" destination="bRb-Ge-HdT" id="tvC-Yk-I4I"/>
                 <outlet property="videoCell" destination="2PD-i8-kFg" id="ru9-Pf-nyr"/>
@@ -41,27 +40,6 @@
             <rect key="frame" x="0.0" y="0.0" width="857" height="484"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <box fixedFrame="YES" title="录制" translatesAutoresizingMaskIntoConstraints="NO" id="KCK-Sy-gsc">
-                    <rect key="frame" x="178" y="9" width="138" height="114"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" id="Ubw-qg-xID">
-                        <rect key="frame" x="3" y="3" width="132" height="96"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button verticalHuggingPriority="750" id="phF-d1-T4v" userLabel="recordBtn">
-                                <rect key="frame" x="14" y="2" width="94" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="开始录制" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hhU-9m-ZKN">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <connections>
-                                        <action selector="onRecord:" target="-2" id="K1w-dA-lz1"/>
-                                    </connections>
-                                </buttonCell>
-                            </button>
-                        </subviews>
-                    </view>
-                </box>
                 <box fixedFrame="YES" title="直播方式" translatesAutoresizingMaskIntoConstraints="NO" id="uFN-Zc-jtg">
                     <rect key="frame" x="328" y="9" width="519" height="462"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -69,32 +47,6 @@
                         <rect key="frame" x="3" y="3" width="513" height="444"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gxb-kW-2Ta">
-                                <rect key="frame" x="142" y="355" width="70" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="radio" title="hls 直播" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="kBa-NP-d62">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4If-va-deZ">
-                                <rect key="frame" x="26" y="384" width="111" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="生成直播URL地址" id="4ej-1f-2ao">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E9R-JV-Pl7">
-                                <rect key="frame" x="143" y="383" width="360" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="GKo-qO-Z7S">
-                                    <font key="font" usesAppearanceFont="YES"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6eI-U5-mpH">
                                 <rect key="frame" x="143" y="173" width="360" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -104,22 +56,6 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tyd-5S-C9h">
-                                <rect key="frame" x="271" y="355" width="82" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="radio" title="rtmp 直播" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="sTT-DK-Ntg">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pAV-PV-NMw">
-                                <rect key="frame" x="415" y="347" width="94" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="复制地址" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mkq-I0-NT8">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eay-jA-4iU">
                                 <rect key="frame" x="79" y="292" width="58" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -360,8 +296,53 @@
                     <rect key="frame" x="28" y="185" width="295" height="272"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </customView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4If-va-deZ">
+                    <rect key="frame" x="18" y="149" width="111" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="生成直播URL地址" id="4ej-1f-2ao">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E9R-JV-Pl7">
+                    <rect key="frame" x="20" y="120" width="303" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="GKo-qO-Z7S">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gxb-kW-2Ta">
+                    <rect key="frame" x="18" y="82" width="70" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="radio" title="hls 直播" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="kBa-NP-d62">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tyd-5S-C9h">
+                    <rect key="frame" x="120" y="82" width="82" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="radio" title="flv直播" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="sTT-DK-Ntg">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button verticalHuggingPriority="750" id="phF-d1-T4v" userLabel="recordBtn">
+                    <rect key="frame" x="232" y="74" width="94" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="开始推流" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hhU-9m-ZKN">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="13" name=".PingFangSC-Regular"/>
+                        <connections>
+                            <action selector="onRecord:" target="-2" id="K1w-dA-lz1"/>
+                        </connections>
+                    </buttonCell>
+                </button>
             </subviews>
-            <point key="canvasLocation" x="-45" y="209"/>
+            <point key="canvasLocation" x="-45.5" y="209"/>
         </customView>
     </objects>
 </document>

@@ -13,24 +13,16 @@
 #include "Network/BXGNetworkResult.hpp"
 #include "Model/BXGPushStreamModel.hpp"
 
-const char* HLS_URL = "rtmp://localhost/hls/test";
-//const char* RTMP_URL = "rtmp://localhost/rtmp/test"; //rtmp推流
-//const char* RTMP_URL = "rtmp://localhost/hls/test";  //hls 推流
-
-//TODO: 提供三个参数，需要客户端（推流/观看）登录后 由 服务器 返回 （直播名称：flv, 直播房间号： roomId, 直播授权码）
-//const char* RTMP_URL = "rtmp://localhost/flv/roomId?auth=123";    //http-flv推流
-
 @interface REOBSMainVC ()<NSMenuDelegate> {
     const vector<REOBSFormatDesc> *formats;
     vector<REOBSCodecDesc> vCodecDesc;
     vector<REOBSCodecDesc> aCodecDesc;
-    std::string RTMP_URL;
-    BXGPushStreamModel *pushStreamModel;
+    BXGPushStreamModel pushStreamModel;
 }
 
 @property (weak) IBOutlet NSTextField *liveTxt;
 @property (weak) IBOutlet NSButton *hlsCheckBtn;
-@property (weak) IBOutlet NSButton *rtmpCheckBtn;
+@property (weak) IBOutlet NSButton *flvCheckBtn;
 @property (weak) IBOutlet NSButton *cpAddrBtn;
 
 @property (weak) IBOutlet NSPopUpButton *formatBtn;
@@ -74,14 +66,6 @@ const char* HLS_URL = "rtmp://localhost/hls/test";
     
     [self resetCtrl];
     [self loadData];
-    
-//    std::string info = BXGNetworkTool::share()->getPushInfo();
-    
-//    BXGNetworkResult<BXGPushStreamModel> result;
-//    ::parse(inf);
-//    parse2();
-//    BXGPushStreamModel model;
-//    parsePushStreamData(info)
 }
 
 -(void)resetCtrl {
@@ -89,10 +73,10 @@ const char* HLS_URL = "rtmp://localhost/hls/test";
     [self.liveTxt.cell setEnabled:false];//禁用
     
     [self.hlsCheckBtn setAction:@selector(onHLS:)];
-    [self.rtmpCheckBtn setAction:@selector(onRTMP:)];
+    [self.flvCheckBtn setAction:@selector(onFLV:)];
     
     [self.hlsCheckBtn setState:NSControlStateValueOff];
-    [self.rtmpCheckBtn setState:NSControlStateValueOff];
+    [self.flvCheckBtn setState:NSControlStateValueOff];
     
     [self.formatBtn removeAllItems];
     [self.vBitrateBtn removeAllItems];
@@ -140,7 +124,7 @@ const char* HLS_URL = "rtmp://localhost/hls/test";
 //    FFAEncoder=aac
 //    FFACustom=
     
-    [self checkRTMP];
+    [self checkFlv];
     const char* format = REOBSBasicConfigInstance->getOutputFormat();
     NSMenuItem *formatMenuItem = [[NSMenuItem alloc] initWithTitle:format==nullptr ? @("hls") : @(format) action:nil keyEquivalent:@("0")];
     if(format == nullptr) {
@@ -189,18 +173,22 @@ const char* HLS_URL = "rtmp://localhost/hls/test";
 }
 
 -(void)loadData {
-//    if(self->RTMP_URL == nil) {
-//        return ;
-//    }
     const char* url = REOBSBasicConfigInstance->getOutputURL();
-    
-    if(url==NULL || astrcmpi(url, self->RTMP_URL.c_str()) == 0) {
-        [self checkRTMP];
-        if(url==NULL) {
-            REOBSBasicConfigInstance->setOutputURL(self->RTMP_URL.c_str());
-        }
-    } else {
+    if(url == nullptr) {
         [self checkHLS];
+    } else {
+        std::string strURL = url;
+        size_t pos = strURL.find_first_of('/');
+        std::string tempStr = strURL.substr(pos);
+        size_t pos2 = tempStr.find_first_of('/');
+        std::string type = strURL.substr(pos, pos2);
+        if(type.compare("flv") == 0) {
+            [self checkFlv];
+        } else if(type.compare("hls") == 0) {
+            [self checkHLS];
+        } else {
+            url = nullptr;
+        }
     }
     
     int lastSelIndex;
@@ -226,7 +214,7 @@ const char* HLS_URL = "rtmp://localhost/hls/test";
     [self.liveTxt.cell setEnabled:false];
     
     [self.hlsCheckBtn setEnabled:false];
-    [self.rtmpCheckBtn setEnabled:false];
+    [self.flvCheckBtn setEnabled:false];
     
     [self.formatBtn setEnabled:false];
     [self.vBitrateBtn setEnabled:false];
@@ -344,16 +332,12 @@ const char* HLS_URL = "rtmp://localhost/hls/test";
 
 - (void)checkHLS {
     [self.hlsCheckBtn setState:NSControlStateValueOn];
-    [self.liveTxt.cell setTitle:@(HLS_URL)];
-    [self.rtmpCheckBtn setState:NSControlStateValueOff];
+    [self.flvCheckBtn setState:NSControlStateValueOff];
 }
 
-- (void)checkRTMP {
-    if(self->RTMP_URL.length() != 0) {
-        [self.rtmpCheckBtn setState:NSControlStateValueOn];
-        [self.liveTxt.cell setTitle:@(self->RTMP_URL.c_str())];
-        [self.hlsCheckBtn setState:NSControlStateValueOff];
-    }
+- (void)checkFlv {
+    [self.flvCheckBtn setState:NSControlStateValueOn];
+    [self.hlsCheckBtn setState:NSControlStateValueOff];
 }
 
 - (void)onChangeFormat:(NSObject*)format {
@@ -402,8 +386,8 @@ const char* HLS_URL = "rtmp://localhost/hls/test";
     [self checkHLS];
 }
 
-- (void)onRTMP:(NSButton*)rtmpObj {
-    [self checkRTMP];
+- (void)onFLV:(NSButton*)rtmpObj {
+    [self checkFlv];
 }
 
 - (BOOL)isActive {
@@ -483,9 +467,9 @@ const char* HLS_URL = "rtmp://localhost/hls/test";
 
 - (void)setBRecording:(bool)bRecording {
     if(bRecording) {
-        [self.btnRecord setTitle:@"正在录制"];
+        [self.btnRecord setTitle:@"正在推流"];
     } else {
-        [self.btnRecord setTitle:@"开始录制"];
+        [self.btnRecord setTitle:@"开始推流"];
     }
     _bRecording = bRecording;
 }
@@ -518,21 +502,16 @@ const char* HLS_URL = "rtmp://localhost/hls/test";
 }
 
 -(void)getPushStreamInfo {
-    if(self->pushStreamModel == nullptr) {
-        std::string msg;
-        bool bSuccess = BXGNetworkTool::share()->getPushStreamData(&self->pushStreamModel, msg);
-        //rtmp://localhost/flv/roomId?auth=123
-        
-//        std::string roomId;
-//        std::string liveImage;
-//        std::string liveSecret;
-//        std::string rtmpAddress;
-//        std::string startTime;
-        self->RTMP_URL = (self->pushStreamModel->rtmpAddress + std::string("/") + self->pushStreamModel->roomId + std::string("?auth=") + self->pushStreamModel->liveSecret);
-        if(self->RTMP_URL.length() > 0) {
-            [self checkRTMP];
-            REOBSBasicConfigInstance->setOutputURL(self->RTMP_URL.c_str());
-        }
+    std::string msg;
+    if(self.hlsCheckBtn.state) {
+        BXGNetworkTool::share()->getPushStreamData(self->pushStreamModel, 0, msg);
+    } else {
+        BXGNetworkTool::share()->getPushStreamData(self->pushStreamModel, 1, msg);
+    }
+    const std::string &pushURL = self->pushStreamModel.livePushAddress;
+    if(pushURL.length() > 0) {
+        [self.liveTxt.cell setTitle:@(pushURL.c_str())];
+        REOBSBasicConfigInstance->setOutputURL(pushURL.c_str());
     }
 }
 

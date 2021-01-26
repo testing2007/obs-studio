@@ -20,10 +20,12 @@ class BXGNetworkTool {
 public:
     static BXGNetworkTool* share();
 
-    bool getPushStreamData(BXGPushStreamModel **data, std::string &msg);
+    //type=0, hls推流; type =1, flv推流
+    bool getPushStreamData(BXGPushStreamModel &data, int type, std::string &msg);
+
 
 private:
-    std::string getInfo(char* uri);
+    std::string getInfo(std::string &uri);
 
 };
 
