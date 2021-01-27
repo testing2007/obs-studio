@@ -18,6 +18,7 @@
     vector<REOBSCodecDesc> vCodecDesc;
     vector<REOBSCodecDesc> aCodecDesc;
     BXGPushStreamModel pushStreamModel;
+    int roomId; //房间号
 }
 
 @property (weak) IBOutlet NSTextField *liveTxt;
@@ -504,9 +505,9 @@
 -(void)getPushStreamInfo {
     std::string msg;
     if(self.hlsCheckBtn.state) {
-        BXGNetworkTool::share()->getPushStreamData(self->pushStreamModel, 0, msg);
+        BXGNetworkTool::share()->getPushStreamData(self->pushStreamModel, 0, self->roomId, msg);
     } else {
-        BXGNetworkTool::share()->getPushStreamData(self->pushStreamModel, 1, msg);
+        BXGNetworkTool::share()->getPushStreamData(self->pushStreamModel, 1, self->roomId, msg);
     }
     const std::string &pushURL = self->pushStreamModel.livePushAddress;
     if(pushURL.length() > 0) {

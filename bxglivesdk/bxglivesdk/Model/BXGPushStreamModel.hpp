@@ -13,7 +13,7 @@
 
 class BXGPushStreamModel : BXGBaseModel {
 public:
-  NLOHMANN_DEFINE_TYPE_INTRUSIVE(BXGPushStreamModel, roomId, liveImage, liveSecret, livePushAddress, livePullFlvAddress, livePullRtmpAddress, livePullHlsAddress, startTime)
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(BXGPushStreamModel, roomId, liveImage, liveSecret, livePushAddress, livePullFlvAddress, livePullRtmpAddress, livePullHlsAddress, startTimestamp)
 
 public:
     std::string roomId;
@@ -23,10 +23,10 @@ public:
     std::string livePullFlvAddress;
     std::string livePullRtmpAddress;
     std::string livePullHlsAddress;
-    std::string startTime;
+    size_t startTimestamp;
 
 private:
-    NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(BXGPushStreamModel, roomId, liveImage, liveSecret, livePushAddress, livePullFlvAddress, livePullRtmpAddress, livePullHlsAddress, startTime)
+    NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(BXGPushStreamModel, roomId, liveImage, liveSecret, livePushAddress, livePullFlvAddress, livePullRtmpAddress, livePullHlsAddress, startTimestamp)
 };
 
 #endif /* BXGPushStreamModel_hpp */

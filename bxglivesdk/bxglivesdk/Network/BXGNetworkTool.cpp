@@ -16,7 +16,6 @@ class Convert {
         bool bSuccess = false;
         if(result.status / 2 == 100 ) {
             if(result.data.is_null()) {
-//                data= (T)0;
                 msg = result.msg;
                 bSuccess = true;
             } else {
@@ -25,13 +24,11 @@ class Convert {
                     msg = result.msg;
                     bSuccess = true;
                 } catch (std::exception e) {
-//                    data= (T)0;
                     msg = result.msg;
                     bSuccess = false;
                 }
             }
         } else {
-//            data= (T)0;
             msg = "失败";
             bSuccess = false;
         }
@@ -58,14 +55,22 @@ std::string BXGNetworkTool::getInfo(std::string &uri) {
     return res->body;
 }
 
-bool BXGNetworkTool::getPushStreamData(BXGPushStreamModel &data, int type, std::string &msg) {
+bool BXGNetworkTool::getPushStreamData(BXGPushStreamModel &data, int type, int& roomId, std::string &msg) {
     std::string uri;
+    std::string params;
+    std::string authCode = "&authCode=push_" + std::to_string(roomId);
     if(type == 0) {
-        uri = "/getPushInfo/hls";
+        params = "?liveType=hls" + authCode;
     } else {
-        uri = "/getPushInfo/flv";
+        params = "?liveType=flv" + authCode;
     }
+    uri = "/getPushInfo" + params;
     const std::string &info = this->getInfo(uri);
     const BXGNetworkResult &result = BXGNetworkResult::result(info);
-    return Convert<BXGPushStreamModel>::parseModel(result, data, msg);
+    
+    bool bSuccess = Convert<BXGPushStreamModel>::parseModel(result, data, msg);
+    if(bSuccess) {
+        roomId = atoi(data.roomId.c_str()) + 1;
+    }
+    return bSuccess;
 }

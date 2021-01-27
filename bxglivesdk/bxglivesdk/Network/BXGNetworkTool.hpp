@@ -21,7 +21,7 @@ public:
     static BXGNetworkTool* share();
 
     //type=0, hls推流; type =1, flv推流
-    bool getPushStreamData(BXGPushStreamModel &data, int type, std::string &msg);
+    bool getPushStreamData(BXGPushStreamModel &data, int type, int& roomId, std::string &msg);
 
 
 private:
