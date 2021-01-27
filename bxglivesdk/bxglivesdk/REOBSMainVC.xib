@@ -18,12 +18,13 @@
                 <outlet property="audioCell" destination="JgR-gb-cRP" id="A7J-dK-3vB"/>
                 <outlet property="audioCodecBtn" destination="Sp6-Qb-lja" id="yEg-bq-SbZ"/>
                 <outlet property="audioCodecParamTxt" destination="I6B-pw-Crg" id="S6o-92-Xib"/>
-                <outlet property="btnRecord" destination="phF-d1-T4v" id="Ixk-T1-nLN"/>
+                <outlet property="btnDefaultPush" destination="xxy-m2-xNj" id="cki-Xj-5wI"/>
+                <outlet property="btnParamPush" destination="phF-d1-T4v" id="d8N-1K-IH7"/>
                 <outlet property="contentView" destination="bzF-qm-G9G" id="YWD-xU-P9W"/>
-                <outlet property="flvCheckBtn" destination="tyd-5S-C9h" id="C6g-tS-4tH"/>
+                <outlet property="flvCheckBtn" destination="ai6-7r-Kf6" id="3P6-KR-nNu"/>
                 <outlet property="formatBtn" destination="tpG-1P-KxD" id="dXF-wu-TzL"/>
                 <outlet property="formatCell" destination="i3l-nU-cIN" id="fsB-0h-Dum"/>
-                <outlet property="hlsCheckBtn" destination="Gxb-kW-2Ta" id="N9e-zn-YSL"/>
+                <outlet property="hlsCheckBtn" destination="er8-Ss-OOg" id="GP8-hH-EJb"/>
                 <outlet property="liveTxt" destination="E9R-JV-Pl7" id="4Nw-ya-oAH"/>
                 <outlet property="popFormatBtn" destination="tpG-1P-KxD" id="oTK-vh-e1e"/>
                 <outlet property="vBitrateBtn" destination="URM-3q-fDS" id="kiG-Kf-UQ9"/>
@@ -40,15 +41,15 @@
             <rect key="frame" x="0.0" y="0.0" width="857" height="484"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <box fixedFrame="YES" title="直播方式" translatesAutoresizingMaskIntoConstraints="NO" id="uFN-Zc-jtg">
-                    <rect key="frame" x="328" y="9" width="519" height="462"/>
+                <box fixedFrame="YES" title="直播参数设置" translatesAutoresizingMaskIntoConstraints="NO" id="uFN-Zc-jtg">
+                    <rect key="frame" x="328" y="126" width="519" height="331"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="0Ke-Lv-x1G">
-                        <rect key="frame" x="3" y="3" width="513" height="444"/>
+                        <rect key="frame" x="3" y="3" width="513" height="316"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6eI-U5-mpH">
-                                <rect key="frame" x="143" y="173" width="360" height="21"/>
+                                <rect key="frame" x="139" y="167" width="360" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="0eF-Gh-bt6">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -57,7 +58,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eay-jA-4iU">
-                                <rect key="frame" x="79" y="292" width="58" height="16"/>
+                                <rect key="frame" x="75" y="286" width="58" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="容器格式" id="aJQ-YT-lC8">
                                     <font key="font" metaFont="system"/>
@@ -66,7 +67,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tpG-1P-KxD">
-                                <rect key="frame" x="141" y="287" width="365" height="25"/>
+                                <rect key="frame" x="137" y="281" width="365" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="i3l-nU-cIN">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -75,7 +76,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2uc-C7-dIi">
-                                <rect key="frame" x="66" y="261" width="71" height="16"/>
+                                <rect key="frame" x="62" y="255" width="71" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="视频比特率" id="1FZ-JQ-hVR">
                                     <font key="font" metaFont="system"/>
@@ -84,7 +85,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="URM-3q-fDS">
-                                <rect key="frame" x="141" y="258" width="365" height="25"/>
+                                <rect key="frame" x="137" y="252" width="365" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="3JE-Xe-Toy" id="f97-hM-aMO">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -99,7 +100,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XDD-pS-19s">
-                                <rect key="frame" x="66" y="203" width="71" height="16"/>
+                                <rect key="frame" x="62" y="197" width="71" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="视频编码器" id="6I1-zz-maQ">
                                     <font key="font" metaFont="system"/>
@@ -108,7 +109,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ItD-Ld-0Vh">
-                                <rect key="frame" x="3" y="175" width="134" height="16"/>
+                                <rect key="frame" x="-1" y="169" width="134" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="视频编码器设置(可选)" id="bK9-c8-563">
                                     <font key="font" metaFont="system"/>
@@ -117,7 +118,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bRb-Ge-HdT">
-                                <rect key="frame" x="141" y="229" width="365" height="25"/>
+                                <rect key="frame" x="137" y="223" width="365" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="q3x-iu-70c" id="GRf-KQ-yZz">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -132,7 +133,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mmU-z9-Adv">
-                                <rect key="frame" x="141" y="199" width="365" height="25"/>
+                                <rect key="frame" x="137" y="193" width="365" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="3oQ-y2-qam" id="2PD-i8-kFg">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -147,7 +148,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IYj-WC-fbS">
-                                <rect key="frame" x="66" y="145" width="71" height="16"/>
+                                <rect key="frame" x="62" y="139" width="71" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="音频比特率" id="N9m-0Q-pDo">
                                     <font key="font" metaFont="system"/>
@@ -156,7 +157,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PZC-NS-88o">
-                                <rect key="frame" x="106" y="115" width="31" height="16"/>
+                                <rect key="frame" x="102" y="109" width="31" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="音轨" id="up8-SH-7r6">
                                     <font key="font" metaFont="system"/>
@@ -165,7 +166,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dOb-jN-QGU">
-                                <rect key="frame" x="141" y="141" width="365" height="25"/>
+                                <rect key="frame" x="137" y="135" width="365" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="eup-FZ-Rjq" id="h9g-l4-pFu">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -180,7 +181,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AS0-bK-qnC">
-                                <rect key="frame" x="66" y="83" width="71" height="16"/>
+                                <rect key="frame" x="62" y="77" width="71" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="音频编码器" id="YHd-kd-a9l">
                                     <font key="font" metaFont="system"/>
@@ -189,7 +190,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sp6-Qb-lja">
-                                <rect key="frame" x="141" y="79" width="365" height="25"/>
+                                <rect key="frame" x="137" y="73" width="365" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="nAt-GB-2gd" id="JgR-gb-cRP">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -204,7 +205,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I6B-pw-Crg">
-                                <rect key="frame" x="143" y="53" width="360" height="21"/>
+                                <rect key="frame" x="139" y="47" width="360" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Pka-WN-bec">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -213,7 +214,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Lz-Yh-jOi">
-                                <rect key="frame" x="3" y="55" width="135" height="16"/>
+                                <rect key="frame" x="-1" y="49" width="135" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="音频编码器设置(可选)" id="Pwh-zG-6yT">
                                     <font key="font" metaFont="system"/>
@@ -222,7 +223,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zOp-cB-Kzd">
-                                <rect key="frame" x="141" y="114" width="28" height="18"/>
+                                <rect key="frame" x="137" y="108" width="28" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="1" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5Ds-PH-78W">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -230,7 +231,7 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tNR-aF-QyL">
-                                <rect key="frame" x="184" y="113" width="30" height="18"/>
+                                <rect key="frame" x="180" y="107" width="30" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="2" bezelStyle="regularSquare" imagePosition="left" inset="2" id="S1h-js-RuA">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -238,7 +239,7 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4H1-Rf-ZZh">
-                                <rect key="frame" x="240" y="114" width="31" height="18"/>
+                                <rect key="frame" x="236" y="108" width="31" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="3" bezelStyle="regularSquare" imagePosition="left" inset="2" id="qRN-VH-fBM">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -246,7 +247,7 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o5J-NI-eyC">
-                                <rect key="frame" x="283" y="114" width="31" height="18"/>
+                                <rect key="frame" x="279" y="108" width="31" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="4" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Pie-7w-foz">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -254,7 +255,7 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7LA-ew-6Og">
-                                <rect key="frame" x="329" y="114" width="30" height="18"/>
+                                <rect key="frame" x="325" y="108" width="30" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="5" bezelStyle="regularSquare" imagePosition="left" inset="2" id="yem-gK-XaJ">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -262,15 +263,24 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F2e-bv-Q57">
-                                <rect key="frame" x="374" y="113" width="31" height="18"/>
+                                <rect key="frame" x="370" y="107" width="31" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="6" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Mst-EG-wa7">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nQJ-6x-dk7">
+                                <rect key="frame" x="-2" y="227" width="135" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="关键帧间隔(帧或GOP)" id="dXn-EB-XC2">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WwY-YK-hfR">
-                                <rect key="frame" x="432" y="10" width="88" height="32"/>
+                                <rect key="frame" x="412" y="4" width="88" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="保存参数" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K05-wn-R2p">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -280,33 +290,16 @@
                                     <action selector="onConfirm:" target="-2" id="Mi2-J1-tBI"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nQJ-6x-dk7">
-                                <rect key="frame" x="2" y="233" width="135" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="关键帧间隔(帧或GOP)" id="dXn-EB-XC2">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                     </view>
+                    <font key="titleFont" size="11" name=".PingFangSC-Regular"/>
                 </box>
                 <customView id="bzF-qm-G9G" userLabel="displayView">
                     <rect key="frame" x="28" y="185" width="295" height="272"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </customView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4If-va-deZ">
-                    <rect key="frame" x="18" y="149" width="111" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="生成直播URL地址" id="4ej-1f-2ao">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E9R-JV-Pl7">
-                    <rect key="frame" x="20" y="120" width="303" height="21"/>
+                    <rect key="frame" x="331" y="54" width="506" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="GKo-qO-Z7S">
                         <font key="font" usesAppearanceFont="YES"/>
@@ -314,31 +307,51 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gxb-kW-2Ta">
-                    <rect key="frame" x="18" y="82" width="70" height="18"/>
+                <button verticalHuggingPriority="750" id="xxy-m2-xNj" userLabel="pushStreamBtn">
+                    <rect key="frame" x="602" y="13" width="114" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="radio" title="hls 直播" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="kBa-NP-d62">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tyd-5S-C9h">
-                    <rect key="frame" x="120" y="82" width="82" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="radio" title="flv直播" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="sTT-DK-Ntg">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-                <button verticalHuggingPriority="750" id="phF-d1-T4v" userLabel="recordBtn">
-                    <rect key="frame" x="232" y="74" width="94" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="开始推流" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hhU-9m-ZKN">
+                    <buttonCell key="cell" type="push" title="开始默认推流" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="V5w-LQ-7zn">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="13" name=".PingFangSC-Regular"/>
                         <connections>
-                            <action selector="onRecord:" target="-2" id="K1w-dA-lz1"/>
+                            <action selector="onDefaultPush:" target="-2" id="9zN-nH-2Q8"/>
                         </connections>
+                    </buttonCell>
+                </button>
+                <button verticalHuggingPriority="750" id="phF-d1-T4v" userLabel="recordBtn">
+                    <rect key="frame" x="730" y="13" width="114" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="开始参数推流" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hhU-9m-ZKN">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="13" name=".PingFangSC-Regular"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="onParamPush:" target="-2" id="oFZ-id-931"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4If-va-deZ">
+                    <rect key="frame" x="329" y="83" width="111" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="生成直播URL地址" id="4ej-1f-2ao">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="er8-Ss-OOg">
+                    <rect key="frame" x="329" y="19" width="70" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="radio" title="hls 直播" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Beu-Vu-y47">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ai6-7r-Kf6">
+                    <rect key="frame" x="431" y="19" width="82" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="radio" title="flv直播" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="k3l-oP-73u">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
             </subviews>

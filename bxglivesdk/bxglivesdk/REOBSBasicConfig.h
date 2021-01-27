@@ -81,4 +81,4 @@ private:
 
 #endif /* REOBSBasicConfig_hpp */
 
-#define REOBSBasicConfigInstance (REOBSBasicConfig::share())
+#define BXG_BASIC_CFG_SHARE (REOBSBasicConfig::share())

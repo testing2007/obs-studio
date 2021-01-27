@@ -45,56 +45,6 @@ bool REOBSManager::_initOBS() {
     return true;
 }
 
-void REOBSManager::_createDisplay(id view)
-{
-    if(display) {
-        return ;
-    }
-    
-    gs_init_data info = {};
-    info.cx = cx;
-    info.cy = cy;
-    info.format = GS_BGRA;
-    info.zsformat = GS_ZS_NONE;
-    info.window.view = view;
-
-    display = obs_display_create(&info, 0);
-//    obs_display_destroy(display);
-}
-
-void REOBSManager::_initAV()
-{
-    struct obs_video_info ovi;
-    ovi.adapter = 0;
-    ovi.fps_num = 60;
-    ovi.fps_den = 1;
-    ovi.graphics_module = DL_OPENGL;
-    ovi.base_width = base_width;
-    ovi.base_height = base_height;
-    ovi.output_width = cx;
-    ovi.output_height = cy;
-    
-    //视频输出格式
-    //VIDEO_FORMAT_NV12:窗口部分显示，其余黑背景色；
-    //VIDEO_FORMAT_RGBA:可以将显示窗口铺满
-    ovi.output_format = VIDEO_FORMAT_NV12;
-    
-    ovi.gpu_conversion = true;
-    ovi.colorspace = VIDEO_CS_709;
-    ovi.range = VIDEO_RANGE_PARTIAL;
-    ovi.scale_type = OBS_SCALE_BICUBIC;
-    
-    //会检查是否存在 libopengl 依赖，没有会抛出异常
-    if (obs_reset_video(&ovi) != 0)
-        throw "Couldn't initialize video";
-    
-    struct obs_audio_info ai;
-    ai.samples_per_sec = 48000;
-    ai.speakers = SPEAKERS_STEREO;
-    if (obs_reset_audio(&ai) == 0)
-        throw "Couldn't initialize audio";
-}
-
 void REOBSManager::setContentView(id view) {
     try {
         if (!view)
@@ -144,37 +94,6 @@ void REOBSManager::terminal() {
     printf("Number of memory leaks: %lu", bnum_allocs());
 }
 
-bool REOBSManager::_createVideoCodec() {
-    //录制视频编码器
-    if(h264Recording == nullptr) {
-        h264Recording = obs_video_encoder_create("obs_x264", "video encoder", nullptr, nullptr);
-        if (!h264Recording){
-            blog(LOG_ERROR, "fail to create obs_x264 video encoder");
-            return false;
-        }
-        obs_encoder_release(h264Recording);
-
-        obs_encoder_set_video(h264Recording, obs_get_video());
-    }
-    return true;
-}
-
-bool REOBSManager::_createAudioCodec() {
-    if(aacRecording == nullptr) {
-        //录制音频编码器
-        aacRecording = obs_audio_encoder_create("CoreAudio_AAC", "audio encoder", nullptr, 0, nullptr);
-        if(!aacRecording) {
-            blog(LOG_ERROR, "fail to create CoreAudio_AAC audio encoder");
-            return false;
-        }
-        obs_encoder_release(aacRecording);
-
-        //录制链路
-        obs_encoder_set_audio(aacRecording, obs_get_audio());
-    }
-    return true;
-}
-
 void REOBSManager::startRecord() {
     if(fileOutput == nullptr) {
         // simple: 本地文件输出 对应 id = "ffmpeg_muxer"
@@ -215,59 +134,6 @@ void REOBSManager::startRecord() {
     }
 }
 
-void REOBSManager::_setupFFmpeg()
-{
-    const char *url = REOBSBasicConfigInstance->getOutputURL();
-    int64_t vBitrate = REOBSBasicConfigInstance->getOutputVideoBitrate();
-    int64_t gopSize = REOBSBasicConfigInstance->getOutputVideoGOPSize();
-//    bool rescale = REOBSBasicConfigInstance-> "FFRescale");
-//    const char *rescaleRes =
-//        config_get_string(main->Config(), "AdvOut", "FFRescaleRes");
-    const char *formatName = REOBSBasicConfigInstance->getOutputFormat();
-    const char *mimeType = REOBSBasicConfigInstance->getOutputFormatMimeType();
-//    const char *muxCustom =REOBSBasicConfigInstance-> "FFMCustom");
-    const char *vEncoder = REOBSBasicConfigInstance->getOutputVideoCodecName();// "FFVEncoder");
-    int64_t vEncoderId = REOBSBasicConfigInstance->getOutputVideoCodecId();// "FFVEncoderId");
-    const char *vEncCustom = REOBSBasicConfigInstance->getOutputVideoCodecParam(); // "FFVCustom");
-    int64_t aBitrate = REOBSBasicConfigInstance->getOutputAudioBitrate(); // "FFABitrate");
-    int64_t aMixes = REOBSBasicConfigInstance->getOutputAudioMixes(); // "FFAudioMixes");
-    const char *aEncoder = REOBSBasicConfigInstance->getOutputAudioCodecName();// "FFAEncoder");
-    int64_t aEncoderId = REOBSBasicConfigInstance->getOutputAudioCodecId(); // "FFAEncoderId");
-    const char *aEncCustom = REOBSBasicConfigInstance->getOutputAudioCodecParam(); // "FFACustom");
-    obs_data_t *settings = obs_data_create();
-
-    obs_data_set_string(settings, "url", url);
-    obs_data_set_string(settings, "format_name", formatName);
-    obs_data_set_string(settings, "format_mime_type", mimeType);
-//    obs_data_set_string(settings, "muxer_settings", muxCustom);
-    obs_data_set_int(settings, "gop_size", gopSize);
-    obs_data_set_int(settings, "video_bitrate", vBitrate);
-    obs_data_set_string(settings, "video_encoder", vEncoder);
-    obs_data_set_int(settings, "video_encoder_id", vEncoderId);
-    obs_data_set_string(settings, "video_settings", vEncCustom);
-    obs_data_set_int(settings, "audio_bitrate", aBitrate);
-    obs_data_set_string(settings, "audio_encoder", aEncoder);
-    obs_data_set_int(settings, "audio_encoder_id", aEncoderId);
-    obs_data_set_string(settings, "audio_settings", aEncCustom);
- 
-//    if (rescale && rescaleRes && *rescaleRes) {
-//        int width;
-//        int height;
-//        int val = sscanf(rescaleRes, "%dx%d", &width, &height);
-//
-//        if (val == 2 && width && height) {
-//            obs_data_set_int(settings, "scale_width", width);
-//            obs_data_set_int(settings, "scale_height", height);
-//        }
-//    }
-
-    obs_output_set_mixers(fileOutput, aMixes);
-    obs_output_set_media(fileOutput, obs_get_video(), obs_get_audio());
-    obs_output_update(fileOutput, settings);
-
-    obs_data_release(settings);
-}
-
 void REOBSManager::stopRecord() {
     if(fileOutput != nullptr) {
         obs_output_stop(fileOutput);
@@ -283,12 +149,12 @@ void REOBSManager::startPushStream() {
         obs_output_release(streamOutput);
     }
     if(streamService == nullptr) {
-        if(!REOBSConfigInstance->initService()) {
+        if(!BXG_SERVER_CFG_SHARE->initService()) {
             blog(LOG_INFO, "it's not start pushing stream until config push service finished;");
             return ;
         }
         
-        streamService = REOBSConfigInstance->getService();
+        streamService = BXG_SERVER_CFG_SHARE->getService();
 
         //连接
         obs_output_set_video_encoder(streamOutput, h264Recording);
@@ -348,6 +214,139 @@ const ff_format_desc* REOBSManager::getCurFormatDesc(){
     return curFormatDesc;
 };
 
+void REOBSManager::_createDisplay(id view)
+{
+    if(display) {
+        return ;
+    }
+    
+    gs_init_data info = {};
+    info.cx = cx;
+    info.cy = cy;
+    info.format = GS_BGRA;
+    info.zsformat = GS_ZS_NONE;
+    info.window.view = view;
+
+    display = obs_display_create(&info, 0);
+//    obs_display_destroy(display);
+}
+
+void REOBSManager::_initAV()
+{
+    struct obs_video_info ovi;
+    ovi.adapter = 0;
+    ovi.fps_num = 60;
+    ovi.fps_den = 1;
+    ovi.graphics_module = DL_OPENGL;
+    ovi.base_width = base_width;
+    ovi.base_height = base_height;
+    ovi.output_width = cx;
+    ovi.output_height = cy;
+    
+    //视频输出格式
+    //VIDEO_FORMAT_NV12:窗口部分显示，其余黑背景色；
+    //VIDEO_FORMAT_RGBA:可以将显示窗口铺满
+    ovi.output_format = VIDEO_FORMAT_NV12;
+    
+    ovi.gpu_conversion = true;
+    ovi.colorspace = VIDEO_CS_709;
+    ovi.range = VIDEO_RANGE_PARTIAL;
+    ovi.scale_type = OBS_SCALE_BICUBIC;
+    
+    //会检查是否存在 libopengl 依赖，没有会抛出异常
+    if (obs_reset_video(&ovi) != 0)
+        throw "Couldn't initialize video";
+    
+    struct obs_audio_info ai;
+    ai.samples_per_sec = 48000;
+    ai.speakers = SPEAKERS_STEREO;
+    if (obs_reset_audio(&ai) == 0)
+        throw "Couldn't initialize audio";
+}
+bool REOBSManager::_createVideoCodec() {
+    //录制视频编码器
+    if(h264Recording == nullptr) {
+        h264Recording = obs_video_encoder_create("obs_x264", "video encoder", nullptr, nullptr);
+        if (!h264Recording){
+            blog(LOG_ERROR, "fail to create obs_x264 video encoder");
+            return false;
+        }
+        obs_encoder_release(h264Recording);
+
+        obs_encoder_set_video(h264Recording, obs_get_video());
+    }
+    return true;
+}
+
+bool REOBSManager::_createAudioCodec() {
+    if(aacRecording == nullptr) {
+        //录制音频编码器
+        aacRecording = obs_audio_encoder_create("CoreAudio_AAC", "audio encoder", nullptr, 0, nullptr);
+        if(!aacRecording) {
+            blog(LOG_ERROR, "fail to create CoreAudio_AAC audio encoder");
+            return false;
+        }
+        obs_encoder_release(aacRecording);
+
+        //录制链路
+        obs_encoder_set_audio(aacRecording, obs_get_audio());
+    }
+    return true;
+}
+
+void REOBSManager::_setupFFmpeg()
+{
+    const char *url = BXG_BASIC_CFG_SHARE->getOutputURL();
+    int64_t vBitrate = BXG_BASIC_CFG_SHARE->getOutputVideoBitrate();
+    int64_t gopSize = BXG_BASIC_CFG_SHARE->getOutputVideoGOPSize();
+//    bool rescale = BXG_BASIC_CFG_SHARE-> "FFRescale");
+//    const char *rescaleRes =
+//        config_get_string(main->Config(), "AdvOut", "FFRescaleRes");
+    const char *formatName = BXG_BASIC_CFG_SHARE->getOutputFormat();
+    const char *mimeType = BXG_BASIC_CFG_SHARE->getOutputFormatMimeType();
+//    const char *muxCustom =BXG_BASIC_CFG_SHARE-> "FFMCustom");
+    const char *vEncoder = BXG_BASIC_CFG_SHARE->getOutputVideoCodecName();// "FFVEncoder");
+    int64_t vEncoderId = BXG_BASIC_CFG_SHARE->getOutputVideoCodecId();// "FFVEncoderId");
+    const char *vEncCustom = BXG_BASIC_CFG_SHARE->getOutputVideoCodecParam(); // "FFVCustom");
+    int64_t aBitrate = BXG_BASIC_CFG_SHARE->getOutputAudioBitrate(); // "FFABitrate");
+    int64_t aMixes = BXG_BASIC_CFG_SHARE->getOutputAudioMixes(); // "FFAudioMixes");
+    const char *aEncoder = BXG_BASIC_CFG_SHARE->getOutputAudioCodecName();// "FFAEncoder");
+    int64_t aEncoderId = BXG_BASIC_CFG_SHARE->getOutputAudioCodecId(); // "FFAEncoderId");
+    const char *aEncCustom = BXG_BASIC_CFG_SHARE->getOutputAudioCodecParam(); // "FFACustom");
+    obs_data_t *settings = obs_data_create();
+
+    obs_data_set_string(settings, "url", url);
+    obs_data_set_string(settings, "format_name", formatName);
+    obs_data_set_string(settings, "format_mime_type", mimeType);
+//    obs_data_set_string(settings, "muxer_settings", muxCustom);
+    obs_data_set_int(settings, "gop_size", gopSize);
+    obs_data_set_int(settings, "video_bitrate", vBitrate);
+    obs_data_set_string(settings, "video_encoder", vEncoder);
+    obs_data_set_int(settings, "video_encoder_id", vEncoderId);
+    obs_data_set_string(settings, "video_settings", vEncCustom);
+    obs_data_set_int(settings, "audio_bitrate", aBitrate);
+    obs_data_set_string(settings, "audio_encoder", aEncoder);
+    obs_data_set_int(settings, "audio_encoder_id", aEncoderId);
+    obs_data_set_string(settings, "audio_settings", aEncCustom);
+ 
+//    if (rescale && rescaleRes && *rescaleRes) {
+//        int width;
+//        int height;
+//        int val = sscanf(rescaleRes, "%dx%d", &width, &height);
+//
+//        if (val == 2 && width && height) {
+//            obs_data_set_int(settings, "scale_width", width);
+//            obs_data_set_int(settings, "scale_height", height);
+//        }
+//    }
+
+    obs_output_set_mixers(fileOutput, aMixes);
+    obs_output_set_media(fileOutput, obs_get_video(), obs_get_audio());
+    obs_output_update(fileOutput, settings);
+
+    obs_data_release(settings);
+}
+
 int REOBSManager::_findEncoder(vector<REOBSCodecDesc> &codecDesc, const char *name, int id)
 {
     REOBSCodecDesc cd(name, id);
@@ -405,8 +404,8 @@ int REOBSManager::_loadFormats()
     formats.clear();
     const ff_format_desc *format = ff_format_supported();
 
-    const char* selFormatName = REOBSBasicConfigInstance->getOutputFormat();
-    const char* selFormatMineType = REOBSBasicConfigInstance->getOutputFormatMimeType();
+    const char* selFormatName = BXG_BASIC_CFG_SHARE->getOutputFormat();
+    const char* selFormatMineType = BXG_BASIC_CFG_SHARE->getOutputFormatMimeType();
     const REOBSFormatDesc &selFormatDesc = REOBSFormatDesc(selFormatName, selFormatMineType);
     
     int lastSelIndex = -1;

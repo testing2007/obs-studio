@@ -7,54 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0DE7C67F-1209-4FAA-AA64-FABBC68EDD4B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "bxglivesdk/Network/BXGNetworkTool.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "parseModel(result, data, msg)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5CD3308C-56F5-4B2A-87EF-EB06D1828622"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "bxglivesdk/Network/BXGNetworkTool.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "BXGNetworkTool::getPushStreamData(data, type, roomId, msg)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CB20BFD7-A5A9-439B-AE5A-9D1825C3B92B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "bxglivesdk/REOBSMainVC.mm"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "460"
-            endingLineNumber = "460"
-            landmarkName = "-onRecord:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "CA7C3A92-1571-4853-AA1F-F63035EAC8CB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -62,41 +14,9 @@
             filePath = "bxglivesdk/REOBSMainVC.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "513"
-            endingLineNumber = "513"
-            landmarkName = "-getPushStreamInfo"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D4375371-D04F-4190-8E54-06758F4B5A9F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "bxglivesdk/Network/BXGNetworkTool.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "BXGNetworkTool::getPushStreamData(data, type, roomId, msg)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A2A74517-8742-4DAE-91F1-B97439D512FC"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "bxglivesdk/Network/BXGNetworkTool.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "parseModel(result, data, msg)"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
+            landmarkName = "-getParamPushInfo"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,9 +42,9 @@
             filePath = "bxglivesdk/REOBSMainVC.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "507"
-            endingLineNumber = "507"
-            landmarkName = "-getPushStreamInfo"
+            startingLineNumber = "353"
+            endingLineNumber = "353"
+            landmarkName = "-getParamPushInfo"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -243,80 +163,160 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B6A5242B-AD37-45CB-85AB-B84A8C39E6EA"
-            shouldBeEnabled = "Yes"
+            uuid = "AA168545-8D89-4278-B353-5A79D414F9A9"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "bxglivesdk/Network/BXGNetworkTool.cpp"
+            filePath = "bxglivesdk/REOBSMainVC.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "BXGNetworkTool::getPushStreamData(data, type, roomId, msg)"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "-resetCtrl"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "58D04314-7F0E-448D-846E-D5F39E82E51C"
+            uuid = "B09E319A-0B76-47AD-83FC-2E5C1622FD8F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "bxglivesdk/Network/BXGNetworkTool.cpp"
+            filePath = "bxglivesdk/REOBSManager.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "parseModel(result, data, msg)"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
+            landmarkName = "REOBSManager::_setupFFmpeg()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "73D9199A-896C-42E8-B71B-550E03FB2150"
+            uuid = "F1742DC3-F866-4A45-9547-F493CE88D6F8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "bxglivesdk/Network/BXGNetworkTool.cpp"
+            filePath = "../libobs/obs-output.c"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "parseModel(result, data, msg)"
+            startingLineNumber = "726"
+            endingLineNumber = "726"
+            landmarkName = "obs_output_set_media(output, video, audio)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C7AED0F7-A8C3-48AC-B551-F00CE39610B5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bxglivesdk/REOBSManager.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "REOBSManager::startRecord()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F19251FF-2406-4196-A986-9F22C7C8C8DE"
+            uuid = "61F533D0-2A14-40A6-BD7D-6E7200731DD4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "bxglivesdk/Network/BXGNetworkTool.cpp"
+            filePath = "../libobs/obs-output.c"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "BXGNetworkTool::getPushStreamData(data, type, roomId, msg)"
+            startingLineNumber = "823"
+            endingLineNumber = "823"
+            landmarkName = "obs_output_set_video_encoder(output, encoder)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C68A9FA0-8A9C-4783-8E20-9BFB335200B7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../UI/window-basic-main-outputs.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "406"
+            endingLineNumber = "406"
+            landmarkName = "SimpleOutput::SimpleOutput(main_)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4FF28E69-B0B7-4A0E-9338-7492BCD08A4D"
+            uuid = "54885CF5-7F7F-4333-ABE0-D91EA501853C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "bxglivesdk/Network/BXGNetworkTool.cpp"
+            filePath = "bxglivesdk/REOBSManager.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "parseModel(result, data, msg)"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "REOBSManager::startPushStream()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "04F08B7E-DD57-4348-963A-9ED75C08F073"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bxglivesdk/REOBSManager.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "REOBSManager::startPushStream()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0179C5ED-1248-48AE-9179-159B7B5F151F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bxglivesdk/REOBSServiceConfig.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "REOBSServiceConfig::_saveService(isCustom, serviceName, server, key, isNeedAuthorization, username, password)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4C09EC8C-CA54-48E1-B9E7-924BC42F9D5A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bxglivesdk/REOBSServiceConfig.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "REOBSServiceConfig::_saveService(isCustom, serviceName, server, key, isNeedAuthorization, username, password)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

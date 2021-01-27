@@ -60,15 +60,12 @@ std::string BXGNetworkTool::getInfo(std::string &uri) {
     return res->body;
 }
 
-bool BXGNetworkTool::getPushStreamData(BXGPushStreamModel &data, int type, int& roomId, std::string &msg) {
+bool BXGNetworkTool::getPushStreamData(BXGPushStreamModel& data, PUSH_CATEGORY_TYPE pushCategory, PUSH_STYLE_TYPE pushStyle, const std::string& authCode, std::string &msg) {
     // param
-    std::string params;
-    std::string authCode = "&authCode=push_" + std::to_string(roomId);
-    if(type == 0) {
-        params = "?liveType=hls" + authCode;
-    } else {
-        params = "?liveType=flv" + authCode;
-    }
+    std::string category = (pushCategory==0) ? "service" : "param";
+    std::string style = (pushStyle==0) ? "hls" : "flv";
+    std::string params = "?pushCategory=" + category  + "&pushStyle="+ style + "&authCode="+ authCode;
+
     // uri
     std::string uri;
     uri = "/getPushInfo" + params;
@@ -76,8 +73,5 @@ bool BXGNetworkTool::getPushStreamData(BXGPushStreamModel &data, int type, int& 
     const BXGNetworkResult &result = BXGNetworkResult::result(info);
     
     bool bSuccess = Convert<BXGPushStreamModel>::parseModel(result, data, msg);
-    if(bSuccess) {
-        roomId = atoi(data.roomId.c_str()) + 1;
-    }
     return bSuccess;
 }

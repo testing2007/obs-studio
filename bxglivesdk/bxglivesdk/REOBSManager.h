@@ -20,23 +20,7 @@ using namespace std;
 class REOBSManager {
 public:
     static REOBSManager* share();
-    
-    const vector<REOBSFormatDesc>& getFormats(int &lastSelIndex);
-    /// 指定容器格式所支持的音视频编解码
-    /// @param formatDesc 指定容器格式
-    /// @param vCodecDesc 视频编解码
-    /// @param aCodecDesc 音频编解码
-    void reloadCodecs(const ff_format_desc *formatDesc,
-                      OUT vector<REOBSCodecDesc> &vCodecDesc,
-                      OUT int& selVideoCodecIndex,
-                      OUT vector<REOBSCodecDesc> &aCodecDesc,
-                      OUT int& selAudioCodecIndex);
-    
-    const ff_format_desc* getCurFormatDesc();
-    
-    //初始化 OBS
-    bool _initOBS();
-    
+
     //设置推流窗口
     void setContentView(id view);
 
@@ -55,7 +39,22 @@ public:
     //停止推流
     void stopPushStream();
     
+    const vector<REOBSFormatDesc>& getFormats(int &lastSelIndex);
+    /// 指定容器格式所支持的音视频编解码
+    /// @param formatDesc 指定容器格式
+    /// @param vCodecDesc 视频编解码
+    /// @param aCodecDesc 音频编解码
+    void reloadCodecs(const ff_format_desc *formatDesc,
+                      OUT vector<REOBSCodecDesc> &vCodecDesc,
+                      OUT int& selVideoCodecIndex,
+                      OUT vector<REOBSCodecDesc> &aCodecDesc,
+                      OUT int& selAudioCodecIndex);
+    
+    const ff_format_desc* getCurFormatDesc();
+    
 private:
+    //初始化 OBS
+    bool _initOBS();
     void _initAV();
     void _createDisplay(id view);
     bool _createAudioCodec();
@@ -96,6 +95,6 @@ private:
     vector<REOBSCodecDesc> videoCodecs;
 };
 
-#define REOBSManagerInstance  (REOBSManager::share())
+#define BXG_MGR_SHARE  (REOBSManager::share())
 
 #endif /* REOBSManagerImpl_hpp */

@@ -80,7 +80,7 @@ void REOBSServiceConfig::_saveService(bool isCustom, const char*serviceName, con
         obs_data_set_string(settings, "server",server);
     } else {
         obs_data_set_string(settings, "server", server);
-        obs_data_set_bool(settings, "use_auth", isNeedAuthorization);
+        obs_data_set_bool(settings, "use_auth", isNeedAuthorization);//TODO:不知道怎么用
         if (isNeedAuthorization) {
             obs_data_set_string(
                 settings, "username", username);

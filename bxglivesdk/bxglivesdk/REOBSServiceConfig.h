@@ -27,7 +27,7 @@ public:
     //    const char isNeedAuthorization = true;
     //    const char *userName = "username";
     //    const char *password = "password";
-    //    REOBSConfigInstance->saveCustomService(server, key, isNeedAuthorization, userName, password);
+    //    BXG_SERVER_CFG_SHARE->saveCustomService(server, key, isNeedAuthorization, userName, password);
     /// 保存自定义推流服务
     /// @param server 自定义推流地址
     /// @param key        推流密钥（或 推流视频名称 ）
@@ -64,6 +64,6 @@ private:
     OBSService service;
 };
 
-#define REOBSConfigInstance  (REOBSServiceConfig::share())
+#define BXG_SERVER_CFG_SHARE  (REOBSServiceConfig::share())
 
 #endif /* REOBSConfig_hpp */

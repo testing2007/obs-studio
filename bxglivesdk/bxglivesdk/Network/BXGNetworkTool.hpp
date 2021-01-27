@@ -9,6 +9,7 @@
 #define BXGNetworkBB_hpp
 
 #include <stdio.h>
+#include "REOBS.h"
 
 //网络库
 //#define CPPHTTPLIB_OPENSSL_SUPPORT
@@ -21,7 +22,7 @@ public:
     static BXGNetworkTool* share();
 
     //type=0, hls推流; type =1, flv推流
-    bool getPushStreamData(BXGPushStreamModel &data, int type, int& roomId, std::string &msg);
+    bool getPushStreamData(BXGPushStreamModel& data, PUSH_CATEGORY_TYPE pushCategory, PUSH_STYLE_TYPE pushStyle, const std::string& authCode, std::string &msg);
 
 private:
     BXGNetworkTool();
