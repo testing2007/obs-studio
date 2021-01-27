@@ -1207,14 +1207,14 @@ public:
   void set_tcp_nodelay(bool on);
   void set_socket_options(SocketOptions socket_options);
 
-  void (time_t sec, time_t usec = 0);
+  void set_connection_timeout(time_t sec, time_t usec = 0);
   void set_read_timeout(time_t sec, time_t usec = 0);
   void set_write_timeout(time_t sec, time_t usec = 0);
 
   void set_basic_auth(const char *username, const char *password);
   void set_bearer_token_auth(const char *token);
 #ifdef CPPHTTPLIB_OPENSSL_SUPPORT
-  void set_digest_auth(const char *username, set_connection_timeoutconst char *password);
+  void set_digest_auth(const char *username, const char *password);
 #endif
 
   void set_keep_alive(bool on);
