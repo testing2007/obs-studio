@@ -44,19 +44,24 @@ class Convert {
     return _instance;
 }
 
-std::string BXGNetworkTool::getInfo(std::string &uri) {
+BXGNetworkTool::BXGNetworkTool() {
     // HTTP
-    httplib::Client cli("http://localhost:9000");
-
+    requestHandle = new httplib::Client("http://localhost:9000");
+    httplib::Headers headers;
+    headers.insert(std::make_pair("bxg-origin", "bxg"));
+    headers.insert(std::make_pair("bxg-platform", "mac"));
+    requestHandle->set_default_headers(headers);
     // HTTPS
     //httplib::Client cli("https://cpp-httplib-server.yhirose.repl.co");
+}
 
-    auto res = cli.Get(uri.c_str());
+std::string BXGNetworkTool::getInfo(std::string &uri) {
+    auto res = requestHandle->Get(uri.c_str());
     return res->body;
 }
 
 bool BXGNetworkTool::getPushStreamData(BXGPushStreamModel &data, int type, int& roomId, std::string &msg) {
-    std::string uri;
+    // param
     std::string params;
     std::string authCode = "&authCode=push_" + std::to_string(roomId);
     if(type == 0) {
@@ -64,6 +69,8 @@ bool BXGNetworkTool::getPushStreamData(BXGPushStreamModel &data, int type, int& 
     } else {
         params = "?liveType=flv" + authCode;
     }
+    // uri
+    std::string uri;
     uri = "/getPushInfo" + params;
     const std::string &info = this->getInfo(uri);
     const BXGNetworkResult &result = BXGNetworkResult::result(info);

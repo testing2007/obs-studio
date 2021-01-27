@@ -23,10 +23,12 @@ public:
     //type=0, hls推流; type =1, flv推流
     bool getPushStreamData(BXGPushStreamModel &data, int type, int& roomId, std::string &msg);
 
-
+private:
+    BXGNetworkTool();
+    
 private:
     std::string getInfo(std::string &uri);
-
+    httplib::Client *requestHandle;
 };
 
 #endif /* BXGNetworkBB_hpp */
